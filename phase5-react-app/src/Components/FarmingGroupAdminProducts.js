@@ -12,9 +12,22 @@ const FarmingGroupAdminProducts = () => {
   }, []);
 
 
-     
+     return (
+     <div>
+      <h1>Farm Utilities and Equipment</h1>
+      <ul>
+        {products.map(product => (
+          <li key={product.id}>
+            <p>{product.ProductName}</p>
+            <p>Price: ${product.ProductPrice}</p>
+            {/* Add the image here using product.ProductImage */}
+          </li>
+        ))}
+      </ul>
+     </div>
+     );
 
-}
+};
 
 export default FarmingGroupAdminProducts;
 
