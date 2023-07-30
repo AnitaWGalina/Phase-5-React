@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const LeaseLandForm = () => {
-  const [landId, setLandId] = useState('');
   const [typeOfOperation, setTypeOfOperation] = useState('');
   const [landSize, setLandSize] = useState('');
   const [operationDuration, setOperationDuration] = useState('');
   const [operationPrice, setOperationPrice] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here, e.g., sending data to the server
-    console.log('Lease land form submitted!', landId, typeOfOperation, landSize, operationDuration, operationPrice);
+    console.log('Lease land form submitted!', typeOfOperation, landSize, operationDuration, operationPrice);
   };
+
+  useEffect(() => {
+    // Calculate the expiration date when operationDuration changes
+    if (operationDuration) {
+      const currentDate = new Date();
+      const durationInMonths = parseInt(operationDuration, 10);
+      const expirationDate = new Date(currentDate.setMonth(currentDate.getMonth() + durationInMonths));
+      setExpirationDate(expirationDate.toDateString());
+    } else {
+      setExpirationDate('');
+    }
+  }, [operationDuration]);
 
   return (
     <div>
       <h2>Lease Land Form</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Land ID:
-          <input
-            type="text"
-            value={landId}
-            onChange={(e) => setLandId(e.target.value)}
-          />
-        </label>
         <label>
           Type of Operation (Lease/Rent):
           <input
@@ -42,7 +46,7 @@ const LeaseLandForm = () => {
           />
         </label>
         <label>
-          Operation Duration:
+          Operation Duration (in months):
           <input
             type="text"
             value={operationDuration}
@@ -57,6 +61,7 @@ const LeaseLandForm = () => {
             onChange={(e) => setOperationPrice(e.target.value)}
           />
         </label>
+        {expirationDate && <p>Lease Expiration Date: {expirationDate}</p>}
         <button type="submit">Submit</button>
       </form>
     </div>

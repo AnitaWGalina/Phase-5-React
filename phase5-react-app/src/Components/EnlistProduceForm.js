@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 const EnlistProduceForm = () => {
-  const [productId, setProductId] = useState('');
-  const [productUnitPrice, setProductUnitPrice] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const [cropCategory, setCropCategory] = useState('');
+  const [producePricePerKg, setProducePricePerKg] = useState('');
+  const [quantityHarvested, setQuantityHarvested] = useState('');
   const [produceType, setProduceType] = useState('sellLocally'); // Default to "Sell Locally"
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted!', productId, productUnitPrice, quantity, produceType);
+    console.log('Form submitted!', cropCategory, producePricePerKg, quantityHarvested, produceType);
   };
 
   return (
@@ -16,27 +16,27 @@ const EnlistProduceForm = () => {
       <h1>Enlist Produce</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Product ID:
+          Category of Crop:
           <input
             type="text"
-            value={productId}
-            onChange={(e) => setProductId(e.target.value)}
+            value={cropCategory}
+            onChange={(e) => setCropCategory(e.target.value)}
           />
         </label>
         <label>
-          Product Unit Price:
+          Produce Price per kg:
           <input
             type="text"
-            value={productUnitPrice}
-            onChange={(e) => setProductUnitPrice(e.target.value)}
+            value={producePricePerKg}
+            onChange={(e) => setProducePricePerKg(e.target.value)}
           />
         </label>
         <label>
-          Quantity:
+          Quantity Harvested:
           <input
             type="text"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+            value={quantityHarvested}
+            onChange={(e) => setQuantityHarvested(e.target.value)}
           />
         </label>
         <label>

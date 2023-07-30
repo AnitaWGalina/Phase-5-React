@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LandList from './LandList';
-import TrainingForm from './TrainingForm';
 
 const FarmingGroupAdminServices = () => {
   return (
