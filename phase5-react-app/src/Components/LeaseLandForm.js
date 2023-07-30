@@ -14,7 +14,15 @@ const LeaseLandForm = () => {
         console.log('Lease land form submitted!', landId, typeOfOperation, landSize, operationDuration, operationPrice);
       };
 
-      
+    return (
+        <div>
+          <h2>Lease Land Form</h2>
+          <form onSubmit={handleSubmit}>
+            {/* Form fields and input elements */}
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      );
 };
 
 export default LeaseLandForm;
