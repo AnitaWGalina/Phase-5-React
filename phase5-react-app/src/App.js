@@ -7,6 +7,7 @@ import FarmingGroupAdminServices from './Components/FarmingGroupAdminServices';
 import PublicClientProducts from './Components/PublicClientProducts';
 import PublicClientServices from './Components/PublicClientServices';
 import EnlistProduceForm from './Components/EnlistProduceForm'; // Import the EnlistProduceForm component
+import LeaseLandForm from './Components/LeaseLandForm';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/public-client-products" element={<PublicClientProducts />} />
         <Route path="/public-client-services" element={<PublicClientServices />} />
         <Route path="/enlist-produce" element={<EnlistProduceForm />} />
+        <Route path="/lease-land" element={<LeaseLandForm />} />
       </Routes>
     </Router>
   );
