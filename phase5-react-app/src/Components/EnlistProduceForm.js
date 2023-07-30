@@ -4,7 +4,7 @@ const EnlistProduceForm = () => {
   const [cropCategory, setCropCategory] = useState('');
   const [producePricePerKg, setProducePricePerKg] = useState('');
   const [quantityHarvested, setQuantityHarvested] = useState('');
-  const [produceType, setProduceType] = useState('sellLocally'); // Default to "Sell Locally"
+  const [produceType, setProduceType] = useState('sellLocally');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ const EnlistProduceForm = () => {
             type="text"
             value={cropCategory}
             onChange={(e) => setCropCategory(e.target.value)}
+            placeholder="e.g Tea, Coffee..."
           />
         </label>
         <label>
@@ -32,7 +33,7 @@ const EnlistProduceForm = () => {
           />
         </label>
         <label>
-          Quantity Harvested:
+          Quantity Harvested(kg):
           <input
             type="text"
             value={quantityHarvested}
