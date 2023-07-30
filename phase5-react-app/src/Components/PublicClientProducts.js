@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-
 const PublicClientProducts = () => {
   const [products, setProducts] = useState([]);
 
@@ -14,7 +13,7 @@ const PublicClientProducts = () => {
 
   return (
     <div>
-      <h1>Farm Utilities and Equipment</h1>
+      <h1>Products Available</h1>
       <ul>
         {products.map(product => (
           <li key={product.id}>
