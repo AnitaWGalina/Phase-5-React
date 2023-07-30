@@ -12,10 +12,29 @@ const TrainingForm = () => {
     };
 
     return(
-        <div>
-            
-        </div>
-    )
+     <div>
+            <h2>Training Form</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Date of Training:
+          <input
+            type="date"
+            value={dateOfTraining}
+            onChange={(e) => setDateOfTraining(e.target.value)}
+          />
+        </label>
+        <label>
+          Number of Trainees:
+          <input
+            type="number"
+            value={numberOfTrainees}
+            onChange={(e) => setNumberOfTrainees(e.target.value)}
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+     </div>
+    );
 
 
 };
