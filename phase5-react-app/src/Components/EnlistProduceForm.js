@@ -12,7 +12,34 @@ const EnlistProduceForm = () => {
 
   return (
     <div>
-        
+     <h1>Enlist Produce</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Product ID:
+          <input
+            type="text"
+            value={productId}
+            onChange={(e) => setProductId(e.target.value)}
+          />
+        </label>
+        <label>
+          Product Unit Price:
+          <input
+            type="text"
+            value={productUnitPrice}
+            onChange={(e) => setProductUnitPrice(e.target.value)}
+          />
+        </label>
+        <label>
+          Quantity:
+          <input
+            type="text"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   )
 
