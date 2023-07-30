@@ -18,14 +18,14 @@ const FarmingGroupAdminServices = () => {
           <Link to="/rent-land">Rent Land</Link>
         </li>
         <li>
-          <Link to="/training">Training</Link> 
+          <Link to="/training">Training</Link>
         </li>
         {/* Add other child links for other services as needed */}
       </ul>
       <hr />
       <LandList />
     </div>
-  );
+  )
 };
 
 export default FarmingGroupAdminServices;
