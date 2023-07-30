@@ -11,6 +11,12 @@ const TrainingForm = () => {
       console.log('Training form submitted!', dateOfTraining, numberOfTrainees, totalCost);
     };
 
+    return(
+        <div>
+            
+        </div>
+    )
+
 
 };
 
