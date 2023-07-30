@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LandList from './LandList';
 
 const PublicClientServices = () => {
   return (
@@ -9,8 +10,13 @@ const PublicClientServices = () => {
         <li>
           <Link to="/lease-land">Lease Land</Link>
         </li>
+        <li>
+          <Link to="/rent-land">Rent Land/Purchase Land</Link>
+        </li>
         {/* Add other child links for other services as needed */}
       </ul>
+      <hr />
+      <LandList />
     </div>
   );
 };
