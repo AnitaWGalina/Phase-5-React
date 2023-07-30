@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LandList from './LandList';
+import TrainingForm from './TrainingForm';
 
 const FarmingGroupAdminServices = () => {
   return (
@@ -15,6 +16,9 @@ const FarmingGroupAdminServices = () => {
         </li>
         <li>
           <Link to="/rent-land">Rent Land</Link>
+        </li>
+        <li>
+          <Link to="/training">Training</Link> 
         </li>
         {/* Add other child links for other services as needed */}
       </ul>
