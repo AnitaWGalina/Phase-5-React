@@ -40,7 +40,7 @@ const EnlistProduceForm = () => {
           />
         </label>
         <label>
-          Produce Type:
+          Sell options:
           <select value={produceType} onChange={(e) => setProduceType(e.target.value)}>
             <option value="sellLocally">Sell Locally</option>
             <option value="export">Export Produce</option>
