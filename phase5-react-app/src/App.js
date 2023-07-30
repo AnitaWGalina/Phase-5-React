@@ -6,17 +6,19 @@ import FarmingGroupAdminProducts from './Components/FarmingGroupAdminProducts';
 import FarmingGroupAdminServices from './Components/FarmingGroupAdminServices';
 import PublicClientProducts from './Components/PublicClientProducts';
 import PublicClientServices from './Components/PublicClientServices';
+import EnlistProduceForm from './Components/EnlistProduceForm'; // Import the EnlistProduceForm component
 
 function App() {
   return (
     <Router>
       <Routes>
-      <Route exact path="/" component={FarmingGroupAdminLandingPage} />
-      <Route exact path="/public-client" component={PublicClientLandingPage} />
-      <Route path="/products" component={FarmingGroupAdminProducts} />
-      <Route path="/services" component={FarmingGroupAdminServices} />
-      <Route path="/public-client-products" component={PublicClientProducts} />
-      <Route path="/public-client-services" component={PublicClientServices} />
+        <Route exact path="/" element={<FarmingGroupAdminLandingPage />} />
+        <Route exact path="/public-client" element={<PublicClientLandingPage />} />
+        <Route path="/products" element={<FarmingGroupAdminProducts />} />
+        <Route path="/services" element={<FarmingGroupAdminServices />} />
+        <Route path="/public-client-products" element={<PublicClientProducts />} />
+        <Route path="/public-client-services" element={<PublicClientServices />} />
+        <Route path="/enlist-produce" element={<EnlistProduceForm />} />
       </Routes>
     </Router>
   );
