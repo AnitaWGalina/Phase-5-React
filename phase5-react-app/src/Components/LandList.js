@@ -10,6 +10,12 @@ const LandList = () => {
       .catch((error) => console.error('Error fetching lands:', error));
   }, []);
 
+  return(
+    <div>
+        
+    </div>
+  )
+
 };
 
 export default LandList;
