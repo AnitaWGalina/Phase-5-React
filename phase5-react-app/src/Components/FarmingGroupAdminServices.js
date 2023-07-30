@@ -25,7 +25,7 @@ const FarmingGroupAdminServices = () => {
       <hr />
       <LandList />
     </div>
-  )
+  );
 };
 
 export default FarmingGroupAdminServices;
