@@ -12,7 +12,20 @@ const LandList = () => {
 
   return(
     <div>
-        
+      <h2>Available Lands for Rent</h2>
+      <ul>
+        {lands.map((land) => (
+          <li key={land.id}>
+            <strong>Image:</strong> <img src={land.image} alt={`Land ${land.id}`} />
+            <br />
+            <strong>Size:</strong> {land.size}
+            <br />
+            <strong>Location:</strong> {land.location}
+            <br />
+            <strong>Price:</strong> {land.price}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 
