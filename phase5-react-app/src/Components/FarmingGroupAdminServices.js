@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LandList from './LandList';
 
 const FarmingGroupAdminServices = () => {
-
   return (
     <div>
       <h1>Services for Farmers</h1>
@@ -11,10 +11,15 @@ const FarmingGroupAdminServices = () => {
           <Link to="/enlist-produce">Enlist Produce</Link>
         </li>
         <li>
-          <Link to="/lease-land">Lease Land</Link> {/* Add the "lease land" link */}
+          <Link to="/lease-land">Lease Land</Link>
+        </li>
+        <li>
+          <Link to="/rent-land">Rent Land</Link>
         </li>
         {/* Add other child links for other services as needed */}
       </ul>
+      <hr />
+      <LandList />
     </div>
   );
 };
