@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const LeaseLandForm = () => {
-  const [typeOfOperation, setTypeOfOperation] = useState('');
+  const [landLocation, setLandLocation] = useState('');
   const [landSize, setLandSize] = useState('');
   const [operationDuration, setOperationDuration] = useState('');
   const [operationPrice, setOperationPrice] = useState('');
@@ -12,7 +12,7 @@ const LeaseLandForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here, e.g., sending data to the server
-    console.log('Lease land form submitted!', typeOfOperation, landSize, operationDuration, operationPrice);
+    console.log('Lease land form submitted!', landLocation, landSize, operationDuration, operationPrice);
   };
 
   const handleLandSizeChange = (e) => {
@@ -42,11 +42,12 @@ const LeaseLandForm = () => {
       <h2>Lease Land Form</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Type of Operation (Lease/Rent):
+          Land Location (Town & City):
           <input
             type="text"
-            value={typeOfOperation}
-            onChange={(e) => setTypeOfOperation(e.target.value)}
+            value={landLocation}
+            onChange={(e) => setLandLocation(e.target.value)}
+            placeholder="e.g. Nairobi, Limuru..."
           />
         </label>
         <label>
@@ -80,6 +81,20 @@ const LeaseLandForm = () => {
         {expirationDate && <p>Lease Expiration Date: {expirationDate}</p>}
         <button type="submit">Submit</button>
       </form>
+
+      {/* Google Maps Link */}
+      {landLocation && (
+        <a
+          href={`https://www.google.com/maps/place/${encodeURIComponent(landLocation)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://ps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png"
+            alt="Google Pin"
+          />
+        </a>
+      )}
     </div>
   );
 };
