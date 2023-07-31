@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 const LeaseLandForm = () => {
   const [landLocation, setLandLocation] = useState('');
   const [landSize, setLandSize] = useState('');
@@ -71,11 +72,12 @@ const LeaseLandForm = () => {
           />
         </label>
         <label>
-          Operation Price:
+          Operation Price(per year):
           <input
             type="text"
             value={operationPrice}
             onChange={(e) => setOperationPrice(e.target.value)}
+            placeholder=":KSh"
           />
         </label>
         {expirationDate && <p>Lease Expiration Date: {expirationDate}</p>}
