@@ -78,13 +78,29 @@ const LeaseLandForm = () => {
         <Box maxW="400px" mx="auto" p={4}>
           <FormControl mb={6}>
             <FormLabel>Land Location (Town & City):</FormLabel>
-            <Input
-              size="sm"
-              type="text"
-              value={landLocation}
-              onChange={(e) => setLandLocation(e.target.value)}
-              placeholder="e.g. Nairobi, Limuru..."
-            />
+            <Flex alignItems="center">
+              <Input
+                size="sm"
+                type="text"
+                value={landLocation}
+                onChange={(e) => setLandLocation(e.target.value)}
+                placeholder="e.g. Nairobi, Limuru..."
+              />
+              {landLocation && (
+                <Link
+                  href={`https://www.google.com/maps/place/${encodeURIComponent(landLocation)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ml={2}
+                >
+                  <img
+                    src="https://ps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png"
+                    alt="Google Pin"
+                    style={{ width: '20px', height: '20px', marginBottom: '-4px' }}
+                  />
+                </Link>
+              )}
+            </Flex>
           </FormControl>
           <FormControl mb={6}>
             <FormLabel>Land Size (in square meters):</FormLabel>
@@ -146,19 +162,6 @@ const LeaseLandForm = () => {
           </AlertTitle>
           <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseFailureAlert} />
         </Alert>
-      )}
-      {/* Google Maps Link */}
-       {landLocation && (
-        <Link
-          href={`https://www.google.com/maps/place/${encodeURIComponent(landLocation)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="https://ps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png"
-            alt="Google Pin"
-          />
-        </Link>
       )}
     </Box>
   );
