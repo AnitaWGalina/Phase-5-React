@@ -1,38 +1,102 @@
-.App {
-  text-align: center;
+/* src/styles.css */
+
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* NavBar styles */
+nav {
+
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+nav div {
+  display: flex;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav .logo {
+  margin-right: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  transition: 0.2s ease-out;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.home-container {
+  height: 429px;
+  width: 1440px;
+  background-image: url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp');
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+/* Custom class for 'Inika' font in yellow color */
+.font-inika-yellow {
+  font-family: 'Inika', serif;
+  color: #FFF500;
+  font-size: 3rem;
+}
+
+/* Custom class for 'Inika' font in white color */
+.font-inika-white {
+  font-family: 'Inika', serif;
   color: white;
+  font-size: 3rem;
 }
-
-.App-link {
-  color: #61dafb;
+.font-inika-yellow.mb-1 {
+  margin-bottom: 0.01rem; /* Customize the margin as needed */
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.home-title {
+  font-size: 6rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #FFF500;
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 10px 0;
   }
-  to {
-    transform: rotate(360deg);
+
+  nav .logo {
+    margin-bottom: 10px;
+  }
+
+  nav a {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .home-container {
+    height: 300px;
+    width: 100%;
+  }
+
+  .home-title {
+    font-size: 1.8rem;
   }
 }
