@@ -8,6 +8,7 @@ import About from "./component/About";
 import Contact from "./component/Contact";
 // import Footer from "./Footer";
 import './App.css';
+import Profile from "./component/Profile";
 import UserProfile from "./UserProfile";
 
 
@@ -30,15 +31,19 @@ const App = () => {
           />
 
           <Route path='/about'
-          element= {<About/>}
+            element= {<About/>}
           />
           
           <Route path='/contact'
-          element= {<Contact/>}
+            element= {<Contact/>}
           />
           
           <Route path='/profile'
-          element= {<UserProfile/>}
+            element= {<Profile/>}
+          />
+
+          <Route path='/update_account'
+            element= {<UserProfile/>}
           />
         </Routes>
       </Router>

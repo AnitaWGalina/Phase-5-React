@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from '../context/AuthContext';
 
-const Navbar = () => {
+const NavBar = () => {
+  const location = useLocation();
+  const { user } = useAuth(); // Get the user from the AuthContext
+
   return (
     <nav style={styles.navbar}>
       <div style={styles.logo}>
@@ -9,22 +13,14 @@ const Navbar = () => {
         <span style={styles.logoYellow}>BIX</span>
       </div>
       <ul style={styles.menu}>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        
-        </li>
-        <li>
-          <a href="/contact">Contact Us</a>
-        </li>
-        <li>
-          <a href="/signup">Signup</a>
-        </li>
-        <li>
-          <a href="/login">Login</a>
-        </li>
+        {location.pathname !== "/" && <li><NavLink exact to="/">Home</NavLink></li>}
+        {location.pathname !== "/about" && <li><NavLink to="/about">About</NavLink></li>}
+        {location.pathname !== "/contact" && <li><NavLink to="/contact">Contact Us</NavLink></li>}
+        {user && location.pathname !== "/profile" && ( // Check if not on profile page
+          <li><NavLink to="/profile">Profile</NavLink></li>
+        )}
+        {!user && location.pathname !== "/signup" && <li><NavLink to="/signup">Signup</NavLink></li>}
+        {!user && location.pathname !== "/login" && <li><NavLink to="/login">Login</NavLink></li>}
       </ul>
     </nav>
   );
@@ -72,4 +68,4 @@ const styles = {
  
 };
 
-export default Navbar;
+export default NavBar;
