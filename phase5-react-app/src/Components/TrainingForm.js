@@ -4,7 +4,8 @@ const TrainingForm = () => {
   const [dateOfTraining, setDateOfTraining] = useState('');
   const [numberOfTrainees, setNumberOfTrainees] = useState('');
   const [showForm, setShowForm] = useState(false);
-  const [registrationFee, setRegistrationFee] = useState(null); // Initialize with null
+  const [registrationFee, setRegistrationFee] = useState(null);
+  const [totalCost, setTotalCost] = useState(null);
 
   useEffect(() => {
     // Fetch registration fee from the backend
@@ -18,8 +19,11 @@ const TrainingForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const totalCost = numberOfTrainees * registrationFee;
-    console.log('Training form submitted!', dateOfTraining, numberOfTrainees, totalCost);
+    if (registrationFee !== null) {
+      const calculatedTotalCost = numberOfTrainees * registrationFee;
+      setTotalCost(calculatedTotalCost);
+      console.log('Training form submitted!', dateOfTraining, numberOfTrainees, calculatedTotalCost);
+    }
   };
 
   return (
@@ -43,7 +47,7 @@ const TrainingForm = () => {
               onChange={(e) => setNumberOfTrainees(e.target.value)}
             />
           </label>
-          {registrationFee !== null && <p>Total Cost: {numberOfTrainees * registrationFee}</p>}
+          {registrationFee !== null && <p>Total Cost: {totalCost}</p>}
           <button type="submit">Submit</button>
         </form>
       ) : (
