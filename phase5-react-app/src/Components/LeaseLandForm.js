@@ -8,6 +8,7 @@ import {
   Button,
   Text,
   Link,
+  Flex,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
@@ -88,8 +89,8 @@ const LeaseLandForm = () => {
             />
           </FormControl>
           <FormControl mb={6}>
-            <FormLabel>Operation Price (per year):</FormLabel>
-            <Box position="relative" display="inline-block">
+          <FormLabel>Operation Price (per year):</FormLabel>
+            <Flex align="center"> 
               <Input
                 size="sm"
                 type="text"
@@ -97,10 +98,8 @@ const LeaseLandForm = () => {
                 onChange={(e) => setOperationPrice(e.target.value)}
                 paddingRight="32px"
               />
-              <Text position="absolute" top="50%" right="8px" transform="translateY(-50%)">
-                :KSh
-              </Text>
-            </Box>
+              <Text marginLeft="10px">:KSh</Text>
+            </Flex>
           </FormControl>
           {expirationDate && <Text>Lease Expiration Date: {expirationDate}</Text>}
           <Button type="submit" colorScheme="green" bgColor="#317873">
