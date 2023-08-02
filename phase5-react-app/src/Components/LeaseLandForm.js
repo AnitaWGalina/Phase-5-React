@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
-
+import {
+  Box,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Text,
+  Link,
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 
 const LeaseLandForm = () => {
   const [landLocation, setLandLocation] = useState('');
@@ -39,54 +49,63 @@ const LeaseLandForm = () => {
   }, [operationDuration]);
 
   return (
-    <div>
-      <h2>Lease Land Form</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Land Location (Town & City):
-          <input
-            type="text"
-            value={landLocation}
-            onChange={(e) => setLandLocation(e.target.value)}
-            placeholder="e.g. Nairobi, Limuru..."
-          />
-        </label>
-        <label>
-          Land Size (in square meters):
-          <input
-            type="text"
-            value={landSize}
-            onChange={handleLandSizeChange}
-          />
-        </label>
-        <div>
-          {landSizeInPlots && <p>Land Size in Plots: {landSizeInPlots}</p>}
-          {landSizeInAcres && <p>Land Size in Acres: {landSizeInAcres}</p>}
-        </div>
-        <label>
-          Operation Duration (in months):
-          <input
-            type="text"
-            value={operationDuration}
-            onChange={(e) => setOperationDuration(e.target.value)}
-          />
-        </label>
-        <label>
-          Operation Price(per year):
-          <input
-            type="text"
-            value={operationPrice}
-            onChange={(e) => setOperationPrice(e.target.value)}
-            placeholder=":KSh"
-          />
-        </label>
-        {expirationDate && <p>Lease Expiration Date: {expirationDate}</p>}
-        <button type="submit">Submit</button>
-      </form>
-
+    <Box p={8} textAlign="center">
+      <Heading as="h1" mb={6}>
+        Lease Land Form
+      </Heading>
+      <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <Box maxW="400px" mx="auto" p={4}>
+          <FormControl mb={6}>
+            <FormLabel>Land Location (Town & City):</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={landLocation}
+              onChange={(e) => setLandLocation(e.target.value)}
+              placeholder="e.g. Nairobi, Limuru..."
+            />
+          </FormControl>
+          <FormControl mb={6}>
+            <FormLabel>Land Size (in square meters):</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={landSize}
+              onChange={handleLandSizeChange}
+            />
+          </FormControl>
+          <Box mb={6}>
+            {landSizeInPlots && <Text>Land Size in Plots: {landSizeInPlots}</Text>}
+            {landSizeInAcres && <Text>Land Size in Acres: {landSizeInAcres}</Text>}
+          </Box>
+          <FormControl mb={6}>
+            <FormLabel>Operation Duration (in months):</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={operationDuration}
+              onChange={(e) => setOperationDuration(e.target.value)}
+            />
+          </FormControl>
+          <FormControl mb={6}>
+            <FormLabel>Operation Price (per year):</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={operationPrice}
+              onChange={(e) => setOperationPrice(e.target.value)}
+              placeholder="KSh"
+            />
+          </FormControl>
+          {expirationDate && <Text>Lease Expiration Date: {expirationDate}</Text>}
+          <Button type="submit" colorScheme="green" bgColor="#317873">
+            Submit
+          </Button>
+        </Box>
+      </motion.form>
       {/* Google Maps Link */}
       {landLocation && (
-        <a
+        <Link
           href={`https://www.google.com/maps/place/${encodeURIComponent(landLocation)}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -95,9 +114,9 @@ const LeaseLandForm = () => {
             src="https://ps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png"
             alt="Google Pin"
           />
-        </a>
+        </Link>
       )}
-    </div>
+    </Box>
   );
 };
 
