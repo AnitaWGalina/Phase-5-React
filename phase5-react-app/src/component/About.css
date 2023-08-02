@@ -14,8 +14,10 @@
 }
 
 .paragraph {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #555;
-  text-align: justify;
+  font-size: 25px;
+  line-height: 2.1;
+  color: #05643b;
+  text-align: center;
+  font-style: inherit;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

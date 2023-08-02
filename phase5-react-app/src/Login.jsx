@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selectedOption, setSelectedOption] = useState(""); // Add this line for selectedOption state
+  // const [selectedOption, setSelectedOption] = useState(""); // Add this line for selectedOption state
 
   const navigate = useNavigate();
 
@@ -26,14 +26,14 @@ const Login = () => {
       .then((data) => {
         console.log(data);
 
-        navigate("");
+        navigate("/profile");
       });
   };
 
-  const handleDropdownChange = (e) => {
-    // Add this event handler
-    setSelectedOption(e.target.value);
-  };
+  // const handleDropdownChange = (e) => {
+  //   // Add this event handler
+  //   setSelectedOption(e.target.value);
+  // };
   return (
     <>
       <h1>LOGIN</h1>

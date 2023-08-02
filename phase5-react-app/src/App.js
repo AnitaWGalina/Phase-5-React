@@ -1,16 +1,14 @@
 import React from "react";
-
 import Login from "./Login";
 import SignUpForm from "./SignUp";
-
-import HomePage from './component/HomePage'; // Check the file name and path here
+import HomePage from './component/HomePage'; 
 import NavBar from './component/NavBar';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./component/About";
 import Contact from "./component/Contact";
-import Footer from "./Footer";
-
+// import Footer from "./Footer";
 import './App.css';
+import UserProfile from "./UserProfile";
 
 
 const App = () => {
@@ -32,6 +30,8 @@ const App = () => {
               element= {<About/>}/>
               <Route path='/contact'
               element= {<Contact/>}/>
+              <Route path='/profile'
+              element= {<UserProfile/>}/>
         </Routes>
         {/* <Routes>
           <Route exact path="/about" component={About} />
