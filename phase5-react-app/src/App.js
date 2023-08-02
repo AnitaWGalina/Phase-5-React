@@ -20,28 +20,27 @@ const App = () => {
           <Route path="/"
             element={<HomePage />}
           />
+
           <Route path="/signup"
             element={<SignUpForm />}
           />
+
           <Route path="/login"
             element={ <Login />}
-              />
-              <Route path='/about'
-              element= {<About/>}/>
-              <Route path='/contact'
-              element= {<Contact/>}/>
-              <Route path='/profile'
-              element= {<UserProfile/>}/>
+          />
+
+          <Route path='/about'
+          element= {<About/>}
+          />
+          
+          <Route path='/contact'
+          element= {<Contact/>}
+          />
+          
+          <Route path='/profile'
+          element= {<UserProfile/>}
+          />
         </Routes>
-        {/* <Routes>
-          <Route exact path="/about" component={About} />
-          <Route exact path="/home-page" component={HomePage} />
-          <Route exact path="/contact" component={Contact} />
-        </Routes>
-        <SignUpForm />
-        <Login />
-        <NavBar />
-        <Footer /> */}
       </Router>
     </div>
   );
