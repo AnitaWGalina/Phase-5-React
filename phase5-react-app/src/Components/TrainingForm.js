@@ -39,9 +39,9 @@ const TrainingForm = () => {
       const calculatedTotalCost = numberOfTrainees * registrationFee;
       setTotalCost(calculatedTotalCost);
       console.log('Training form submitted!', dateOfTraining, numberOfTrainees, calculatedTotalCost);
-      setIsSuccessAlertOpen(true); // Show success alert
+      setIsSuccessAlertOpen(true); 
     } else {
-      setIsFailureAlertOpen(true); // Show failure alert
+      setIsFailureAlertOpen(true);
     }
   };
 
