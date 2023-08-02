@@ -7,6 +7,10 @@ import {
   Input,
   Select,
   Button,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  CloseButton,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
@@ -15,16 +19,27 @@ const EnlistProduceForm = () => {
   const [producePricePerKg, setProducePricePerKg] = useState('');
   const [quantityHarvested, setQuantityHarvested] = useState('');
   const [produceType, setProduceType] = useState('sellLocally');
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
+  const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      'Form submitted!',
-      cropCategory,
-      producePricePerKg,
-      quantityHarvested,
-      produceType
-    );
+    // Simulate backend processing
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Show the appropriate alert based on the form submission result
+    if (cropCategory && producePricePerKg && quantityHarvested && produceType) {
+      setIsSuccessAlertOpen(true);
+    } else {
+      setIsFailureAlertOpen(true);
+    }
+  };
+
+  const handleCloseSuccessAlert = () => {
+    setIsSuccessAlertOpen(false);
+  };
+
+  const handleCloseFailureAlert = () => {
+    setIsFailureAlertOpen(false);
   };
 
   return (
@@ -74,6 +89,26 @@ const EnlistProduceForm = () => {
           </Button>
         </Box>
       </motion.form>
+      {/* Success Alert */}
+      {isSuccessAlertOpen && (
+        <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx={8}>
+          <AlertIcon boxSize="30px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Successfully submitted!
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
+        </Alert>
+      )}
+      {/* Failure Alert */}
+      {isFailureAlertOpen && (
+        <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx={8}>
+          <AlertIcon boxSize="30px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Failed to submit.
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseFailureAlert} />
+        </Alert>
+      )}
     </Box>
   );
 };
