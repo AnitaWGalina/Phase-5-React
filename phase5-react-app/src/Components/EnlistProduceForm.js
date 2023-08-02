@@ -28,13 +28,13 @@ const EnlistProduceForm = () => {
   };
 
   return (
-    <Box p={6} textAlign="center">
+    <Box p={8} textAlign="center">
       <Heading as="h1" mb={6}>
         Enlist Produce
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <Box maxW="400px" mx="auto">
-          <FormControl mb={4}>
+        <Box maxW="400px" mx="auto" p={4}>
+          <FormControl mb={6}>
             <FormLabel>Category of Crop:</FormLabel>
             <Input
               size="sm"
@@ -44,7 +44,7 @@ const EnlistProduceForm = () => {
               placeholder="e.g Tea, Coffee..."
             />
           </FormControl>
-          <FormControl mb={4}>
+          <FormControl mb={6}>
             <FormLabel>Produce Price per kg:</FormLabel>
             <Input
               size="sm"
@@ -53,7 +53,7 @@ const EnlistProduceForm = () => {
               onChange={(e) => setProducePricePerKg(e.target.value)}
             />
           </FormControl>
-          <FormControl mb={4}>
+          <FormControl mb={6}>
             <FormLabel>Quantity Harvested (kg):</FormLabel>
             <Input
               size="sm"
@@ -62,7 +62,7 @@ const EnlistProduceForm = () => {
               onChange={(e) => setQuantityHarvested(e.target.value)}
             />
           </FormControl>
-          <FormControl mb={4}>
+          <FormControl mb={6}>
             <FormLabel>Sell options:</FormLabel>
             <Select size="sm" value={produceType} onChange={(e) => setProduceType(e.target.value)}>
               <option value="sellLocally">Sell Locally</option>
