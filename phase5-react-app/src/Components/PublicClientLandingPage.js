@@ -29,7 +29,7 @@ const ParentLink = ({ to, label, children }) => {
           left: 0,
           width: isHovered ? '100%' : '0%',
           height: '2px',
-          bg: 'blue.500',
+          bg: '#317873',
           transition: 'width 0.3s ease-in-out',
         }}
       >
