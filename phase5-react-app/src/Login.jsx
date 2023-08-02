@@ -38,7 +38,7 @@ const Login = () => {
     <>
       <h1>LOGIN</h1>
 
-      <div>
+      {/* <div>
         <label>
           Select User Type:
           <select value={selectedOption} onChange={handleDropdownChange}>
@@ -47,7 +47,7 @@ const Login = () => {
             <option value="user">General User</option>
           </select>
         </label>
-      </div>
+      </div> */}
 
       <div>
         <form action="" onSubmit={handleSubmit}>
