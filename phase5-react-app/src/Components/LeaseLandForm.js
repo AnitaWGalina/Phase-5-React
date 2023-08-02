@@ -9,6 +9,10 @@ import {
   Text,
   Link,
   Flex,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  CloseButton,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
@@ -20,11 +24,27 @@ const LeaseLandForm = () => {
   const [expirationDate, setExpirationDate] = useState('');
   const [landSizeInPlots, setLandSizeInPlots] = useState('');
   const [landSizeInAcres, setLandSizeInAcres] = useState('');
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
+  const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Lease land form submitted!', landLocation, landSize, operationDuration, operationPrice);
+    // Simulate backend processing
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Show the appropriate alert based on the form submission result
+    if (landLocation && landSize && operationDuration && operationPrice) {
+      setIsSuccessAlertOpen(true);
+    } else {
+      setIsFailureAlertOpen(true);
+    }
+  };
+
+  const handleCloseSuccessAlert = () => {
+    setIsSuccessAlertOpen(false);
+  };
+
+  const handleCloseFailureAlert = () => {
+    setIsFailureAlertOpen(false);
   };
 
   const handleLandSizeChange = (e) => {
@@ -89,8 +109,8 @@ const LeaseLandForm = () => {
             />
           </FormControl>
           <FormControl mb={6}>
-          <FormLabel>Operation Price (per year):</FormLabel>
-            <Flex align="center"> 
+            <FormLabel>Operation Price (per year):</FormLabel>
+            <Flex align="center">
               <Input
                 size="sm"
                 type="text"
@@ -107,8 +127,28 @@ const LeaseLandForm = () => {
           </Button>
         </Box>
       </motion.form>
+      {/* Success Alert */}
+      {isSuccessAlertOpen && (
+        <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
+          <AlertIcon boxSize="24px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Successfully submitted!
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
+        </Alert>
+      )}
+      {/* Failure Alert */}
+      {isFailureAlertOpen && (
+        <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
+          <AlertIcon boxSize="24px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Failed to submit.
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseFailureAlert} />
+        </Alert>
+      )}
       {/* Google Maps Link */}
-      {landLocation && (
+       {landLocation && (
         <Link
           href={`https://www.google.com/maps/place/${encodeURIComponent(landLocation)}`}
           target="_blank"
