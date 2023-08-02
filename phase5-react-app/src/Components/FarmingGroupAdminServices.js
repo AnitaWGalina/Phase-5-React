@@ -19,7 +19,6 @@ const FarmingGroupAdminServices = () => {
         <li>
           <Link to="/training">Training</Link>
         </li>
-        {/* Add other child links for other services as needed */}
       </ul>
       <hr />
       <LandList />

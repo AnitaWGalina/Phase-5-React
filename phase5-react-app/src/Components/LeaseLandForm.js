@@ -12,7 +12,7 @@ const LeaseLandForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here, e.g., sending data to the server
+    // Handle form submission logic here
     console.log('Lease land form submitted!', landLocation, landSize, operationDuration, operationPrice);
   };
 

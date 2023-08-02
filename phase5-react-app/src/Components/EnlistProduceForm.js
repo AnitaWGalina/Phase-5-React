@@ -5,11 +5,11 @@ const EnlistProduceForm = () => {
   const [producePricePerKg, setProducePricePerKg] = useState('');
   const [quantityHarvested, setQuantityHarvested] = useState('');
   const [produceType, setProduceType] = useState('sellLocally');
-  const [otherDetails, setOtherDetails] = useState('');
+  // const [otherDetails, setOtherDetails] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted!', cropCategory, producePricePerKg, quantityHarvested, produceType, otherDetails);
+    console.log('Form submitted!', cropCategory, producePricePerKg, quantityHarvested, produceType);
   };
 
   return (
@@ -41,14 +41,14 @@ const EnlistProduceForm = () => {
             onChange={(e) => setQuantityHarvested(e.target.value)}
           />
         </label>
-        <label>
+        {/* <label>
           Any other details:
           <input
             type="text"
             value={otherDetails}
             onChange={(e) => setOtherDetails(e.target.value)}
           />
-        </label>
+        </label> */}
         <label>
           Sell options:
           <select value={produceType} onChange={(e) => setProduceType(e.target.value)}>
