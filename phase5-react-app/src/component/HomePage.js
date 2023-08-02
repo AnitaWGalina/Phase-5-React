@@ -1,5 +1,5 @@
 import React from 'react';
-import 'google-fonts'; // Import the google-fonts package
+// import 'google-fonts'; // Import the google-fonts package
 
 const Home = () => {
   return (
