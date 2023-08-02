@@ -89,13 +89,18 @@ const LeaseLandForm = () => {
           </FormControl>
           <FormControl mb={6}>
             <FormLabel>Operation Price (per year):</FormLabel>
-            <Input
-              size="sm"
-              type="text"
-              value={operationPrice}
-              onChange={(e) => setOperationPrice(e.target.value)}
-              placeholder="KSh"
-            />
+            <Box position="relative" display="inline-block">
+              <Input
+                size="sm"
+                type="text"
+                value={operationPrice}
+                onChange={(e) => setOperationPrice(e.target.value)}
+                paddingRight="32px"
+              />
+              <Text position="absolute" top="50%" right="8px" transform="translateY(-50%)">
+                :KSh
+              </Text>
+            </Box>
           </FormControl>
           {expirationDate && <Text>Lease Expiration Date: {expirationDate}</Text>}
           <Button type="submit" colorScheme="green" bgColor="#317873">
