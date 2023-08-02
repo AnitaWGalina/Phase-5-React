@@ -60,7 +60,7 @@ const SignUpForm = () => {
       .then((data) => {
         localStorage.setItem("jwt", data.jwt);
         setUser(data.user);
-        navigate("/Login");
+        navigate("/login");
       })
       .catch((error) => {
         setError(error.message); // Store the error message in state
@@ -154,6 +154,7 @@ const SignUpForm = () => {
             onChange={(e) => console.log(user)}
             value={user.status}
           >
+            <option value="">Select..</option>
             <option value={"Farming Group Administrator"}>
               Farming Group Administrator
             </option>
