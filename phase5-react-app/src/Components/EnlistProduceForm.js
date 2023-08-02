@@ -91,8 +91,8 @@ const EnlistProduceForm = () => {
       </motion.form>
       {/* Success Alert */}
       {isSuccessAlertOpen && (
-        <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx={8}>
-          <AlertIcon boxSize="30px" mr={0} />
+        <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
+          <AlertIcon boxSize="24px" mr={0} />
           <AlertTitle mt={1} mb={1} fontSize="sm">
             Successfully submitted!
           </AlertTitle>
@@ -101,8 +101,8 @@ const EnlistProduceForm = () => {
       )}
       {/* Failure Alert */}
       {isFailureAlertOpen && (
-        <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx={8}>
-          <AlertIcon boxSize="30px" mr={0} />
+        <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
+          <AlertIcon boxSize="24px" mr={0} />
           <AlertTitle mt={1} mb={1} fontSize="sm">
             Failed to submit.
           </AlertTitle>
