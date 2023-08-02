@@ -20,7 +20,7 @@ const FarmingGroupAdminProducts = () => {
           <li key={product.id}>
             <p>{product.ProductName}</p>
             <p>Price: ${product.ProductPrice}</p>
-            {/* Add the image here using product.ProductImage */}
+            <img src={product.ProductImage} alt={product.ProductName} />
           </li>
         ))}
       </ul>
