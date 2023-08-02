@@ -9,14 +9,29 @@ const ParentLink = ({ label, children }) => {
     <Box
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      _hover={{ textDecoration: 'underline' }}
       px={4}
       py={2}
       position="relative"
       display="inline-block"
       group
     >
-      {label}
+      <ChakraLink
+        as={Link}
+        to="#"
+        _hover={{ textDecoration: 'none' }}
+        _before={{
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: isHovered ? '100%' : '0%',
+          height: '2px',
+          bg: 'blue.500',
+          transition: 'width 0.3s ease-in-out',
+        }}
+      >
+        {label}
+      </ChakraLink>
       {isHovered && (
         <Box
           position="absolute"
