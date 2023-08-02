@@ -7,6 +7,10 @@ import {
   Input,
   Button,
   Text,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  CloseButton,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
@@ -16,6 +20,8 @@ const TrainingForm = () => {
   const [showForm, setShowForm] = useState(false);
   const [registrationFee, setRegistrationFee] = useState(null);
   const [totalCost, setTotalCost] = useState(null);
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
+  const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
 
   useEffect(() => {
     // Fetch registration fee from the backend
@@ -33,7 +39,18 @@ const TrainingForm = () => {
       const calculatedTotalCost = numberOfTrainees * registrationFee;
       setTotalCost(calculatedTotalCost);
       console.log('Training form submitted!', dateOfTraining, numberOfTrainees, calculatedTotalCost);
+      setIsSuccessAlertOpen(true); // Show success alert
+    } else {
+      setIsFailureAlertOpen(true); // Show failure alert
     }
+  };
+
+  const handleCloseSuccessAlert = () => {
+    setIsSuccessAlertOpen(false);
+  };
+
+  const handleCloseFailureAlert = () => {
+    setIsFailureAlertOpen(false);
   };
 
   return (
@@ -95,6 +112,42 @@ const TrainingForm = () => {
           )}
         </Box>
       </motion.form>
+      {/* Success Alert */}
+      {isSuccessAlertOpen && (
+        <Alert
+          status="success"
+          variant="subtle"
+          flexDirection="column"
+          alignItems="center"
+          mt={2}
+          mx="auto"
+          maxW="400px"
+        >
+          <AlertIcon boxSize="24px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Successfully enrolled for training!
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
+        </Alert>
+      )}
+      {/* Failure Alert */}
+      {isFailureAlertOpen && (
+        <Alert
+          status="error"
+          variant="subtle"
+          flexDirection="column"
+          alignItems="center"
+          mt={2}
+          mx="auto"
+          maxW="400px"
+        >
+          <AlertIcon boxSize="24px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Failed to enroll for training.
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseFailureAlert} />
+        </Alert>
+      )}
     </Box>
   );
 };
