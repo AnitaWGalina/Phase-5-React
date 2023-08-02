@@ -1,64 +1,80 @@
 import React, { useState } from 'react';
+import {
+  Box,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Button,
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 
 const EnlistProduceForm = () => {
   const [cropCategory, setCropCategory] = useState('');
   const [producePricePerKg, setProducePricePerKg] = useState('');
   const [quantityHarvested, setQuantityHarvested] = useState('');
   const [produceType, setProduceType] = useState('sellLocally');
-  // const [otherDetails, setOtherDetails] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted!', cropCategory, producePricePerKg, quantityHarvested, produceType);
+    console.log(
+      'Form submitted!',
+      cropCategory,
+      producePricePerKg,
+      quantityHarvested,
+      produceType
+    );
   };
 
   return (
-    <div>
-      <h1>Enlist Produce</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Category of Crop:
-          <input
-            type="text"
-            value={cropCategory}
-            onChange={(e) => setCropCategory(e.target.value)}
-            placeholder="e.g Tea, Coffee..."
-          />
-        </label>
-        <label>
-          Produce Price per kg:
-          <input
-            type="text"
-            value={producePricePerKg}
-            onChange={(e) => setProducePricePerKg(e.target.value)}
-          />
-        </label>
-        <label>
-          Quantity Harvested(kg):
-          <input
-            type="text"
-            value={quantityHarvested}
-            onChange={(e) => setQuantityHarvested(e.target.value)}
-          />
-        </label>
-        {/* <label>
-          Any other details:
-          <input
-            type="text"
-            value={otherDetails}
-            onChange={(e) => setOtherDetails(e.target.value)}
-          />
-        </label> */}
-        <label>
-          Sell options:
-          <select value={produceType} onChange={(e) => setProduceType(e.target.value)}>
-            <option value="sellLocally">Sell Locally</option>
-            <option value="export">Export Produce</option>
-          </select>
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <Box p={6} textAlign="center">
+      <Heading as="h1" mb={6}>
+        Enlist Produce
+      </Heading>
+      <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <Box maxW="400px" mx="auto">
+          <FormControl mb={4}>
+            <FormLabel>Category of Crop:</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={cropCategory}
+              onChange={(e) => setCropCategory(e.target.value)}
+              placeholder="e.g Tea, Coffee..."
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Produce Price per kg:</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={producePricePerKg}
+              onChange={(e) => setProducePricePerKg(e.target.value)}
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Quantity Harvested (kg):</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={quantityHarvested}
+              onChange={(e) => setQuantityHarvested(e.target.value)}
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Sell options:</FormLabel>
+            <Select size="sm" value={produceType} onChange={(e) => setProduceType(e.target.value)}>
+              <option value="sellLocally">Sell Locally</option>
+              <option value="export">Export Produce</option>
+            </Select>
+          </FormControl>
+          <Button type="submit" colorScheme="green" bgColor="#317873">
+            Submit
+          </Button>
+        </Box>
+      </motion.form>
+    </Box>
   );
 };
 
