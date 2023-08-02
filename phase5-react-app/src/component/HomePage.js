@@ -4,7 +4,7 @@ import 'google-fonts'; // Import the google-fonts package
 const Home = () => {
   return (
     <div className="home-container">
-      <h1 className="text-4xl font-bold mb-1 text-center font-inika-yellow">
+      <h1 className="text-4xl font-bold mb-1 text-center font-inika-yellow"> {/* Reduce the margin-bottom to mb-1 */}
         Where Nature Meets Innovation,
       </h1>
       <h1 className="text-4xl font-bold mb-8 text-center font-inika-white">
