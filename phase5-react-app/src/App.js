@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
 import FarmingGroupAdminLandingPage from './Components/FarmingGroupAdminLandingPage';
 import PublicClientLandingPage from './Components/PublicClientLandingPage';
 import FarmingGroupAdminProducts from './Components/FarmingGroupAdminProducts';
@@ -12,19 +13,21 @@ import TrainingForm from './Components/TrainingForm';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<FarmingGroupAdminLandingPage />} />
-        <Route exact path="/public-client" element={<PublicClientLandingPage />} />
-        <Route path="/products" element={<FarmingGroupAdminProducts />} />
-        <Route path="/services" element={<FarmingGroupAdminServices />} />
-        <Route path="/public-client-products" element={<PublicClientProducts />} />
-        <Route path="/public-client-services" element={<PublicClientServices />} />
-        <Route path="/enlist-produce" element={<EnlistProduceForm />} />
-        <Route path="/lease-land" element={<LeaseLandForm />} />
-        <Route path="/training" element={<TrainingForm />} />
-      </Routes>
-    </Router>
+    <ChakraProvider>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<FarmingGroupAdminLandingPage />} />
+          <Route exact path="/public-client" element={<PublicClientLandingPage />} />
+          <Route path="/products" element={<FarmingGroupAdminProducts />} />
+          <Route path="/services" element={<FarmingGroupAdminServices />} />
+          <Route path="/public-client-products" element={<PublicClientProducts />} />
+          <Route path="/public-client-services" element={<PublicClientServices />} />
+          <Route path="/enlist-produce" element={<EnlistProduceForm />} />
+          <Route path="/lease-land" element={<LeaseLandForm />} />
+          <Route path="/training" element={<TrainingForm />} />
+        </Routes>
+      </Router>
+    </ChakraProvider>
   );
 }
 
