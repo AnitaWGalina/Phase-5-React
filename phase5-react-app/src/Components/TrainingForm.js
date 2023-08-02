@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TrainingForm = () => {
   const [dateOfTraining, setDateOfTraining] = useState('');
   const [numberOfTrainees, setNumberOfTrainees] = useState('');
-  const [showForm, setShowForm] = useState(false); // State to control form visibility
+  const [showForm, setShowForm] = useState(false);
+  const [registrationFee, setRegistrationFee] = useState(null); // Initialize with null
+
+  useEffect(() => {
+    // Fetch registration fee from the backend
+    fetch('/api/registration-fee')
+      .then((response) => response.json())
+      .then((data) => setRegistrationFee(data.registrationFee))
+      .catch((error) => {
+        console.error('Error fetching registration fee:', error);
+      });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const registrationFee = 7000;
     const totalCost = numberOfTrainees * registrationFee;
     console.log('Training form submitted!', dateOfTraining, numberOfTrainees, totalCost);
   };
@@ -15,7 +25,7 @@ const TrainingForm = () => {
   return (
     <div>
       <h2>Training Form</h2>
-      {showForm ? ( // Conditionally render form based on showForm state
+      {showForm ? (
         <form onSubmit={handleSubmit}>
           <label>
             Date of Training:
@@ -33,6 +43,7 @@ const TrainingForm = () => {
               onChange={(e) => setNumberOfTrainees(e.target.value)}
             />
           </label>
+          {registrationFee !== null && <p>Total Cost: {numberOfTrainees * registrationFee}</p>}
           <button type="submit">Submit</button>
         </form>
       ) : (
@@ -46,6 +57,7 @@ const TrainingForm = () => {
             endeavors to new heights. Embrace the future of farming with confidence – start your
             journey with us today.
           </p>
+          {registrationFee !== null && <p>Registration Fee: {registrationFee}</p>}
           <button onClick={() => setShowForm(true)}>Enroll for Training</button>
         </div>
       )}
