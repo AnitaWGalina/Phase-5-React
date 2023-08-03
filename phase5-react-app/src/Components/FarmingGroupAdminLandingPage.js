@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Box, Flex, Link as ChakraLink, Stack, Center } from '@chakra-ui/react';
 
 const ParentLink = ({ label, children }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { user } = useAuth();
+  
+  if (!user) {
+    return <h2>Please log in to view the landing page.</h2>;
+  }
 
   return (
     <Box

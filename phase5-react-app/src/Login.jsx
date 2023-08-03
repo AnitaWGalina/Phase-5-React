@@ -39,7 +39,7 @@ const LoginForm = () => {
         console.log(data)
         login(data.user); // Update the user state
         window.alert("Successfully logged in!");
-        navigate("/"); // Redirect to the desired page after successful login
+        navigate("/landing_page"); // Redirect to the desired page after successful login
       })
       .catch((error) => {
         setError(error.message); // Store the error message in state
