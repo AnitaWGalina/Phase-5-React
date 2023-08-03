@@ -1,181 +1,83 @@
-/* Global styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* NavBar styles */
-nav {
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-nav div {
-  display: flex;
-  align-items: center;
-}
-
-nav .logo {
-  margin-right: 10px;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-right: 20px;
-  transition: 0.2s ease-out;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Home container styles */
+/* Add space between the background image and the content */
 .home-container {
+  padding: 20px;
+}
+
+/* Update the background image */
+.hero-container {
+  background: url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp') center/cover no-repeat, linear-gradient(to bottom, lightgray, #D9D9D9);
   height: 429px;
-  width: 1440px;
-  background-image: url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp');
-  background-size: cover;
-  background-position: center;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.home-title {
-  font-size: 6rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #FFF500;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    padding: 10px 0;
-  }
-
-  nav .logo {
-    margin-bottom: 10px;
-  }
-
-  nav a {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .home-container {
-    height: 300px;
-    width: 100%;
-  }
-
-  .home-title {
-    font-size: 1.8rem;
-  }
-}
-
-/* Home.css styles */
-.hero-container {
-  background-color: #f5f5f5;
-  text-align: center;
-  padding: 40px 0;
-}
-
+/* Style the hero title */
 .hero-title {
-  font-size: 3rem;
-  color: #333;
-  font-weight: bold;
-  margin-bottom: 20px;
+  color: #FFF500;
+  font-family: Inika;
+  font-size: 59.7px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
+/* Style the hero subtitle */
 .hero-subtitle {
-  font-size: 2rem;
-  color: #666;
+  color: #FFF;
+  font-family: Inika;
+  font-size: 59.7px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
+/* Style the product container */
 .product-container {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 40px;
 }
 
+/* Style the product items */
 .product-item {
-  width: 300px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 0 10px;
 }
 
+/* Style the product image */
 .product-image {
-  width: 100%;
-  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
+/* Style the product title */
 .product-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 24px;
   margin-top: 10px;
-  color: #333;
 }
 
+/* Style the product description */
 .product-description {
-  color: #666;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
+/* Style the product price */
 .product-price {
-  display: block;
-  font-size: 1.2rem;
   font-weight: bold;
-  color: #007bff;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
+/* Style the product button */
 .product-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #FFF500;
+  color: #FFF;
   border: none;
+  padding: 10px 20px;
   border-radius: 5px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
   margin-top: 10px;
-}
-
-.product-button:hover {
-  background-color: #0056b3;
-}
-
-/* Custom class for 'Inika' font in yellow color */
-.font-inika-yellow {
-  font-family: 'Inika', serif;
-  color: #FFF500;
-  font-size: 3rem;
-}
-
-/* Custom class for 'Inika' font in white color */
-.font-inika-white {
-  font-family: 'Inika', serif;
-  color: white;
-  font-size: 3rem;
-}
-
-.font-inika-yellow.mb-1 {
-  margin-bottom: 0.01rem; /* Customize the margin as needed */
+  cursor: pointer;
 }

@@ -3,12 +3,13 @@ import 'google-fonts'; // Import the google-fonts package
 
 const Home = () => {
   return (
-    <div className="home-container"> {/* Updated class name here */}
+    <div className="home-container">
       <div className="hero-container">
         <h1 className="hero-title">Where Nature Meets Innovation</h1>
         <h1 className="hero-subtitle">Cultivating a Flourishing Tomorrow</h1>
       </div>
       <div className="product-container">
+        {/* Product items go here */}
         <div className="product-item">
           <img className="product-image" src="product1.jpg" alt="Product 1" />
           <h2 className="product-title">Product 1</h2>

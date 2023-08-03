@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
-  // Define the 'styles' object here
   const styles = {
     navbar: {
-      backgroundColor: 'black',
+      backgroundColor: 'purple',
       color: 'white',
       display: 'flex',
       alignItems: 'center',
@@ -27,7 +26,7 @@ const NavBar = () => {
     logoYellow: {
       fontSize: '24px',
       fontWeight: 'bold',
-      color: '#FFD700', /* Yellow color code */
+      color: 'black',
     },
     menu: {
       listStyle: 'none',
@@ -40,7 +39,8 @@ const NavBar = () => {
       marginLeft: '20px',
       textDecoration: 'none',
       color: 'white',
-      transition: '0.2s ease-out',
+      transition: 'color 0.2s',
+      hover: 'color 0.2s',
     },
   };
 
@@ -51,11 +51,31 @@ const NavBar = () => {
         <span style={styles.logoYellow}>BIX</span>
       </div>
       <ul style={styles.menu}>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact Us</Link></li>
-        <li><Link to="/signup">Signup</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        <li>
+          <Link to="/" style={styles.menuItems}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" style={styles.menuItems}>
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact" style={styles.menuItems}>
+            Contact Us
+          </Link>
+        </li>
+        <li>
+          <Link to="/signup" style={styles.menuItems}>
+            Signup
+          </Link>
+        </li>
+        <li>
+          <Link to="/login" style={styles.menuItems}>
+            Login
+          </Link>
+        </li>
       </ul>
     </nav>
   );
