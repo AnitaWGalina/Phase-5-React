@@ -48,6 +48,7 @@ const LoginForm = () => {
   return (
     <>
       <h1>LOGIN</h1>
+      {error && <p className="error-message">Invalid username or password</p>}
       <div>
         <form action="" onSubmit={handleSubmit}>
           <div>

@@ -17,6 +17,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
+import LeaseLandForm from './LeaseLandForm';
 
 const LandList = () => {
   const { user } = useAuth();
@@ -119,10 +120,11 @@ const LandList = () => {
             <Text mt={4}>{selectedLand?.description}</Text>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="teal" onClick={closeModal}>
-              Close
-            </Button>
-            <Button colorScheme="blue">Rent Land</Button>
+            {selectedLand && selectedLand.status === "Unoccupied" ? (
+              <LeaseLandForm />
+            ) : (
+              <Text mt={4}>This land is not available to rent or lease</Text>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>
