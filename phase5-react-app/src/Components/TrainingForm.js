@@ -13,11 +13,17 @@ import {
   CloseButton,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 
 const TrainingForm = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('jwt')
+  const [userId, setUserId] = useState(user?.id || ''); // Initialize with an empty string if user is null
+
+
   const registrationFee = 7000; // Fixed registration fee of 7000 KSh
   const [dateOfTraining, setDateOfTraining] = useState('');
-  const [numberOfTrainees, setNumberOfTrainees] = useState('');
+  const [numberOfTrainees, setNumberOfTrainees] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [totalCost, setTotalCost] = useState(null);
   const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
@@ -36,22 +42,29 @@ const TrainingForm = () => {
     e.preventDefault();
 
     const formData = {
+      userId,
       dateOfTraining,
       numberOfTrainees,
-      totalCost,
     };
 
     try {
-      const response = await fetch('http://localhost:3000/farmer_trainings', {
-        method: 'POST',
+      const response = await fetch('http://127.0.0.1:3000/farmer_trainings', {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(formData),
-      });
+        body: JSON.stringify({
+          user_id: formData.userId,
+          number_of_trainees: formData.numberOfTrainees,
+          training_date: dateOfTraining
+        }) // Wrap the data in an object as expected by Rails
+      })
 
       if (response.ok) {
         setIsSuccessAlertOpen(true);
+        // console.log("Successfully signed up for training!");
+        // window.alert("Successfully signed up for training!");
       } else {
         setIsFailureAlertOpen(true);
       }
@@ -67,6 +80,10 @@ const TrainingForm = () => {
   const handleCloseFailureAlert = () => {
     setIsFailureAlertOpen(false);
   };
+
+  if (!user) {
+    return <h2>Please log in to register for training.</h2>;
+  }
 
   return (
     <Box p={8} textAlign="center">
@@ -92,7 +109,7 @@ const TrainingForm = () => {
                   size="sm"
                   type="number"
                   value={numberOfTrainees}
-                  onChange={(e) => setNumberOfTrainees(e.target.value)}
+                  onChange={(e) => setNumberOfTrainees(parseInt(e.target.value))}
                 />
               </FormControl>
               <Text mb={2} fontSize="sm" fontWeight="bold">
