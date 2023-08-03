@@ -158,7 +158,7 @@ const TrainingForm = () => {
         >
           <AlertIcon boxSize="24px" mr={0} />
           <AlertTitle mt={1} mb={1} fontSize="sm">
-            Successfully enrolled for training!
+            {user.name} has successfully enrolled {numberOfTrainees} members for training starting on {dateOfTraining}!
           </AlertTitle>
           <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
         </Alert>

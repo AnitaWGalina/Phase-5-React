@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    window.alert("Successfully logged out!");
+    window.alert(`Hope to see you again ${user.name} :(`);
     localStorage.removeItem("jwt");
   };
 

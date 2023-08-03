@@ -83,7 +83,7 @@ const App = () => {
             element={<TrainingForm />} 
           />
 
-          <Route path="/land-list" 
+          <Route path="/land_list" 
             element={<LandList />} 
           />
 
