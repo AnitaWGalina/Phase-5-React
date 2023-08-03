@@ -128,7 +128,7 @@ const LandList = () => {
           </ModalBody>
           <ModalFooter>
             {selectedLand && selectedLand.status === "Unoccupied" ? (
-              <LeaseLandForm />
+              <LeaseLandForm land_id={selectedLand.id}/>
             ) : (
               <Text mt={4}>This land is not available to rent or lease</Text>
             )}

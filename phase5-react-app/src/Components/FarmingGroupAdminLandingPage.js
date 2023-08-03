@@ -71,8 +71,7 @@ const FarmingGroupAdminLandingPage = () => {
           </ParentLink>
           <ParentLink label="Services">
             <ChildLink to="/enlist_produce" label="Sell Produce" />
-            <ChildLink to="/lease_land" label="Lease Land" />
-            <ChildLink to="/land_list" label="Land List" />
+            <ChildLink to="/land_list" label="Land Operation" />
             <ChildLink to="/training" label="Training" />
           </ParentLink>
         </Stack>
