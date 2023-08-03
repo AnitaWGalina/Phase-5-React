@@ -97,7 +97,7 @@ const LeaseLandForm = () => {
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <Box maxW="400px" mx="auto" p={4}>
-          <FormControl mb={6}>
+          {/* <FormControl mb={6}>
             <FormLabel>Land Location (Town & City):</FormLabel>
             <Flex alignItems="center">
               <Input
@@ -122,7 +122,7 @@ const LeaseLandForm = () => {
                 </Link>
               )}
             </Flex>
-          </FormControl>
+          </FormControl> */}
           <FormControl mb={6}>
             <FormLabel>Land Size (in square meters):</FormLabel>
             <Input

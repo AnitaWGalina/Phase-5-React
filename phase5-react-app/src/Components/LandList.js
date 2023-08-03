@@ -60,35 +60,42 @@ const LandList = () => {
   }
 
   const renderLands = () => {
-    return lands.map((land) => (
-      <GridItem
-        key={land.id}
-        className="data-item"
-        boxShadow="md"
-        borderRadius="md"
-        p={4}
-        cursor="pointer"
-        transition="transform 0.2s ease-in-out"
-        _hover={{ transform: 'scale(1.02)' }}
-        onClick={() => handleLandClick(land)}
-      >
-        <Box>
-          <Image src={land.image} alt={`Land ${land.id}`} boxSize="100%" objectFit="cover" h={200} />
-          <Heading fontSize="md" mt={2} noOfLines={2}>
-            <Text fontWeight="bold">Owned by:</Text> {land.user_name}
-          </Heading>
-          <Text fontSize="sm" mt={2}>
-            Size: {land.size_in_acres} acres
-          </Text>
-          <Text fontSize="sm">Status: {land.status}</Text>
-          <Box bg="#317873" p={2} mt={2} borderRadius="md">
-            <Text fontSize="sm" color="white">
-              Description: {land.description}
+    return lands.map((land) => {
+      const sizeInPlots = (land.size_in_acres/ (50 * 100)).toFixed(2);
+      const sizeInAcres = (land.size_in_acres / 4046.856).toFixed(2);
+
+      return (
+        <GridItem
+          key={land.id}
+          className="data-item"
+          boxShadow="md"
+          borderRadius="md"
+          p={4}
+          cursor="pointer"
+          transition="transform 0.2s ease-in-out"
+          _hover={{ transform: 'scale(1.02)' }}
+          onClick={() => handleLandClick(land)}
+        >
+          <Box>
+            <Image src={land.image} alt={`Land ${land.id}`} boxSize="100%" objectFit="cover" h={200} />
+            <Heading fontSize="md" mt={2} noOfLines={2}>
+              <Text fontWeight="bold">Owned by:</Text> {land.user_name}
+            </Heading>
+            <Text fontSize="sm" mt={2}>
+              Size: {land.size_in_acres} square meters
             </Text>
+            <Text fontSize="sm">Status: {land.status}</Text>
+            <Text fontSize="xs" mt={2}>Land Size in Plots: {sizeInPlots}</Text>
+            <Text fontSize="xs" mt={2}>Land Size in Acres: {sizeInAcres}</Text>
+            <Box bg="#317873" p={2} mt={2} borderRadius="md">
+              <Text fontSize="sm" color="white">
+                Description: {land.description}
+              </Text>
+            </Box>
           </Box>
-        </Box>
-      </GridItem>
-    ));
+        </GridItem>
+      );
+    });
   };
 
   return (
