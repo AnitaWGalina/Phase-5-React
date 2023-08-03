@@ -1,11 +1,16 @@
 import React from 'react';
 import Header from './Header';
 import ProductItem from './ProductItem';
+import ProductSection from './ProductSection'; // Import the new component
 
 const Home = () => {
   return (
     <div className="home-container">
       <Header />
+
+      {/* New ProductSection component with the title and subtitle */}
+      <ProductSection />
+
       <div className="product-container">
         <ProductItem
           imageSrc="product1.jpg"
