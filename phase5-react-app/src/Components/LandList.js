@@ -16,8 +16,13 @@ import {
   ModalBody,
   Button,
 } from '@chakra-ui/react';
+import { useAuth } from '../context/AuthContext';
 
 const LandList = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('jwt')
+  const [userId, setUserId] = useState(user?.id || '');
+
   const [lands, setLands] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedLand, setSelectedLand] = useState(null);
@@ -26,7 +31,13 @@ const LandList = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch lands from the API
-    fetch('/farming_lands')
+    fetch('/farming_lands', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then((response) => response.json())
       .then((data) => setLands(data))
       .catch((error) => console.error('Error fetching lands:', error))
@@ -42,6 +53,10 @@ const LandList = () => {
     setSelectedLand(null);
     setIsModalOpen(false);
   };
+
+  if (!user) {
+    return <h2>Please log in to view available pieces of land.</h2>;
+  }
 
   const renderLands = () => {
     return lands.map((land) => (
