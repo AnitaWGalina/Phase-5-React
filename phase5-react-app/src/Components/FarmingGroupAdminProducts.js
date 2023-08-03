@@ -26,10 +26,15 @@ const FarmingGroupAdminProducts = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
-    fetch('/api/products')
+    fetch('http://localhost:3000/farmer_products')
       .then(response => response.json())
       .then(data => {
-        setProducts(data);
+        console.log("Fetched products:", data);
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error("Fetched data is not an array:", data);
+        }
       })
       .catch(error => {
         console.error(error);
@@ -46,7 +51,7 @@ const FarmingGroupAdminProducts = () => {
 
   const handlePurchaseProduct = () => {
     // Handle the purchase logic here
-    console.log('Product purchased:', selectedProduct.ProductName);
+    console.log('Product purchased:', selectedProduct.name);
     setShowPopup(false);
   };
 
@@ -62,12 +67,12 @@ const FarmingGroupAdminProducts = () => {
         onClick={() => handleProductClick(product)}
       >
         <Box>
-          <Image src={product.ProductImage} alt={product.ProductName} boxSize="100%" objectFit="cover" h={200} />
+          <Image src={product.image} alt={product.name} boxSize="100%" objectFit="cover" h={200} />
           <Heading fontSize="md" mt={2} noOfLines={2}>
-            {product.ProductName}
+            {product.name}
           </Heading>
           <Text fontSize="sm" mt={2}>
-            Price: ${product.ProductPrice}
+            Price: ${product.price}
           </Text>
         </Box>
       </GridItem>
@@ -86,11 +91,11 @@ const FarmingGroupAdminProducts = () => {
         <AlertDialog isOpen={showPopup} onClose={() => setShowPopup(false)}>
           <AlertDialogOverlay />
           <AlertDialogContent>
-            <AlertDialogHeader>{selectedProduct.ProductName}</AlertDialogHeader>
+            <AlertDialogHeader>{selectedProduct.name}</AlertDialogHeader>
             <AlertDialogBody>
-              <Image src={selectedProduct.ProductImage} alt={selectedProduct.ProductName} boxSize="100%" objectFit="contain" mb={4} />
+              <Image src={selectedProduct.image} alt={selectedProduct.name} boxSize="100%" objectFit="contain" mb={4} />
               <Text fontSize="lg" fontWeight="bold" mb={2}>
-                Price: ${selectedProduct.ProductPrice}
+                Price: ${selectedProduct.price}
               </Text>
               <Button colorScheme="teal" onClick={handlePurchaseProduct}>
                 Purchase Product
