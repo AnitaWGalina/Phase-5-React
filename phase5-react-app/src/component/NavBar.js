@@ -13,6 +13,10 @@ const NavBar = () => {
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
       fontFamily: 'Arial, sans-serif',
       fontSize: '18px',
+      transition: 'box-shadow 0.2s', // Add transition for box shadow
+    },
+    navbarHover: {
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)', // Custom style for hover box shadow
     },
     logo: {
       display: 'flex',
@@ -46,8 +50,25 @@ const NavBar = () => {
     },
   };
 
+  const handleHover = () => {
+    // Add the hover box shadow when the cursor is on top of the navbar
+    const navbar = document.getElementById('navbar');
+    navbar.style.boxShadow = styles.navbarHover.boxShadow;
+  };
+
+  const handleLeave = () => {
+    // Remove the hover box shadow when the cursor leaves the navbar
+    const navbar = document.getElementById('navbar');
+    navbar.style.boxShadow = styles.navbar.boxShadow;
+  };
+
   return (
-    <nav style={styles.navbar}>
+    <nav
+      id="navbar"
+      style={styles.navbar}
+      onMouseEnter={handleHover}
+      onMouseLeave={handleLeave}
+    >
       <div style={styles.logo}>
         <span style={styles.logoBlack}>AGRI</span>
         <span style={styles.logoYellow}>BIX</span>
