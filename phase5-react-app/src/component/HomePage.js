@@ -3,7 +3,7 @@ import 'google-fonts'; // Import the google-fonts package
 
 const Home = () => {
   return (
-    <div>
+    <div className="home-container"> {/* Updated class name here */}
       <div className="hero-container">
         <h1 className="hero-title">Where Nature Meets Innovation</h1>
         <h1 className="hero-subtitle">Cultivating a Flourishing Tomorrow</h1>
