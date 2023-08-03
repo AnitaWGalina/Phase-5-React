@@ -3,15 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUpForm = () => {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [groupNumber, setGroupNumber] = useState();
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // const [location, setLocation] = useState("");
-  // const [TypeOfUser, setTypeOfUser] = useState("");
-
   const [user, setUser] = useState({
     name: "",
     status: "",
@@ -68,10 +59,10 @@ const SignUpForm = () => {
   };
 
   return (
-    <>
-      <h1>SignUp</h1>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
+    <div className="signup-container">
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <h1>SignUp</h1>
+        {error && <p className="error-message">{error}</p>}
         <div>
           <label htmlFor="name">Name:</label>
           <input
@@ -165,7 +156,8 @@ const SignUpForm = () => {
           Register
         </button>
       </form>
-    </>
+    </div>
   );
 };
+
 export default SignUpForm;
