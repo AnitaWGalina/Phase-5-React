@@ -33,6 +33,8 @@ const FarmingGroupAdminProducts = () => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
 
+  
+
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
@@ -45,7 +47,7 @@ const FarmingGroupAdminProducts = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Fetched products:", data);
+        // console.log("Fetched products:", data);
         if (Array.isArray(data)) {
           setProducts(data);
         } else {
@@ -66,12 +68,6 @@ const FarmingGroupAdminProducts = () => {
     setDescription(product.description);
     setShowPopup(true);
   };
-
-  // const handlePurchaseProduct = () => {
-  //   // Handle the purchase logic here
-  //   console.log(`Purchased ${quantity} ${selectedProduct.name}(s)`);
-  //   setShowPopup(false);
-  // };
 
   const handleIncrementQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
@@ -107,13 +103,17 @@ const FarmingGroupAdminProducts = () => {
     ));
   };
 
+  if (!user) {
+    return <h2>Please log in to view the available products for sale.</h2>;
+  }
+
   const handlePurchase = () => {
     if (!selectedProduct) {
       return; // No product selected, do nothing
     }
   
     const saleData = {
-      user_id: user.id, // Assuming you can access user's ID from the user object
+      user_id: user.id,
       farmer_product_id: selectedProduct.id,
       quantity: quantity,
     };
@@ -130,7 +130,7 @@ const FarmingGroupAdminProducts = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Product sale created:", data);
+        console.log("Successfully bought product!");
         window.alert("Successfully bought product!");
         setShowPopup(false);
         // Here you might want to handle any success message or update UI accordingly

@@ -36,7 +36,7 @@ const LoginForm = () => {
       .then((resp) => resp.json())
       .then((data) => {
         localStorage.setItem("jwt", data.jwt);
-        console.log(data)
+        // console.log(data)
         login(data.user); // Update the user state
         window.alert("Successfully logged in!");
         navigate("/landing_page"); // Redirect to the desired page after successful login
