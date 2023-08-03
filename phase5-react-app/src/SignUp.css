@@ -5,22 +5,27 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url("https://s3-alpha-sig.figma.com/img/0609/df28/f3a5b2d9726070849a142c955ce7a0d9?Expires=1691971200&Signature=WfpJlRHZ7dnM8ZHyJdjHStWO1H6fWZY5mnobSHk7ShxzYbfNkBiL8mg0E535OMDURdWeiUVJJEqJU0F1RBbpS5CK4oArCt7rM81QzDrX9oCadFoaOLJOTLcGIqyHQXI-1Q5MAQ5dHGYnwHuYCrXFQABelJD9hI0TBbFFdtaTmlukrIIV4Iep4BQWsGGQ4PO039lXAXKkYaoPTBz9OwA2fymOYZ2Eeol3eAK8ZCjcGBoJ0Biv3IGSRqYYE4wlV~9XYCC0to3hZCrwhSz9HpHf2k7hGtkd45MS3oQPYPPnWYMyDKJjtJIiyuhDwjhN1d9AblAIx3t7ou~VkmApPOPHcA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.7); /* Change the background color and set opacity */
 }
 
 .signup-form {
+  position: relative;
   max-width: 400px;
   width: 100%;
   padding: 20px;
-  border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000000; /* Change text color to white */
 }
 
 .signup-form h1 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
 }
 
 .signup-form div {
@@ -31,7 +36,6 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #333;
 }
 
 .signup-form input,
@@ -40,6 +44,8 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  color: #333; /* Change text color to black */
+  background-color: #fff; /* Change input background color to white */
 }
 
 .signup-form select {
