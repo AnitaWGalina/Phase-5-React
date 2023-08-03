@@ -30,13 +30,16 @@ const Header = () => {
     fontSize: '59.7px',
     fontWeight: 400,
     lineHeight: 'normal',
-    color: '#FFF500',
+    color: '#FFF500', // Change color to #FFF500
+    fontFamily: 'Inika', // Change font-family to Inika
   };
 
   const subtitleStyle = {
     fontSize: '59.7px',
     fontWeight: 400,
     lineHeight: 'normal',
+    color: '#FFF', // Change color to #FFF
+    fontFamily: 'Inika', // Change font-family to Inika
   };
 
   return (
