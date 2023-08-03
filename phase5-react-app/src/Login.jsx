@@ -33,14 +33,10 @@ const LoginForm = () => {
       },
       body: JSON.stringify(credentials),
     })
-      .then((resp) => {
-        if (!resp.ok) {
-          throw new Error("Login failed. Please check your credentials.");
-        }
-        return resp.json();
-      })
+      .then((resp) => resp.json())
       .then((data) => {
         localStorage.setItem("jwt", data.jwt);
+        console.log(data)
         login(data.user); // Update the user state
         navigate("/"); // Redirect to the desired page after successful login
       })

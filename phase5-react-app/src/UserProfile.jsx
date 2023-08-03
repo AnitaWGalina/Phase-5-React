@@ -5,7 +5,7 @@ import { useAuth } from "./context/AuthContext";
 
 const UserProfile = () => {
   const { user } = useAuth(); // Get the user from the AuthContext
-  const token = user.token
+  const token = localStorage.getItem('jwt')
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate()
@@ -15,13 +15,13 @@ const UserProfile = () => {
 
     setUserProfile({
       name: user.name || "",
-      status: user.type_of_user || "Select...",
+      status: user.status || "Select...",
       email: user.email || "",
       phone_number: user.phone_number || "",
       location: user.location || "",
       group_number: user.group_number || 0,
-      // password: user.password || "",
-      // password_confirmation: user.password_confirmation ||"",
+      password: user.password || "",
+      password_confirmation: user.password_confirmation ||"",
     });
 
     setLoading(false);
@@ -125,6 +125,25 @@ const UserProfile = () => {
           />
         </div> */}
         <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={userProfile.password}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label>Confirm Password:</label>
+          <input
+            type="password"
+            name="password_confirmation"
+            value={userProfile.password_confirmation}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
           <label>Location:</label>
           <input
             type="text"
@@ -133,7 +152,7 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        {/* <div>
           <label>Type of User:</label>
           <select
             name="type_of_user"
@@ -141,6 +160,21 @@ const UserProfile = () => {
             onChange={handleChange}
           >
             <option value="Farming Group Admnistrator">Farming Group Admnistrator</option>
+            <option value="Public Client">Public Client</option>
+          </select>
+        </div> */}
+        <div>
+          <label>Type of User</label>
+          <select
+            name="status"
+            onChange={handleChange}
+            value={userProfile.status}
+            type="text"
+          >
+            <option value="">Select...</option>
+            <option value="Farming Group Administrator">
+              Farming Group Administrator
+            </option>
             <option value="Public Client">Public Client</option>
           </select>
         </div>
