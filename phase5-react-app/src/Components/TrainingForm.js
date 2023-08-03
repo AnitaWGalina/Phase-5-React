@@ -33,14 +33,39 @@ const TrainingForm = () => {
       });
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (registrationFee !== null) {
-      const calculatedTotalCost = numberOfTrainees * registrationFee;
+  useEffect(() => {
+    if (registrationFee !== null && numberOfTrainees !== '') {
+      const calculatedTotalCost = (numberOfTrainees * registrationFee).toFixed(2);
       setTotalCost(calculatedTotalCost);
-      console.log('Training form submitted!', dateOfTraining, numberOfTrainees, calculatedTotalCost);
-      setIsSuccessAlertOpen(true); 
     } else {
+      setTotalCost(null);
+    }
+  }, [registrationFee, numberOfTrainees]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      dateOfTraining,
+      numberOfTrainees,
+      totalCost,
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/farmer_trainings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSuccessAlertOpen(true);
+      } else {
+        setIsFailureAlertOpen(true);
+      }
+    } catch (error) {
       setIsFailureAlertOpen(true);
     }
   };
@@ -80,7 +105,12 @@ const TrainingForm = () => {
                   onChange={(e) => setNumberOfTrainees(e.target.value)}
                 />
               </FormControl>
-              {registrationFee !== null && (
+              {registrationFee !== null && typeof registrationFee !== 'undefined' && (
+                <Text mb={2} fontSize="sm">
+                  Registration Fee: {registrationFee.toFixed(2)}
+                </Text>
+              )}
+              {totalCost !== null && (
                 <Text mb={4} fontSize="sm">
                   Total Cost: {totalCost}
                 </Text>
@@ -100,9 +130,9 @@ const TrainingForm = () => {
                 endeavors to new heights. Embrace the future of farming with confidence – start your
                 journey with us today.
               </Text>
-              {registrationFee !== null && (
+              {registrationFee !== null && typeof registrationFee !== 'undefined' && (
                 <Text mb={4} fontSize="sm">
-                  Registration Fee: {registrationFee}
+                  Registration Fee: {registrationFee.toFixed(2)}
                 </Text>
               )}
               <Button onClick={() => setShowForm(true)} colorScheme="green" bgColor="#317873">
