@@ -3,24 +3,15 @@ import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUpForm = () => {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [groupNumber, setGroupNumber] = useState();
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // const [location, setLocation] = useState("");
-  // const [TypeOfUser, setTypeOfUser] = useState("");
-
   const [user, setUser] = useState({
     name: "",
-    status: "",
+    status: "Select...",
     email: "",
     phone_number: "",
     location: "",
     group_number: 0,
     password: "",
-    password_confirmation: "",
+    password_confirmation: ""
   });
 
   const handleChange = (e) => {
@@ -44,7 +35,7 @@ const SignUpForm = () => {
       return;
     }
 
-    fetch("http://localhost:3004/users", {
+    fetch("http://127.0.0.1:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,6 +56,7 @@ const SignUpForm = () => {
       .catch((error) => {
         setError(error.message); // Store the error message in state
       });
+      console.log(error);
   };
 
   return (
@@ -86,7 +78,7 @@ const SignUpForm = () => {
         <div>
           <label htmlFor="email">Email:</label>
           <input
-            type="email"
+            type="text"
             id="email"
             value={user.email}
             onChange={handleChange}
@@ -104,7 +96,7 @@ const SignUpForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="group_number">Group n.o:</label>
+          <label htmlFor="group_number">Number of Members:</label>
           <input
             type="number"
             id="group_number"
@@ -151,14 +143,15 @@ const SignUpForm = () => {
           <label>Type of User</label>
           <select
             id="status"
-            onChange={(e) => console.log(user)}
+            onChange={handleChange}
             value={user.status}
+            type="text"
           >
-            <option value="">Select..</option>
-            <option value={"Farming Group Administrator"}>
+            <option value="">Select...</option>
+            <option value="Farming Group Administrator">
               Farming Group Administrator
             </option>
-            <option value={"Public Client"}>Public Client</option>
+            <option value="Public Client">Public Client</option>
           </select>
         </div>
 

@@ -1,54 +1,56 @@
 import "./Login.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [selectedOption, setSelectedOption] = useState(""); // Add this line for selectedOption state
+const LoginForm = () => {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState(null); // State for storing error message
+
+  const handleChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.id]: e.target.value,
+    });
+  };
 
   const navigate = useNavigate();
+
+  const { login } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3004/login", {
+    // Send a POST request to your login endpoint with user credentials
+    fetch("http://127.0.0.1:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
+      body: JSON.stringify(credentials),
     })
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Login failed. Please check your credentials.");
+        }
+        return resp.json();
+      })
       .then((data) => {
-        console.log(data);
-
-        navigate("/profile");
+        localStorage.setItem("jwt", data.jwt);
+        login(data.user); // Update the user state
+        navigate("/"); // Redirect to the desired page after successful login
+      })
+      .catch((error) => {
+        setError(error.message); // Store the error message in state
       });
   };
-
-  // const handleDropdownChange = (e) => {
-  //   // Add this event handler
-  //   setSelectedOption(e.target.value);
-  // };
   return (
     <>
       <h1>LOGIN</h1>
-
-      {/* <div>
-        <label>
-          Select User Type:
-          <select value={selectedOption} onChange={handleDropdownChange}>
-            <option value="">Select...</option>
-            <option value="farmer">Farmer</option>
-            <option value="user">General User</option>
-          </select>
-        </label>
-      </div> */}
-
       <div>
         <form action="" onSubmit={handleSubmit}>
           <div>
@@ -57,18 +59,18 @@ const Login = () => {
               type="text"
               name="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={credentials.email}
+              onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="passw">Password</label>
+            <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
-              id="passw"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="password"
+              value={credentials.password}
+              onChange={handleChange}
             />
           </div>
 
@@ -79,4 +81,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

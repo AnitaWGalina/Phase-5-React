@@ -1,50 +1,62 @@
-
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import './UserProfile.css';
+import { useAuth } from "./context/AuthContext";
 
-const UserProfile = ({ userId }) => {
+const UserProfile = () => {
+  const { user } = useAuth(); // Get the user from the AuthContext
+  const token = user.token
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
-   
-    fetch('')
-      .then((response) => response.json())
-      .then((data) => {
-        setUserProfile(data); 
-        setLoading(false); // Set loading to false when data is fetched
-      })
-      .catch((error) => {
-        console.error("Error fetching user profile:", error);
-        setLoading(false); // Set loading to false on error as well
-      });
-  }, [userId]);
+    if (!user) return; // Make sure the user is logged in before fetching their profile
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserProfile((prevUserProfile) => ({
-      ...prevUserProfile,
-      [name]: value,
-    }));
+    setUserProfile({
+      name: user.name || "",
+      status: user.type_of_user || "Select...",
+      email: user.email || "",
+      phone_number: user.phone_number || "",
+      location: user.location || "",
+      group_number: user.group_number || 0,
+      // password: user.password || "",
+      // password_confirmation: user.password_confirmation ||"",
+    });
+
+    setLoading(false);
+  }, [user]);
+
+  const handleChange = (e) => {
+    setUserProfile({
+      ...userProfile,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = () => {
-    // Send updated user profile data to the backend for saving
-    fetch('', {
-      method: "PUT",
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetch(`http://127.0.0.1:3000/users/${user.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(userProfile),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log("User profile updated:", data);
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error updating user profile:", error);
       });
   };
+
+  if (!user) {
+    return <div>Please log in to view your profile.</div>;
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -64,25 +76,25 @@ const UserProfile = ({ userId }) => {
             type="text"
             name="name"
             value={userProfile.name}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
         </div>
         <div>
           <label>Email:</label>
           <input
-            type="email"
+            type="text"
             name="email"
             value={userProfile.email}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
         </div>
         <div>
           <label>Phone Number:</label>
           <input
-            type="tel"
+            type="text"
             name="phone_number"
             value={userProfile.phone_number}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -91,44 +103,44 @@ const UserProfile = ({ userId }) => {
             type="number"
             name="group_number"
             value={userProfile.group_number}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
         </div>
-        <div>
+        {/* <div>
           <label>Password:</label>
           <input
             type="password"
             name="password"
             value={userProfile.password}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
         </div>
         <div>
           <label>Confirm Password:</label>
           <input
             type="password"
-            name="confirmPassword"
-            value={userProfile.confirmPassword}
-            onChange={handleInputChange}
+            name="password_confirmation"
+            value={userProfile.password_confirmation}
+            onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div>
           <label>Location:</label>
           <input
             type="text"
             name="location"
             value={userProfile.location}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
         </div>
         <div>
           <label>Type of User:</label>
           <select
             name="type_of_user"
-            value={userProfile.type_of_user}
-            onChange={handleInputChange}
+            value={userProfile.status}
+            onChange={handleChange}
           >
-            <option value="Farming Group Admnistration">Farming Group Admnistration</option>
+            <option value="Farming Group Admnistrator">Farming Group Admnistrator</option>
             <option value="Public Client">Public Client</option>
           </select>
         </div>
