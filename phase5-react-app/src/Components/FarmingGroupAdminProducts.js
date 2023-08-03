@@ -19,9 +19,13 @@ import {
   Input,
   ButtonGroup,
 } from '@chakra-ui/react';
+import { useAuth } from '../context/AuthContext';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 
 const FarmingGroupAdminProducts = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('jwt')
+  
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -32,7 +36,13 @@ const FarmingGroupAdminProducts = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
-    fetch('http://localhost:3000/farmer_products')
+    fetch('http://127.0.0.1:3000/farmer_products', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         console.log("Fetched products:", data);
@@ -49,6 +59,7 @@ const FarmingGroupAdminProducts = () => {
         setLoading(false);
       });
   }, []);
+  
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -56,11 +67,11 @@ const FarmingGroupAdminProducts = () => {
     setShowPopup(true);
   };
 
-  const handlePurchaseProduct = () => {
-    // Handle the purchase logic here
-    console.log(`Purchased ${quantity} ${selectedProduct.name}(s)`);
-    setShowPopup(false);
-  };
+  // const handlePurchaseProduct = () => {
+  //   // Handle the purchase logic here
+  //   console.log(`Purchased ${quantity} ${selectedProduct.name}(s)`);
+  //   setShowPopup(false);
+  // };
 
   const handleIncrementQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
@@ -95,6 +106,45 @@ const FarmingGroupAdminProducts = () => {
       </GridItem>
     ));
   };
+
+  const handlePurchase = () => {
+    if (!selectedProduct) {
+      return; // No product selected, do nothing
+    }
+  
+    const saleData = {
+      user_id: user.id, // Assuming you can access user's ID from the user object
+      farmer_product_id: selectedProduct.id,
+      quantity: quantity,
+    };
+  
+    setLoading(true);
+  
+    fetch('http://127.0.0.1:3000/farmer_product_sales', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ farmer_product_sale: saleData }) // Wrap the data in an object as expected by Rails
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Product sale created:", data);
+        window.alert("Successfully bought product!");
+        setShowPopup(false);
+        // Here you might want to handle any success message or update UI accordingly
+      })
+      .catch(error => {
+        console.error("Error creating product sale:", error);
+        // Handle error scenario here
+      })
+      .finally(() => {
+        setLoading(false);
+        setShowPopup(false); // Close the popup after making the request
+      });
+  };
+  
 
   return (
     <Box className="product-container" p={10} bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))" bgSize="cover" bgImage="url('../img/farm.jpg')">
@@ -131,7 +181,7 @@ const FarmingGroupAdminProducts = () => {
                   <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
                 </ButtonGroup>
               </InputGroup>
-              <Button colorScheme="teal" onClick={handlePurchaseProduct}>
+              <Button colorScheme="teal" onClick={handlePurchase}>
                 Purchase Product
               </Button>
             </AlertDialogBody>
