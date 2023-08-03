@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './UserProfile.css';
 import { useAuth } from "./context/AuthContext";
+// import DeleteButton from "./component/DeleteAccount";
 
 const UserProfile = () => {
   const { user } = useAuth(); // Get the user from the AuthContext
@@ -106,24 +107,6 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
-        {/* <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={userProfile.password}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            name="password_confirmation"
-            value={userProfile.password_confirmation}
-            onChange={handleChange}
-          />
-        </div> */}
         <div>
           <label>Password:</label>
           <input
@@ -152,17 +135,6 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
-        {/* <div>
-          <label>Type of User:</label>
-          <select
-            name="type_of_user"
-            value={userProfile.status}
-            onChange={handleChange}
-          >
-            <option value="Farming Group Admnistrator">Farming Group Admnistrator</option>
-            <option value="Public Client">Public Client</option>
-          </select>
-        </div> */}
         <div>
           <label>Type of User</label>
           <select

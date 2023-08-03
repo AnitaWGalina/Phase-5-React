@@ -51,6 +51,7 @@ const SignUpForm = () => {
       .then((data) => {
         localStorage.setItem("jwt", data.jwt);
         setUser(data.user);
+        window.alert("Successfully created account!");
         navigate("/login");
       })
       .catch((error) => {
