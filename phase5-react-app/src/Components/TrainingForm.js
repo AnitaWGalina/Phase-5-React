@@ -15,26 +15,16 @@ import {
 import { motion } from 'framer-motion';
 
 const TrainingForm = () => {
+  const registrationFee = 7000; // Fixed registration fee of 7000 KSh
   const [dateOfTraining, setDateOfTraining] = useState('');
   const [numberOfTrainees, setNumberOfTrainees] = useState('');
   const [showForm, setShowForm] = useState(false);
-  const [registrationFee, setRegistrationFee] = useState(null);
   const [totalCost, setTotalCost] = useState(null);
   const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
   const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch registration fee from the backend
-    fetch('/api/registration-fee')
-      .then((response) => response.json())
-      .then((data) => setRegistrationFee(data.registrationFee))
-      .catch((error) => {
-        console.error('Error fetching registration fee:', error);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (registrationFee !== null && numberOfTrainees !== '') {
+    if (numberOfTrainees !== '') {
       const calculatedTotalCost = (numberOfTrainees * registrationFee).toFixed(2);
       setTotalCost(calculatedTotalCost);
     } else {
@@ -105,14 +95,12 @@ const TrainingForm = () => {
                   onChange={(e) => setNumberOfTrainees(e.target.value)}
                 />
               </FormControl>
-              {registrationFee !== null && typeof registrationFee !== 'undefined' && (
-                <Text mb={2} fontSize="sm">
-                  Registration Fee: {registrationFee.toFixed(2)}
-                </Text>
-              )}
+              <Text mb={2} fontSize="sm" fontWeight="bold">
+                Registration Fee: {registrationFee} KSh
+              </Text>
               {totalCost !== null && (
-                <Text mb={4} fontSize="sm">
-                  Total Cost: {totalCost}
+                <Text mb={2} fontSize="sm" fontWeight="bold">
+                  Total Training Cost: {totalCost} KSh
                 </Text>
               )}
               <Button type="submit" colorScheme="green" bgColor="#317873">
@@ -130,11 +118,9 @@ const TrainingForm = () => {
                 endeavors to new heights. Embrace the future of farming with confidence – start your
                 journey with us today.
               </Text>
-              {registrationFee !== null && typeof registrationFee !== 'undefined' && (
-                <Text mb={4} fontSize="sm">
-                  Registration Fee: {registrationFee.toFixed(2)}
-                </Text>
-              )}
+              <Text mb={4} fontSize="sm" fontWeight="bold">
+                Registration Fee: {registrationFee} KSh
+              </Text>
               <Button onClick={() => setShowForm(true)} colorScheme="green" bgColor="#317873">
                 Enroll for Training
               </Button>
