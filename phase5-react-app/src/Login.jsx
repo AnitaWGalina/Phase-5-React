@@ -38,6 +38,7 @@ const LoginForm = () => {
         localStorage.setItem("jwt", data.jwt);
         console.log(data)
         login(data.user); // Update the user state
+        window.alert("Successfully logged in!");
         navigate("/"); // Redirect to the desired page after successful login
       })
       .catch((error) => {

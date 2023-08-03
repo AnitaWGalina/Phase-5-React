@@ -1,9 +1,13 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
 import { NavLink } from "react-router-dom";
+import DeleteAccount from "./DeleteAccount";
 
 const Profile = () => {
   const { user, logout } = useAuth();
+  // const token = localStorage.getItem('jwt')
+  // const [deleted, setDeleted] = useState(false);
+  // const navigate = useNavigate(); // Add this line to access the navigation function
 
   if (!user) {
     return <p>Please log in to view your profile.</p>;
@@ -21,7 +25,7 @@ const Profile = () => {
       <NavLink to="/update_account">
         <button>Update My Account</button>
       </NavLink>
-      <button>Delete My Account</button>
+      <DeleteAccount />
     </div>
   );
 };
