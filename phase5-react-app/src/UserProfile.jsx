@@ -5,6 +5,7 @@ import { useAuth } from "./context/AuthContext";
 
 const UserProfile = () => {
   const { user } = useAuth(); // Get the user from the AuthContext
+  const token = user.token
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate()
@@ -19,8 +20,8 @@ const UserProfile = () => {
       phone_number: user.phone_number || "",
       location: user.location || "",
       group_number: user.group_number || 0,
-      password: user.password || "",
-      password_confirmation: user.password_confirmation ||"",
+      // password: user.password || "",
+      // password_confirmation: user.password_confirmation ||"",
     });
 
     setLoading(false);
@@ -32,8 +33,6 @@ const UserProfile = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const token = localStorage.getItem("jwt");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -107,7 +106,7 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        {/* <div>
           <label>Password:</label>
           <input
             type="password"
@@ -124,7 +123,7 @@ const UserProfile = () => {
             value={userProfile.password_confirmation}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div>
           <label>Location:</label>
           <input

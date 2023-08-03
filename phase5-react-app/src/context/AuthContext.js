@@ -7,6 +7,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     setUser(userData);
+    const token = userData.jwt; // Make sure 'jwt' matches the property name in the response
+    localStorage.setItem("jwt", token);
   };
 
   const logout = () => {
