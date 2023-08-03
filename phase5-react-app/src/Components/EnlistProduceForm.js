@@ -24,12 +24,33 @@ const EnlistProduceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate backend processing
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    // Show the appropriate alert based on the form submission result
-    if (cropCategory && producePricePerKg && quantityHarvested && produceType) {
-      setIsSuccessAlertOpen(true);
-    } else {
+
+    // Prepare the data to be sent to the backend
+    const formData = {
+      cropCategory,
+      producePricePerKg,
+      quantityHarvested,
+      produceType,
+
+    };
+
+    try {
+      // Send the data to the backend
+      const response = await fetch('http://localhost:3000/farmer_produce_sales', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Check if the request was successful
+      if (response.ok) {
+        setIsSuccessAlertOpen(true);
+      } else {
+        setIsFailureAlertOpen(true);
+      }
+    } catch (error) {
       setIsFailureAlertOpen(true);
     }
   };
