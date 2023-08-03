@@ -17,7 +17,6 @@ import {
   AlertDialogOverlay,
   InputGroup,
   Input,
-  InputRightElement,
   ButtonGroup,
 } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
@@ -119,13 +118,18 @@ const FarmingGroupAdminProducts = () => {
                 {description}
               </Text>
               <InputGroup size="md" mb={2}>
-                <Button onClick={handleDecrementQuantity} leftIcon={<MinusIcon />} />
-                <Input value={quantity} readOnly />
-                <InputRightElement width="4.5rem">
-                  <ButtonGroup size="sm">
-                    <Button onClick={handleIncrementQuantity} leftIcon={<AddIcon />} />
-                  </ButtonGroup>
-                </InputRightElement>
+                <Button onClick={handleDecrementQuantity} size="sm" leftIcon={<MinusIcon />} />
+                <Input
+                  value={quantity}
+                  readOnly
+                  w="3rem"
+                  textAlign="center"
+                  borderRight="none"
+                  borderLeft="none"
+                />
+                <ButtonGroup size="sm">
+                  <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
+                </ButtonGroup>
               </InputGroup>
               <Button colorScheme="teal" onClick={handlePurchaseProduct}>
                 Purchase Product
