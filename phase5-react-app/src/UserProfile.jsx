@@ -5,7 +5,7 @@ import { useAuth } from "./context/AuthContext";
 // import DeleteButton from "./component/DeleteAccount";
 
 const UserProfile = () => {
-  const { user } = useAuth(); // Get the user from the AuthContext
+  const { user, logout } = useAuth(); // Get the user from the AuthContext
   const token = localStorage.getItem('jwt')
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +48,8 @@ const UserProfile = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("User profile updated:", data);
-        navigate("/");
+        logout()
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Error updating user profile:", error);
