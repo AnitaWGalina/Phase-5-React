@@ -26,7 +26,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     // Send a POST request to your login endpoint with user credentials
-    fetch("http://127.0.0.1:3000/login", {
+    fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

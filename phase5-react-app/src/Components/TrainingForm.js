@@ -48,7 +48,7 @@ const TrainingForm = () => {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:3000/farmer_trainings', {
+      const response = await fetch('/farmer_trainings', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

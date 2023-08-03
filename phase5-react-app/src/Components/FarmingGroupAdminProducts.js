@@ -38,7 +38,7 @@ const FarmingGroupAdminProducts = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
-    fetch('http://127.0.0.1:3000/farmer_products', {
+    fetch('/farmer_products', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -120,7 +120,7 @@ const FarmingGroupAdminProducts = () => {
   
     setLoading(true);
   
-    fetch('http://127.0.0.1:3000/farmer_product_sales', {
+    fetch('/farmer_product_sales', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -26,7 +26,7 @@ const LandList = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch lands from the API
-    fetch('http://localhost:3000/farming_lands')
+    fetch('/farming_lands')
       .then((response) => response.json())
       .then((data) => setLands(data))
       .catch((error) => console.error('Error fetching lands:', error))
