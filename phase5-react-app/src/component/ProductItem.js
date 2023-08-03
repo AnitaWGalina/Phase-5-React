@@ -8,7 +8,7 @@ const ProductItem = ({ imageSrc, alt, title, description, price }) => {
       alignItems: 'center',
       margin: '20px',
       padding: '20px',
-      background: 'linear-gradient(45deg, #f5f5f5, #fff)', // Add gradient background
+      backgroundColor: '#FFF',
       borderRadius: '10px',
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       width: '250px',
@@ -17,13 +17,12 @@ const ProductItem = ({ imageSrc, alt, title, description, price }) => {
       width: '200px',
       height: '200px',
       objectFit: 'cover',
-      borderRadius: '10px', // Increase border radius for a smoother appearance
+      borderRadius: '5px',
       marginBottom: '10px',
     },
     productTitle: {
       fontSize: '24px',
-      fontWeight: 'bold', // Make the title bold for emphasis
-      margin: '10px 0', // Adjust the margin for better spacing
+      marginBottom: '5px',
       color: '#333',
     },
     productDescription: {
@@ -34,7 +33,7 @@ const ProductItem = ({ imageSrc, alt, title, description, price }) => {
     productPrice: {
       fontSize: '18px',
       fontWeight: 'bold',
-      margin: '10px 0', // Adjust the margin for better spacing
+      marginBottom: '5px',
       color: '#4CAF50',
     },
     productButton: {
