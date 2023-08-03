@@ -22,6 +22,7 @@ const FarmingGroupAdminProducts = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -46,6 +47,7 @@ const FarmingGroupAdminProducts = () => {
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
+    setDescription(product.description); // Set the description for the popup
     setShowPopup(true);
   };
 
@@ -96,6 +98,9 @@ const FarmingGroupAdminProducts = () => {
               <Image src={selectedProduct.image} alt={selectedProduct.name} boxSize="100%" objectFit="contain" mb={4} />
               <Text fontSize="lg" fontWeight="bold" mb={2}>
                 Price: ${selectedProduct.price}
+              </Text>
+              <Text fontSize="md" mb={2}>
+                {description}
               </Text>
               <Button colorScheme="teal" onClick={handlePurchaseProduct}>
                 Purchase Product
