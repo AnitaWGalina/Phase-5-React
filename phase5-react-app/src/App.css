@@ -1,20 +1,15 @@
-/* Add space between the background image and the content */
+/* CSS */
 .home-container {
-  padding: 20px;
-}
-
-/* Update the background image */
-.hero-container {
-  background: url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp') center/cover no-repeat, linear-gradient(to bottom, lightgray, #D9D9D9);
+  width: 1440px;
   height: 429px;
-  width: 100%;
+  flex-shrink: 0;
+  background: url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp') center/cover no-repeat, #D9D9D9;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Style the hero title */
 .hero-title {
   color: #FFF500;
   font-family: Inika;
@@ -24,7 +19,6 @@
   line-height: normal;
 }
 
-/* Style the hero subtitle */
 .hero-subtitle {
   color: #FFF;
   font-family: Inika;
@@ -33,51 +27,66 @@
   font-weight: 400;
   line-height: normal;
 }
-
-/* Style the product container */
 .product-container {
-  margin-top: 20px;
+  margin-top: 40px; /* Increase the margin-top for better spacing */
+}
+
+.product-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow products to wrap on smaller screens */
+  margin-top: 40px; /* Increase the margin-top for better spacing */
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Style the product items */
 .product-item {
   text-align: center;
-  margin: 0 10px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
 }
 
-/* Style the product image */
 .product-image {
   width: 200px;
   height: 200px;
   object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-/* Style the product title */
 .product-title {
   font-size: 24px;
-  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #333;
 }
 
-/* Style the product description */
 .product-description {
-  margin-top: 5px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #666;
 }
 
-/* Style the product price */
 .product-price {
+  font-size: 18px;
   font-weight: bold;
-  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-/* Style the product button */
 .product-button {
-  background-color: #FFF500;
-  color: #FFF;
-  border: none;
   padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
   cursor: pointer;
+}
+
+.product-button:hover {
+  background-color: #45a049;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   const styles = {
     navbar: {
-      backgroundColor: 'purple',
+      backgroundColor: 'black',
       color: 'white',
       display: 'flex',
       alignItems: 'center',
@@ -26,7 +26,7 @@ const NavBar = () => {
     logoYellow: {
       fontSize: '24px',
       fontWeight: 'bold',
-      color: 'black',
+      color: 'yellow',
     },
     menu: {
       listStyle: 'none',
@@ -40,7 +40,9 @@ const NavBar = () => {
       textDecoration: 'none',
       color: 'white',
       transition: 'color 0.2s',
-      hover: 'color 0.2s',
+    },
+    activeMenuItem: {
+      color: 'green', // Custom style for active menu item when cursor is on top
     },
   };
 
@@ -52,29 +54,29 @@ const NavBar = () => {
       </div>
       <ul style={styles.menu}>
         <li>
-          <Link to="/" style={styles.menuItems}>
+          <NavLink to="/" exact style={styles.menuItems} activeStyle={styles.activeMenuItem}>
             Home
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/about" style={styles.menuItems}>
+          <NavLink to="/about" style={styles.menuItems} activeStyle={styles.activeMenuItem}>
             About
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/contact" style={styles.menuItems}>
+          <NavLink to="/contact" style={styles.menuItems} activeStyle={styles.activeMenuItem}>
             Contact Us
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/signup" style={styles.menuItems}>
+          <NavLink to="/signup" style={styles.menuItems} activeStyle={styles.activeMenuItem}>
             Signup
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/login" style={styles.menuItems}>
+          <NavLink to="/login" style={styles.menuItems} activeStyle={styles.activeMenuItem}>
             Login
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </nav>

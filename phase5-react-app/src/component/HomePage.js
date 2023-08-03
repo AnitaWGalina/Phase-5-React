@@ -1,6 +1,5 @@
 import React from 'react';
-import 'google-fonts'; // Import the google-fonts package
-
+// import '../App.css';
 const Home = () => {
   return (
     <div className="home-container">
@@ -37,3 +36,4 @@ const Home = () => {
 }
 
 export default Home;
+
