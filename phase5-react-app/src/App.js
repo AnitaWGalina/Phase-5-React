@@ -10,6 +10,7 @@ import PublicClientServices from './Components/PublicClientServices';
 import EnlistProduceForm from './Components/EnlistProduceForm';
 import LeaseLandForm from './Components/LeaseLandForm';
 import TrainingForm from './Components/TrainingForm';
+import LandList from './Components/LandList';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/enlist-produce" element={<EnlistProduceForm />} />
           <Route path="/lease-land" element={<LeaseLandForm />} />
           <Route path="/training" element={<TrainingForm />} />
+          <Route path="/land-list" element={<LandList />} />
         </Routes>
       </Router>
     </ChakraProvider>

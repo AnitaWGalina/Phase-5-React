@@ -4,7 +4,7 @@ const LandList = () => {
   const [lands, setLands] = useState([]);
 
   useEffect(() => {
-    fetch('/api/lands')
+    fetch('/http://localhost:3000/farming_lands')
       .then((response) => response.json())
       .then((data) => setLands(data))
       .catch((error) => console.error('Error fetching lands:', error));
