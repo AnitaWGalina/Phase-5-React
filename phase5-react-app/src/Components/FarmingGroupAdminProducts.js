@@ -15,7 +15,12 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  InputGroup,
+  Input,
+  InputRightElement,
+  ButtonGroup,
 } from '@chakra-ui/react';
+import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 
 const FarmingGroupAdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -23,6 +28,7 @@ const FarmingGroupAdminProducts = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     setLoading(true);
@@ -47,14 +53,24 @@ const FarmingGroupAdminProducts = () => {
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
-    setDescription(product.description); // Set the description for the popup
+    setDescription(product.description);
     setShowPopup(true);
   };
 
   const handlePurchaseProduct = () => {
     // Handle the purchase logic here
-    console.log('Product purchased:', selectedProduct.name);
+    console.log(`Purchased ${quantity} ${selectedProduct.name}(s)`);
     setShowPopup(false);
+  };
+
+  const handleIncrementQuantity = () => {
+    setQuantity(prevQuantity => prevQuantity + 1);
+  };
+
+  const handleDecrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(prevQuantity => prevQuantity - 1);
+    }
   };
 
   const renderProducts = () => {
@@ -102,6 +118,15 @@ const FarmingGroupAdminProducts = () => {
               <Text fontSize="md" mb={2}>
                 {description}
               </Text>
+              <InputGroup size="md" mb={2}>
+                <Button onClick={handleDecrementQuantity} leftIcon={<MinusIcon />} />
+                <Input value={quantity} readOnly />
+                <InputRightElement width="4.5rem">
+                  <ButtonGroup size="sm">
+                    <Button onClick={handleIncrementQuantity} leftIcon={<AddIcon />} />
+                  </ButtonGroup>
+                </InputRightElement>
+              </InputGroup>
               <Button colorScheme="teal" onClick={handlePurchaseProduct}>
                 Purchase Product
               </Button>
