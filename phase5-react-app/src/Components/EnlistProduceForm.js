@@ -13,11 +13,16 @@ import {
   CloseButton,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 
 const EnlistProduceForm = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('jwt')
+  const [userId, setUserId] = useState(user?.id || '');
+
   const [cropCategory, setCropCategory] = useState('');
-  const [producePricePerKg, setProducePricePerKg] = useState('');
-  const [quantityHarvested, setQuantityHarvested] = useState('');
+  const [producePricePerKg, setProducePricePerKg] = useState(0);
+  const [quantityHarvested, setQuantityHarvested] = useState(0);
   const [produceType, setProduceType] = useState('sellLocally');
   const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
   const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
@@ -27,22 +32,27 @@ const EnlistProduceForm = () => {
 
     // Prepare the data to be sent to the backend
     const formData = {
+      userId,
       cropCategory,
       producePricePerKg,
-      quantityHarvested,
-      produceType,
-
+      quantityHarvested
     };
 
     try {
       // Send the data to the backend
-      const response = await fetch('http://localhost:3000/farmer_produce_sales', {
-        method: 'POST',
+      const response = await fetch('/farmer_produce_sales', {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(formData),
-      });
+        body: JSON.stringify({
+          user_id: formData.userId,
+          produce_name: formData.cropCategory,
+          produce_unit_price: formData.producePricePerKg,
+          produce_quantity: formData.quantityHarvested
+        }) // Wrap the data in an object as expected by Rails
+      })
 
       // Check if the request was successful
       if (response.ok) {
@@ -55,6 +65,10 @@ const EnlistProduceForm = () => {
     }
   };
 
+  if (!user) {
+    return <h2>Please log in to sell your produce.</h2>;
+  }
+
   const handleCloseSuccessAlert = () => {
     setIsSuccessAlertOpen(false);
   };
@@ -66,12 +80,12 @@ const EnlistProduceForm = () => {
   return (
     <Box p={8} textAlign="center">
       <Heading as="h1" mb={6}>
-        Enlist Produce
+        Sell Produce
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <Box maxW="400px" mx="auto" p={4}>
           <FormControl mb={6}>
-            <FormLabel>Category of Crop:</FormLabel>
+            <FormLabel>Name of Crop:</FormLabel>
             <Input
               size="sm"
               type="text"
@@ -84,18 +98,18 @@ const EnlistProduceForm = () => {
             <FormLabel>Produce Price per kg:</FormLabel>
             <Input
               size="sm"
-              type="text"
+              type="number"
               value={producePricePerKg}
-              onChange={(e) => setProducePricePerKg(e.target.value)}
+              onChange={(e) => setProducePricePerKg(parseInt(e.target.value))}
             />
           </FormControl>
           <FormControl mb={6}>
             <FormLabel>Quantity Harvested (kg):</FormLabel>
             <Input
               size="sm"
-              type="text"
+              type="number"
               value={quantityHarvested}
-              onChange={(e) => setQuantityHarvested(e.target.value)}
+              onChange={(e) => setQuantityHarvested(parseInt(e.target.value))}
             />
           </FormControl>
           <FormControl mb={6}>
@@ -115,7 +129,7 @@ const EnlistProduceForm = () => {
         <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
           <AlertIcon boxSize="24px" mr={0} />
           <AlertTitle mt={1} mb={1} fontSize="sm">
-            Successfully submitted!
+            {cropCategory} sold successfully!
           </AlertTitle>
           <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
         </Alert>
@@ -125,7 +139,7 @@ const EnlistProduceForm = () => {
         <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
           <AlertIcon boxSize="24px" mr={0} />
           <AlertTitle mt={1} mb={1} fontSize="sm">
-            Failed to submit.
+            Product sold unsuccessfully!
           </AlertTitle>
           <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseFailureAlert} />
         </Alert>

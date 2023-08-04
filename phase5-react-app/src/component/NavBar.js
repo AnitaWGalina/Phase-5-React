@@ -13,10 +13,18 @@ const NavBar = () => {
         <span style={styles.logoYellow}>BIX</span>
       </div>
       <ul style={styles.menu}>
-        {location.pathname !== "/" && <li><NavLink exact to="/">Home</NavLink></li>}
+        {/* Conditionally render the "Home" NavLink */}
+        {!["/", "/landing_page"].includes(location.pathname) && (
+          // Render only if not on "/" or "/landing_page"
+          user ? (
+            <li><NavLink to="/landing_page">Home</NavLink></li>
+          ) : (
+            <li><NavLink exact to="/">Home</NavLink></li>
+          )
+        )}
         {location.pathname !== "/about" && <li><NavLink to="/about">About</NavLink></li>}
         {location.pathname !== "/contact" && <li><NavLink to="/contact">Contact Us</NavLink></li>}
-        {user && location.pathname !== "/profile" && ( // Check if not on profile page
+        {user && location.pathname !== "/profile" && (
           <li><NavLink to="/profile">Profile</NavLink></li>
         )}
         {!user && location.pathname !== "/signup" && <li><NavLink to="/signup">Signup</NavLink></li>}

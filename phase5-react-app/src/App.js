@@ -59,16 +59,45 @@ const App = () => {
             element= {<UserProfile/>}
           />
               
-          <Route exact path="/" element={<FarmingGroupAdminLandingPage />} />
-          <Route exact path="/public-client" element={<PublicClientLandingPage />} />
-          <Route path="/products" element={<FarmingGroupAdminProducts />} />
-          <Route path="/services" element={<FarmingGroupAdminServices />} />
-          <Route path="/public-client-products" element={<PublicClientProducts />} />
-          <Route path="/public-client-services" element={<PublicClientServices />} />
-          <Route path="/enlist-produce" element={<EnlistProduceForm />} />
-          <Route path="/lease-land" element={<LeaseLandForm />} />
-          <Route path="/training" element={<TrainingForm />} />
-          <Route path="/land-list" element={<LandList />} />
+          <Route exact path="/landing_page" 
+            element={<FarmingGroupAdminLandingPage />} 
+          />
+
+          <Route path="/products" 
+            element={<FarmingGroupAdminProducts />} 
+          />
+
+          <Route path="/services" 
+            element={<FarmingGroupAdminServices />} 
+          />
+
+          <Route path="/enlist_produce" 
+            element={<EnlistProduceForm />} 
+          />
+          
+          <Route path="/lease_land" 
+            element={<LeaseLandForm />} 
+          />
+
+          <Route path="/training" 
+            element={<TrainingForm />} 
+          />
+
+          <Route path="/land_list" 
+            element={<LandList />} 
+          />
+
+          <Route exact path="/public_client" 
+            element={<PublicClientLandingPage />} 
+          />
+
+          <Route path="/public-client-products" 
+            element={<PublicClientProducts />} 
+          />
+
+          <Route path="/public-client-services" 
+            element={<PublicClientServices />} 
+          />
         </Routes>
       </Router>
     </ChakraProvider>

@@ -7,14 +7,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     setUser(userData);
-    console.log(userData);
+    // console.log(userData);
     // const token = userData.jwt; // Make sure 'jwt' matches the property name in the response
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
-    window.alert("Successfully logged out!");
+    window.alert(`Hope to see you again ${user.name} :(`);
     localStorage.removeItem("jwt");
   };
 

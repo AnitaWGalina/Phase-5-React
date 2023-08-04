@@ -35,7 +35,7 @@ const SignUpForm = () => {
       return;
     }
 
-    fetch("http://127.0.0.1:3000/users", {
+    fetch("/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const SignUpForm = () => {
       .then((data) => {
         localStorage.setItem("jwt", data.jwt);
         setUser(data.user);
-        window.alert("Successfully created account!");
+        window.alert(`Successfully created an account for ${user.name}! XD`);
         navigate("/login");
       })
       .catch((error) => {

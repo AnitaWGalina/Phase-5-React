@@ -19,9 +19,13 @@ import {
   Input,
   ButtonGroup,
 } from '@chakra-ui/react';
+import { useAuth } from '../context/AuthContext';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 
 const FarmingGroupAdminProducts = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('jwt')
+  
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -29,13 +33,21 @@ const FarmingGroupAdminProducts = () => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
 
+  
+
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
-    fetch('http://localhost:3000/farmer_products')
+    fetch('/farmer_products', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
-        console.log("Fetched products:", data);
+        // console.log("Fetched products:", data);
         if (Array.isArray(data)) {
           setProducts(data);
         } else {
@@ -49,17 +61,12 @@ const FarmingGroupAdminProducts = () => {
         setLoading(false);
       });
   }, []);
+  
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
     setDescription(product.description);
     setShowPopup(true);
-  };
-
-  const handlePurchaseProduct = () => {
-    // Handle the purchase logic here
-    console.log(`Purchased ${quantity} ${selectedProduct.name}(s)`);
-    setShowPopup(false);
   };
 
   const handleIncrementQuantity = () => {
@@ -96,6 +103,49 @@ const FarmingGroupAdminProducts = () => {
     ));
   };
 
+  if (!user) {
+    return <h2>Please log in to view the available products for sale.</h2>;
+  }
+
+  const handlePurchase = () => {
+    if (!selectedProduct) {
+      return; // No product selected, do nothing
+    }
+  
+    const saleData = {
+      user_id: user.id,
+      farmer_product_id: selectedProduct.id,
+      quantity: quantity,
+    };
+  
+    setLoading(true);
+  
+    fetch('/farmer_product_sales', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ farmer_product_sale: saleData }) // Wrap the data in an object as expected by Rails
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Successfully bought product!");
+        window.alert("Successfully bought product!");
+        setShowPopup(false);
+        // Here you might want to handle any success message or update UI accordingly
+      })
+      .catch(error => {
+        console.error("Error creating product sale:", error);
+        // Handle error scenario here
+      })
+      .finally(() => {
+        setLoading(false);
+        setShowPopup(false); // Close the popup after making the request
+      });
+  };
+  
+
   return (
     <Box className="product-container" p={10} bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))" bgSize="cover" bgImage="url('../img/farm.jpg')">
       <Heading as="h3" fontSize="4xl" fontFamily="Lobster" whiteSpace="nowrap" mb={4}>
@@ -131,7 +181,7 @@ const FarmingGroupAdminProducts = () => {
                   <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
                 </ButtonGroup>
               </InputGroup>
-              <Button colorScheme="teal" onClick={handlePurchaseProduct}>
+              <Button colorScheme="teal" onClick={handlePurchase}>
                 Purchase Product
               </Button>
             </AlertDialogBody>

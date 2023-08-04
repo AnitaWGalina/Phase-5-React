@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Box, Flex, Link as ChakraLink, Stack, Center } from '@chakra-ui/react';
 
 const ParentLink = ({ label, children }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { user } = useAuth();
+  
+  if (!user) {
+    return <h2>Please log in to view the landing page.</h2>;
+  }
 
   return (
     <Box
@@ -64,9 +70,8 @@ const FarmingGroupAdminLandingPage = () => {
             <ChildLink to="/products" label="View Products" />
           </ParentLink>
           <ParentLink label="Services">
-            <ChildLink to="/enlist-produce" label="Enlist Produce" />
-            <ChildLink to="/lease-land" label="Lease Land" />
-            <ChildLink to="/land-list" label="Land List" />
+            <ChildLink to="/enlist_produce" label="Sell Produce" />
+            <ChildLink to="/land_list" label="Land Operation" />
             <ChildLink to="/training" label="Training" />
           </ParentLink>
         </Stack>

@@ -26,7 +26,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     // Send a POST request to your login endpoint with user credentials
-    fetch("http://127.0.0.1:3000/login", {
+    fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,10 +36,10 @@ const LoginForm = () => {
       .then((resp) => resp.json())
       .then((data) => {
         localStorage.setItem("jwt", data.jwt);
-        console.log(data)
+        // console.log(data)
         login(data.user); // Update the user state
-        window.alert("Successfully logged in!");
-        navigate("/"); // Redirect to the desired page after successful login
+        window.alert(`Welcome back ${data.user.name} :D!`);
+        navigate("/landing_page"); // Redirect to the desired page after successful login
       })
       .catch((error) => {
         setError(error.message); // Store the error message in state
@@ -48,6 +48,7 @@ const LoginForm = () => {
   return (
     <>
       <h1>LOGIN</h1>
+      {error && <p className="error-message">Invalid username or password</p>}
       <div>
         <form action="" onSubmit={handleSubmit}>
           <div>
