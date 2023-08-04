@@ -91,7 +91,7 @@ const App = () => {
             element={<PublicClientLandingPage />} 
           />
 
-          <Route path="/public-client-products" 
+          <Route path="/public_client_products" 
             element={<PublicClientProducts />} 
           />
 
