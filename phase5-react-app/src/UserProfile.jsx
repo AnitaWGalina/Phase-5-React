@@ -47,7 +47,7 @@ const UserProfile = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("User profile updated:", data);
+        // console.log("User profile updated:", data);
         logout()
         navigate("/login");
       })
@@ -81,6 +81,7 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
+
         <div>
           <label>Email:</label>
           <input
@@ -90,6 +91,7 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
+
         <div>
           <label>Phone Number:</label>
           <input
@@ -99,6 +101,33 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
+
+        <div>
+          <label>Location:</label>
+          <input
+            type="text"
+            name="location"
+            value={userProfile.location}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label>Type of User</label>
+          <select
+            name="status"
+            onChange={handleChange}
+            value={userProfile.status}
+            type="text"
+          >
+            <option value="">Select...</option>
+            <option value="Farming Group Administrator">
+              Farming Group Administrator
+            </option>
+            <option value="Public Client">Public Client</option>
+          </select>
+        </div>
+
         {userProfile.status !== "Select..." && userProfile.status !== "Public Client" && (
           <div>
             <label htmlFor="group_number">Number of Members:</label>
@@ -111,6 +140,7 @@ const UserProfile = () => {
             />
           </div>
         )}
+        
         <div>
           <label>Password:</label>
           <input
@@ -130,30 +160,7 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Location:</label>
-          <input
-            type="text"
-            name="location"
-            value={userProfile.location}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Type of User</label>
-          <select
-            name="status"
-            onChange={handleChange}
-            value={userProfile.status}
-            type="text"
-          >
-            <option value="">Select...</option>
-            <option value="Farming Group Administrator">
-              Farming Group Administrator
-            </option>
-            <option value="Public Client">Public Client</option>
-          </select>
-        </div>
+        
         <button type="submit">Save</button>
       </form>
     </div>

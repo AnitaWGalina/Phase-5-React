@@ -33,8 +33,6 @@ const PublicClientProducts = () => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
 
-  
-
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
@@ -114,24 +112,24 @@ const PublicClientProducts = () => {
   
     const saleData = {
       user_id: user.id,
-      farmer_product_id: selectedProduct.id,
-      quantity: quantity,
+      public_client_product_id: selectedProduct.id,
+      quantity: quantity
     };
   
     setLoading(true);
   
-    fetch('/farmer_product_sales', {
+    fetch('/public_client_product_sales', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({ farmer_product_sale: saleData }) // Wrap the data in an object as expected by Rails
+      body: JSON.stringify({ public_client_product_sale: saleData }) // Wrap the data in an object as expected by Rails
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Successfully bought product!");
-        window.alert("Successfully bought product!");
+        console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
+        window.alert(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`);
         setShowPopup(false);
         // Here you might want to handle any success message or update UI accordingly
       })
