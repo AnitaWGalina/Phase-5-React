@@ -107,7 +107,7 @@ const LandList = () => {
       bgImage="url('../img/farm.jpg')"
     >
       <Heading as="h3" fontSize="4xl" fontFamily="Lobster" whiteSpace="nowrap" mb={4}>
-        Available Lands for Rent
+        Available Land for Rent Or Lease
       </Heading>
       <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6} justifyItems="center">
         {renderLands()}
