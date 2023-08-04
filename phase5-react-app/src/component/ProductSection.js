@@ -13,6 +13,7 @@ const ProductSection = () => {
       fontStyle: 'normal',
       fontWeight: 700,
       lineHeight: 'normal',
+      textAlign: 'center',
     },
     productSectionSubtitle: {
       overflow: 'hidden',

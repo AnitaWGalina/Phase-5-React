@@ -1,6 +1,7 @@
-import "./Login.css";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Login = () => {
       .then((data) => {
         console.log(data);
 
-        navigate("");
+        navigate("/");
       });
   };
 

@@ -63,10 +63,11 @@ const LogoContainer = styled.div`
 const LogoText = styled.span`
   font-size: 30px;
   font-weight: bold;
+  color : white;
 `;
 
 const LogoTextYellow = styled(LogoText)`
-  color: yellow;
+  color: orange;
 `;
 
 const MenuList = styled.ul`
@@ -89,7 +90,7 @@ const StyledNavLink = styled(NavLink)`
   }
 
   &.active {
-    color: #317873;
+    color: #C5F600;
   }
 `;
 
