@@ -59,7 +59,7 @@ const App = () => {
             element= {<UserProfile/>}
           />
               
-          <Route exact path="/landing_page" 
+          <Route exact path="/farmer_page" 
             element={<FarmingGroupAdminLandingPage />} 
           />
 
@@ -87,7 +87,7 @@ const App = () => {
             element={<LandList />} 
           />
 
-          <Route exact path="/public_client" 
+          <Route exact path="/client_page" 
             element={<PublicClientLandingPage />} 
           />
 
