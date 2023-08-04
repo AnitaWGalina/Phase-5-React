@@ -99,15 +99,18 @@ const UserProfile = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Group Number:</label>
-          <input
-            type="number"
-            name="group_number"
-            value={userProfile.group_number}
-            onChange={handleChange}
-          />
-        </div>
+        {userProfile.status !== "Select..." && userProfile.status !== "Public Client" && (
+          <div>
+            <label htmlFor="group_number">Number of Members:</label>
+            <input
+              type="number"
+              id="group_number"
+              value={userProfile.group_number}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        )}
         <div>
           <label>Password:</label>
           <input
