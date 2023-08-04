@@ -17,7 +17,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
-import LeaseLandForm from './LeaseLandForm';
+import LeaseLandForm from './LandOperationsForm';
 
 const LandList = () => {
   const { user } = useAuth();

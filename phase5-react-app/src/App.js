@@ -19,7 +19,7 @@ import FarmingGroupAdminServices from './Components/FarmingGroupAdminServices';
 import PublicClientProducts from './Components/PublicClientProducts';
 import PublicClientServices from './Components/PublicClientServices';
 import EnlistProduceForm from './Components/EnlistProduceForm';
-import LeaseLandForm from './Components/LeaseLandForm';
+import LeaseLandForm from './Components/LandOperationsForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 
