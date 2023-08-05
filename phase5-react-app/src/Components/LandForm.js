@@ -38,7 +38,7 @@ function LandForm() {
     };
 
     try {
-      const response = await fetch('/api/addFarmingLand', {
+      const response = await fetch('/farming_lands', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
