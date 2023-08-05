@@ -93,7 +93,7 @@ function LandForm() {
             />
           </FormControl>
           <FormControl mb={6}>
-            <FormLabel>Land Image (URL or Google Pin):</FormLabel>
+            <FormLabel>Land Image (Image URL):</FormLabel>
             <Input
               size="sm"
               type="text"

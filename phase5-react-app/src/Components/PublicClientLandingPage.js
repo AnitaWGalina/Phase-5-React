@@ -66,8 +66,8 @@ const PublicClientLandingPage = () => {
           <ChildLink to="/public-client-products" label="View Products" />
         </ParentLink>
         <ParentLink to="/public-client-services" label="Services">
-          <ChildLink to="/land-form" label="Lease Land" />
-          <ChildLink to="/land-list" label="Rent Land" />
+          <ChildLink to="/land_form" label="Lease Land" />
+          <ChildLink to="/land_list" label="Rent Land" />
         </ParentLink>
       </Stack>
     </Center>
