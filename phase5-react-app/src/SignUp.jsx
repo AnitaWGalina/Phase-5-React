@@ -96,38 +96,6 @@ const SignUpForm = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="group_number">Number of Members:</label>
-          <input
-            type="number"
-            id="group_number"
-            value={user.group_number}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={user.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input
-            type="password"
-            id="password_confirmation"
-            value={user.password_confirmation}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
         <div>
           <label htmlFor="location">Location:</label>
@@ -154,6 +122,41 @@ const SignUpForm = () => {
             </option>
             <option value="Public Client">Public Client</option>
           </select>
+        </div>
+
+        {user.status !== "Select..." && user.status !== "Public Client" && (
+        <div>
+          <label htmlFor="group_number">Number of Members:</label>
+          <input
+            type="number"
+            id="group_number"
+            value={user.group_number}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        )}
+
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={user.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="password_confirmation"
+            value={user.password_confirmation}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <button type="submit" disabled={!!error}>

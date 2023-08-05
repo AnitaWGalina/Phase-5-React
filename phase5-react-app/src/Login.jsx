@@ -38,8 +38,12 @@ const LoginForm = () => {
         localStorage.setItem("jwt", data.jwt);
         // console.log(data)
         login(data.user); // Update the user state
+        if (data.user.status === "Public Client") {
+          navigate("/client_page"); // Redirect to the client page
+        } else if (data.user.status === "Farming Group Administrator") {
+          navigate("/farmer_page"); // Redirect to the farmer page
+        }
         window.alert(`Welcome back ${data.user.name} :D!`);
-        navigate("/landing_page"); // Redirect to the desired page after successful login
       })
       .catch((error) => {
         setError(error.message); // Store the error message in state

@@ -17,7 +17,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
-import LeaseLandForm from './LeaseLandForm';
+import LeaseLandForm from './LandOperationsForm';
 
 const LandList = () => {
   const { user } = useAuth();
@@ -107,7 +107,7 @@ const LandList = () => {
       bgImage="url('../img/farm.jpg')"
     >
       <Heading as="h3" fontSize="4xl" fontFamily="Lobster" whiteSpace="nowrap" mb={4}>
-        Available Lands for Rent
+        Land For Renting Or Leasing
       </Heading>
       <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6} justifyItems="center">
         {renderLands()}

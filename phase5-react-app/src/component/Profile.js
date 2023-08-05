@@ -17,7 +17,9 @@ const Profile = () => {
     <div>
       <h2>Welcome, {user.name}!</h2>
       <h1>Status: {user.status}</h1>
-      <h1>Group Size: {user.group_number}</h1>
+      {user.status !== "Public Client" && (
+        <h1>Group Size: {user.group_number}</h1>
+      )}
       <h1>Email Address: {user.email}</h1>
       <h1>Phone Number: {user.phone_number}</h1>
       <h1>Location: {user.location}</h1>
