@@ -1,4 +1,17 @@
 import React, { useState } from 'react';
+import {
+  Box,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  CloseButton,
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 
 function LandForm() {
   const [userName, setUserName] = useState('');
@@ -6,9 +19,10 @@ function LandForm() {
   const [landDescription, setLandDescription] = useState('');
   const [sizeInAcres, setSizeInAcres] = useState('');
   const [plotCount, setPlotCount] = useState('');
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
+  const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
 
   const calculatePlotCount = (acres) => {
-    // Assuming a plot size of 50 * 100 feet, calculate plot count
     const plotsInOneAcre = 8;
     return acres * plotsInOneAcre;
   };
@@ -33,12 +47,12 @@ function LandForm() {
       });
 
       if (response.ok) {
-        console.log('Farming land added successfully');
+        setIsSuccessAlertOpen(true);
       } else {
-        console.error('Error adding farming land');
+        setIsFailureAlertOpen(true);
       }
     } catch (error) {
-      console.error('Error adding farming land', error);
+      setIsFailureAlertOpen(true);
     }
   };
 
@@ -53,51 +67,93 @@ function LandForm() {
     }
   };
 
+  const handleCloseSuccessAlert = () => {
+    setIsSuccessAlertOpen(false);
+  };
+
+  const handleCloseFailureAlert = () => {
+    setIsFailureAlertOpen(false);
+  };
+
   return (
-    <div>
-      <h2>Add Farming Land</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>User Name:</label>
-          <input
-            type="text"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Land Image (URL or Google Pin):</label>
-          <input
-            type="text"
-            value={landImage}
-            onChange={(e) => setLandImage(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Land Description:</label>
-          <input
-            type="text"
-            value={landDescription}
-            onChange={(e) => setLandDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Size in Acres:</label>
-          <input
-            type="number"
-            value={sizeInAcres}
-            onChange={handleSizeInAcresChange}
-            required
-          />
-        </div>
-        <p>Plot size: 50 * 100 feet</p>
-        {plotCount && <p>{plotCount} plots</p>}
-        <button type="submit">Add Farming Land</button>
-      </form>
-    </div>
+    <Box p={8} textAlign="center">
+      <Heading as="h1" mb={6}>
+        Add Farming Land
+      </Heading>
+      <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <Box maxW="400px" mx="auto" p={4}>
+          <FormControl mb={6}>
+            <FormLabel>Owned by:</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              required
+            />
+          </FormControl>
+          <FormControl mb={6}>
+            <FormLabel>Land Image (URL or Google Pin):</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={landImage}
+              onChange={(e) => setLandImage(e.target.value)}
+              required
+            />
+          </FormControl>
+          <FormControl mb={6}>
+            <FormLabel>Land Description:</FormLabel>
+            <Input
+              size="sm"
+              type="text"
+              value={landDescription}
+              onChange={(e) => setLandDescription(e.target.value)}
+              required
+            />
+          </FormControl>
+          <FormControl mb={6}>
+            <FormLabel>Size in Acres:</FormLabel>
+            <Input
+              size="sm"
+              type="number"
+              value={sizeInAcres}
+              onChange={handleSizeInAcresChange}
+              required
+            />
+          </FormControl>
+          {plotCount && (
+            <p>
+              Plot size: 50 * 100 feet<br />
+              {plotCount} plots
+            </p>
+          )}
+          <Button type="submit" colorScheme="green" bgColor="#317873" mt={4}>
+            Add Farming Land
+          </Button>
+        </Box>
+      </motion.form>
+      {/* Success Alert */}
+      {isSuccessAlertOpen && (
+        <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
+          <AlertIcon boxSize="24px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Farming land added successfully!
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
+        </Alert>
+      )}
+      {/* Failure Alert */}
+      {isFailureAlertOpen && (
+        <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
+          <AlertIcon boxSize="24px" mr={0} />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Error adding farming land!
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseFailureAlert} />
+        </Alert>
+      )}
+    </Box>
   );
 }
 
