@@ -9,7 +9,7 @@ function LandForm() {
 
   const calculatePlotCount = (acres) => {
     // Assuming a plot size of 50 * 100 feet, calculate plot count
-    const plotsInOneAcre = 8; // Constant for plot size 50 * 100 feet
+    const plotsInOneAcre = 8;
     return acres * plotsInOneAcre;
   };
 
@@ -33,10 +33,8 @@ function LandForm() {
       });
 
       if (response.ok) {
-        // Handle success, maybe show a success message
         console.log('Farming land added successfully');
       } else {
-        // Handle error, maybe show an error message
         console.error('Error adding farming land');
       }
     } catch (error) {
