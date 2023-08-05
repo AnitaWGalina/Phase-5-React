@@ -133,7 +133,7 @@ function LandForm() {
           </Button>
         </Box>
       </motion.form>
-      {/*Success Alert*/}
+      {/* Success Alert */}
       {isSuccessAlertOpen && (
         <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
           <AlertIcon boxSize="24px" mr={0} />
@@ -143,7 +143,7 @@ function LandForm() {
           <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
         </Alert>
       )}
-      {/*Failure Alert*/}
+      {/* Failure Alert */}
       {isFailureAlertOpen && (
         <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
           <AlertIcon boxSize="24px" mr={0} />
