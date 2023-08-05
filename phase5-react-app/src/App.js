@@ -80,7 +80,7 @@ const App = () => {
             element={<LeaseLandForm />}
           />
 
-          <Route path="/lease_form"
+          <Route path="/land_form"
             element={<LandForm />}
           />
 
