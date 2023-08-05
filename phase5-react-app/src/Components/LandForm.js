@@ -76,9 +76,9 @@ function LandForm() {
   };
 
   return (
-    <Box p={8} textAlign="center">
-      <Heading as="h1" mb={6}>
-        Add Farming Land
+    <Box p={8} textAlign="center" fontFamily="sans-serif">
+      <Heading as="h1" mb={6} fontSize="xl" fontWeight="semibold">
+        Lease Your Farming Land
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <Box maxW="400px" mx="auto" p={4}>
@@ -124,8 +124,8 @@ function LandForm() {
           </FormControl>
           {plotCount && (
             <p>
-              Plot size: 50 * 100 feet<br />
-              {plotCount} plots
+              <strong>Plot size:</strong> 50 * 100 feet<br />
+              <strong>{plotCount} plots</strong>
             </p>
           )}
           <Button type="submit" colorScheme="green" bgColor="#317873" mt={4}>
