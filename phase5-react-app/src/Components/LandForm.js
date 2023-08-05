@@ -12,9 +12,13 @@ import {
   CloseButton,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 
 function LandForm() {
-  const [userName, setUserName] = useState('');
+  const { user } = useAuth();
+  const token = localStorage.getItem('jwt')
+  const [userId, setUserId] = useState(user?.id || '');
+
   const [landImage, setLandImage] = useState('');
   const [landDescription, setLandDescription] = useState('');
   const [sizeInAcres, setSizeInAcres] = useState('');
@@ -27,14 +31,18 @@ function LandForm() {
     return acres * plotsInOneAcre;
   };
 
+  if (!user) {
+    return <h2>Please log in to be able upload pieces of land.</h2>;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
-      user_name: userName,
+      user_id: userId,
       image: landImage,
       description: landDescription,
-      size_in_acres: sizeInAcres,
+      size_in_acres: sizeInAcres
     };
 
     try {
@@ -42,6 +50,7 @@ function LandForm() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(formData),
       });
@@ -78,20 +87,10 @@ function LandForm() {
   return (
     <Box p={8} textAlign="center" fontFamily="sans-serif">
       <Heading as="h1" mb={6} fontSize="xl" fontWeight="semibold">
-        Lease Your Land
+        Upload Your Land
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <Box maxW="400px" mx="auto" p={4}>
-          <FormControl mb={6}>
-            <FormLabel>Owned by:</FormLabel>
-            <Input
-              size="sm"
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              required
-            />
-          </FormControl>
           <FormControl mb={6}>
             <FormLabel>Land Image (Image URL or Google Pin):</FormLabel>
             <Input
@@ -113,7 +112,7 @@ function LandForm() {
             />
           </FormControl>
           <FormControl mb={6}>
-            <FormLabel>Size in Acres:</FormLabel>
+            <FormLabel>Size in Square Meters:</FormLabel>
             <Input
               size="sm"
               type="number"
@@ -138,7 +137,7 @@ function LandForm() {
         <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
           <AlertIcon boxSize="24px" mr={0} />
           <AlertTitle mt={1} mb={1} fontSize="sm">
-            Farming land added successfully!
+            Successfully uploaded a {sizeInAcres} square meter piece of land belonging to {user.name}!
           </AlertTitle>
           <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
         </Alert>
