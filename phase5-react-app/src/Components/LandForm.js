@@ -41,7 +41,46 @@ function LandForm() {
 
 return (
     <div>
-
+            <h2>Add Farming Land</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>User Name:</label>
+          <input
+            type="text"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Land Image (URL or Google Pin):</label>
+          <input
+            type="text"
+            value={landImage}
+            onChange={(e) => setLandImage(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Land Description:</label>
+          <input
+            type="text"
+            value={landDescription}
+            onChange={(e) => setLandDescription(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Size in Acres:</label>
+          <input
+            type="number"
+            value={sizeInAcres}
+            onChange={(e) => setSizeInAcres(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Add Farming Land</button>
+      </form>
     </div>
 )
 export default LandForm;
