@@ -2,7 +2,7 @@ import React from "react";
 import Login from "./Login";
 import { ChakraProvider } from '@chakra-ui/react';
 import SignUpForm from "./SignUp";
-import HomePage from './component/HomePage'; 
+import HomePage from './component/HomePage';
 import NavBar from './component/NavBar';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./component/About";
@@ -22,6 +22,7 @@ import EnlistProduceForm from './Components/EnlistProduceForm';
 import LeaseLandForm from './Components/LeaseLandForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
+import LandForm from './Components/LandForm';
 
 
 const App = () => {
@@ -46,11 +47,11 @@ const App = () => {
           <Route path='/about'
             element= {<About/>}
           />
-          
+
           <Route path='/contact'
             element= {<Contact/>}
           />
-          
+
           <Route path='/profile'
             element= {<Profile/>}
           />
@@ -58,45 +59,49 @@ const App = () => {
           <Route path='/update_account'
             element= {<UserProfile/>}
           />
-              
-          <Route exact path="/landing_page" 
-            element={<FarmingGroupAdminLandingPage />} 
+
+          <Route exact path="/landing_page"
+            element={<FarmingGroupAdminLandingPage />}
           />
 
-          <Route path="/products" 
-            element={<FarmingGroupAdminProducts />} 
+          <Route path="/products"
+            element={<FarmingGroupAdminProducts />}
           />
 
-          <Route path="/services" 
-            element={<FarmingGroupAdminServices />} 
+          <Route path="/services"
+            element={<FarmingGroupAdminServices />}
           />
 
-          <Route path="/enlist_produce" 
-            element={<EnlistProduceForm />} 
-          />
-          
-          <Route path="/lease_land" 
-            element={<LeaseLandForm />} 
+          <Route path="/enlist_produce"
+            element={<EnlistProduceForm />}
           />
 
-          <Route path="/training" 
-            element={<TrainingForm />} 
+          <Route path="/lease_land"
+            element={<LeaseLandForm />}
           />
 
-          <Route path="/land_list" 
-            element={<LandList />} 
+          <Route path="/lease_form"
+            element={<LandForm />}
           />
 
-          <Route exact path="/public_client" 
-            element={<PublicClientLandingPage />} 
+          <Route path="/training"
+            element={<TrainingForm />}
           />
 
-          <Route path="/public-client-products" 
-            element={<PublicClientProducts />} 
+          <Route path="/land_list"
+            element={<LandList />}
           />
 
-          <Route path="/public-client-services" 
-            element={<PublicClientServices />} 
+          <Route exact path="/public_client"
+            element={<PublicClientLandingPage />}
+          />
+
+          <Route path="/public-client-products"
+            element={<PublicClientProducts />}
+          />
+
+          <Route path="/public-client-services"
+            element={<PublicClientServices />}
           />
         </Routes>
       </Router>
