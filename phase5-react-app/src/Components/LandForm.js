@@ -5,6 +5,13 @@ function LandForm() {
   const [landImage, setLandImage] = useState('');
   const [landDescription, setLandDescription] = useState('');
   const [sizeInAcres, setSizeInAcres] = useState('');
+  const [plotCount, setPlotCount] = useState('');
+
+  const calculatePlotCount = (acres) => {
+    // Assuming a plot size of 50 * 100 feet, calculate plot count
+    const plotsInOneAcre = 8; // Constant for plot size 50 * 100 feet
+    return acres * plotsInOneAcre;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +41,17 @@ function LandForm() {
       }
     } catch (error) {
       console.error('Error adding farming land', error);
+    }
+  };
+
+  const handleSizeInAcresChange = (e) => {
+    const acres = parseFloat(e.target.value);
+    setSizeInAcres(acres);
+    if (!isNaN(acres)) {
+      const calculatedPlotCount = calculatePlotCount(acres);
+      setPlotCount(calculatedPlotCount);
+    } else {
+      setPlotCount('');
     }
   };
 
@@ -73,9 +91,10 @@ function LandForm() {
           <input
             type="number"
             value={sizeInAcres}
-            onChange={(e) => setSizeInAcres(e.target.value)}
+            onChange={handleSizeInAcresChange}
             required
           />
+          {plotCount && <p>{plotCount} plots</p>}
         </div>
         <button type="submit">Add Farming Land</button>
       </form>
