@@ -62,12 +62,11 @@ const PublicClientLandingPage = () => {
   return (
     <Center>
       <Stack direction="row" spacing={4}>
-        <ParentLink to="/public-client-products" label="Products">
-          <ChildLink to="/public-client-products" label="View Products" />
+        <ParentLink label="Products">
+          <ChildLink to="/public_client_products" label="View Products" />
         </ParentLink>
-        <ParentLink to="/public-client-services" label="Services">
-          <ChildLink to="/lease-land" label="Lease Land" />
-          <ChildLink to="/land-list" label="Rent Land" />
+        <ParentLink label="Services">
+          <ChildLink to="/land_list" label="Land Operations" />
         </ParentLink>
       </Stack>
     </Center>

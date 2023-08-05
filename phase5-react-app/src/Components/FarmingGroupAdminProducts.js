@@ -130,8 +130,8 @@ const FarmingGroupAdminProducts = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Successfully bought product!");
-        window.alert("Successfully bought product!");
+        console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
+        window.alert(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`);
         setShowPopup(false);
         // Here you might want to handle any success message or update UI accordingly
       })

@@ -19,7 +19,7 @@ import FarmingGroupAdminServices from './Components/FarmingGroupAdminServices';
 import PublicClientProducts from './Components/PublicClientProducts';
 import PublicClientServices from './Components/PublicClientServices';
 import EnlistProduceForm from './Components/EnlistProduceForm';
-import LeaseLandForm from './Components/LeaseLandForm';
+import LeaseLandForm from './Components/LandOperationsForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 
@@ -59,7 +59,7 @@ const App = () => {
             element= {<UserProfile/>}
           />
               
-          <Route exact path="/landing_page" 
+          <Route exact path="/farmer_page" 
             element={<FarmingGroupAdminLandingPage />} 
           />
 
@@ -87,11 +87,11 @@ const App = () => {
             element={<LandList />} 
           />
 
-          <Route exact path="/public_client" 
+          <Route exact path="/client_page" 
             element={<PublicClientLandingPage />} 
           />
 
-          <Route path="/public-client-products" 
+          <Route path="/public_client_products" 
             element={<PublicClientProducts />} 
           />
 

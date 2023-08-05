@@ -12,25 +12,37 @@ const NavBar = () => {
         <span style={styles.logoBlack}>AGRI</span>
         <span style={styles.logoYellow}>BIX</span>
       </div>
-      <ul style={styles.menu}>
-        {/* Conditionally render the "Home" NavLink */}
-        {!["/", "/landing_page"].includes(location.pathname) && (
-          // Render only if not on "/" or "/landing_page"
-          user ? (
-            <li><NavLink to="/landing_page">Home</NavLink></li>
-          ) : (
-            <li><NavLink exact to="/">Home</NavLink></li>
-          )
-        )}
-        {location.pathname !== "/about" && <li><NavLink to="/about">About</NavLink></li>}
-        {location.pathname !== "/contact" && <li><NavLink to="/contact">Contact Us</NavLink></li>}
-        {user && location.pathname !== "/profile" && (
-          <li><NavLink to="/profile">Profile</NavLink></li>
-        )}
-        {!user && location.pathname !== "/signup" && <li><NavLink to="/signup">Signup</NavLink></li>}
-        {!user && location.pathname !== "/login" && <li><NavLink to="/login">Login</NavLink></li>}
-      </ul>
+    <ul style={styles.menu}>
+      {/* Conditionally render the "Home" NavLink */}
+      {!["/", "/farmer_page", "/client_page"].includes(location.pathname) && (
+        // Render only if not on "/", "/farmer_page", or "/client_page"
+        user ? (
+          <li>
+            {user.status === "Public Client" ? (
+              <NavLink to="/client_page">Home</NavLink>
+            ) : user.status === "Farming Group Administrator" ? (
+              <NavLink to="/farmer_page">Home</NavLink>
+            ) : (
+              <NavLink to="/">Home</NavLink> // Default home link if status isn't recognized
+            )}
+          </li>
+        ) : (
+          <li><NavLink exact to="/">Home</NavLink></li>
+        )
+      )}
+      {location.pathname !== "/about" && <li><NavLink to="/about">About</NavLink></li>}
+      {location.pathname !== "/contact" && <li><NavLink to="/contact">Contact Us</NavLink></li>}
+      {user && location.pathname !== "/profile" && (
+        <li><NavLink to="/profile">Profile</NavLink></li>
+      )}
+      {!user && location.pathname !== "/signup" && <li><NavLink to="/signup">Signup</NavLink></li>}
+      {!user && location.pathname !== "/login" && <li><NavLink to="/login">Login</NavLink></li>}
+    </ul>
     </nav>
+
+
+
+
   );
 };
 
