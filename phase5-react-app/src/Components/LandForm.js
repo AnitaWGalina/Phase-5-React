@@ -94,8 +94,9 @@ function LandForm() {
             onChange={handleSizeInAcresChange}
             required
           />
-          {plotCount && <p>{plotCount} plots</p>}
         </div>
+        <p>Plot size: 50 * 100 feet</p>
+        {plotCount && <p>{plotCount} plots</p>}
         <button type="submit">Add Farming Land</button>
       </form>
     </div>
