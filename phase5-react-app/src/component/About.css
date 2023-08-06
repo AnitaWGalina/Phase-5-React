@@ -1,23 +1,36 @@
 /* About.css */
-.container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-.heading {
-  font-size: 36px;
+.container {
+  background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px;
+}
+
+h1 {
+  font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #333;
 }
 
-.paragraph {
-  font-size: 25px;
-  line-height: 2.1;
-  color: #05643b;
-  text-align: center;
-  font-style: inherit;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: justify;
 }
