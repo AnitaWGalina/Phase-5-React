@@ -5,13 +5,13 @@ import "./SignUp.css";
 const SignUpForm = () => {
   const [user, setUser] = useState({
     name: "",
-    status: "Select...",
+    status: "",
     email: "",
     phone_number: "",
     location: "",
     group_number: 0,
     password: "",
-    password_confirmation: ""
+    password_confirmation: "",
   });
 
   const handleChange = (e) => {
@@ -35,7 +35,7 @@ const SignUpForm = () => {
       return;
     }
 
-    fetch("/users", {
+    fetch("http://localhost:3004/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,20 +51,18 @@ const SignUpForm = () => {
       .then((data) => {
         localStorage.setItem("jwt", data.jwt);
         setUser(data.user);
-        window.alert(`Successfully created an account for ${user.name}! XD`);
-        navigate("/login");
+        navigate("/Login");
       })
       .catch((error) => {
         setError(error.message); // Store the error message in state
       });
-      console.log(error);
   };
 
   return (
-    <>
-      <h1>SignUp</h1>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
+    <div className="signup-container">
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <h1>SignUp</h1>
+        {error && <p className="error-message">{error}</p>}
         <div>
           <label htmlFor="name">Name:</label>
           <input
@@ -79,7 +77,7 @@ const SignUpForm = () => {
         <div>
           <label htmlFor="email">Email:</label>
           <input
-            type="text"
+            type="email"
             id="email"
             value={user.email}
             onChange={handleChange}
@@ -96,37 +94,8 @@ const SignUpForm = () => {
             required
           />
         </div>
-
         <div>
-          <label htmlFor="location">Location:</label>
-          <input
-            type="text"
-            id="location"
-            value={user.location}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label>Type of User</label>
-          <select
-            id="status"
-            onChange={handleChange}
-            value={user.status}
-            type="text"
-          >
-            <option value="">Select...</option>
-            <option value="Farming Group Administrator">
-              Farming Group Administrator
-            </option>
-            <option value="Public Client">Public Client</option>
-          </select>
-        </div>
-
-        {user.status !== "Select..." && user.status !== "Public Client" && (
-        <div>
-          <label htmlFor="group_number">Number of Members:</label>
+          <label htmlFor="group_number">Group n.o:</label>
           <input
             type="number"
             id="group_number"
@@ -135,7 +104,6 @@ const SignUpForm = () => {
             required
           />
         </div>
-        )}
 
         <div>
           <label htmlFor="password">Password:</label>
@@ -159,11 +127,37 @@ const SignUpForm = () => {
           />
         </div>
 
+        <div>
+          <label htmlFor="location">Location:</label>
+          <input
+            type="text"
+            id="location"
+            value={user.location}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div>
+          <label>Type of User</label>
+          <select
+            id="status"
+            onChange={(e) => console.log(user)}
+            value={user.status}
+          >
+            <option value={"Farming Group Administrator"}>
+              Farming Group Administrator
+            </option>
+            <option value={"Public Client"}>Public Client</option>
+          </select>
+        </div>
+
         <button type="submit" disabled={!!error}>
           Register
         </button>
       </form>
-    </>
+    </div>
   );
 };
+
 export default SignUpForm;
