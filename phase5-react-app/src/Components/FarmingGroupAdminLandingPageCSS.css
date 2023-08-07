@@ -1,0 +1,94 @@
+/* FarmingGroupAdminLandingPageCSS.css */
+
+.landing-page-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .landing-page-content {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-service-container {
+    display: flex;
+    justify-content: space-between; /* Change to space-between to display links horizontally */
+  }
+  
+  .product-service {
+    display: flex;
+  }
+  
+  .parent-link {
+    position: relative;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #317873;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .parent-link-label {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .parent-link.hovered {
+    background-color: #3eb9a5;
+  }
+  
+  .child-link-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+    display: none;
+  }
+  
+  .parent-link.hovered .child-link-container {
+    display: block;
+  }
+  
+  .child-link {
+    display: block;
+    padding: 8px;
+    color: #317873;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .child-link:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Additional styles to make the product and service links more interactive */
+  .parent-link:hover {
+    background-color: #3eb9a5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .child-link {
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .child-link:hover {
+    background-color: #f0f0f0;
+    color: #317873;
+  }
+  
