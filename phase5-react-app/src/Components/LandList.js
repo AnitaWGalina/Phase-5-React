@@ -98,7 +98,7 @@ const LandList = () => {
             <Text fontSize="sm" mt={2}>
               Size: {land.size_in_acres} square meters
             </Text>
-            <Text fontSize="sm">Status: {land.status}</Text>
+            <Text fontSize="sm">Status: {land.status} by {land.owned_by} </Text>
             <Text fontSize="xs" mt={2}>Land Size in Plots: {sizeInPlots}</Text>
             <Text fontSize="xs" mt={2}>Land Size in Acres: {sizeInAcres}</Text>
             <Box bg="#317873" p={2} mt={2} borderRadius="md">
@@ -177,7 +177,8 @@ const LandList = () => {
           <ModalHeader>{selectedLand?.user_name}'s Land</ModalHeader>
           <ModalBody>
             <Image src={selectedLand?.image} alt={`Land ${selectedLand?.id}`} boxSize="100%" objectFit="cover" />
-            <Text mt={4}>{selectedLand?.description}</Text>
+            <Text mt={4} fontWeight={"bold"}>{selectedLand?.description}</Text>
+            <Text mt={2}>Size: {selectedLand?.size_in_acres} square meters</Text>
           </ModalBody>
           <ModalFooter>
             {selectedLand && selectedLand.status === "Unoccupied" ? (
