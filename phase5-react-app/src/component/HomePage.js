@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import ProductItem from './ProductItem';
 import ProductSection from './ProductSection'; // Import the new component
-
+import './Homepage.css';
 const Home = () => {
   return (
     <div className="home-container">

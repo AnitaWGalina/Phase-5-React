@@ -49,7 +49,7 @@ const EnlistProduceForm = () => {
         <motion.img
           src="https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp"
           alt="Your Image"
-          style={{ maxWidth: '100%', borderRadius: '8px', cursor: 'pointer' }}
+          style={{ maxWidth: '600px', maxHeight: '200px', borderRadius: '8px', cursor: 'pointer' }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         />
