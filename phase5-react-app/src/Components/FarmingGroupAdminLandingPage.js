@@ -29,6 +29,9 @@ const ChildLink = ({ to, label }) => (
 const FarmingGroupAdminLandingPageCSS = () => {
   return (
     <div className="landing-page-container">
+      <div className="landing-page-text">
+        <h1>Bloom with Us: Cultivating Health and Happiness</h1>
+      </div>
       <div className="landing-page-content">
         <div className="product-service-container">
           <div className="product-service">
