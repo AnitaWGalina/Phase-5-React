@@ -133,7 +133,7 @@ const UserProfile = () => {
             <label htmlFor="group_number">Number of Members:</label>
             <input
               type="number"
-              id="group_number"
+              name="group_number"
               value={userProfile.group_number}
               onChange={handleChange}
               required

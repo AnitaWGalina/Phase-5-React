@@ -28,6 +28,7 @@ const LandList = () => {
   const [loading, setLoading] = useState(false);
   const [selectedLand, setSelectedLand] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTag, setActiveTag] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -55,12 +56,25 @@ const LandList = () => {
     setIsModalOpen(false);
   };
 
+  const filterLandsByTag = (tag) => {
+    setActiveTag(tag);
+  };
+
+  const filteredLands = lands.filter((land) => {
+    if (activeTag === 'Owned') {
+      return land.user_id === user.id;
+    } else if (activeTag) {
+      return land.status === activeTag;
+    }
+    return true;
+  });
+
   if (!user) {
     return <h2>Please log in to view available pieces of land.</h2>;
   }
 
   const renderLands = () => {
-    return lands.map((land) => {
+    return filteredLands.map((land) => {
       const sizeInPlots = (land.size_in_acres/ (50 * 100)).toFixed(2);
       const sizeInAcres = (land.size_in_acres / 4046.856).toFixed(2);
 
@@ -84,7 +98,7 @@ const LandList = () => {
             <Text fontSize="sm" mt={2}>
               Size: {land.size_in_acres} square meters
             </Text>
-            <Text fontSize="sm">Status: {land.status}</Text>
+            <Text fontSize="sm">Status: {land.status} by {land.owned_by} </Text>
             <Text fontSize="xs" mt={2}>Land Size in Plots: {sizeInPlots}</Text>
             <Text fontSize="xs" mt={2}>Land Size in Acres: {sizeInAcres}</Text>
             <Box bg="#317873" p={2} mt={2} borderRadius="md">
@@ -109,6 +123,45 @@ const LandList = () => {
       <Heading as="h3" fontSize="4xl" fontFamily="Lobster" whiteSpace="nowrap" mb={4}>
         Land For Renting Or Leasing
       </Heading>
+
+      <Box mb={4}>
+        <Button
+          variant={activeTag === 'Owned' ? 'solid' : 'outline'}
+          colorScheme="teal"
+          mr={2}
+          onClick={() => filterLandsByTag('Owned')}
+          borderRadius="30px"
+        >
+          Owned
+        </Button>
+        <Button
+          variant={activeTag === 'Rented' ? 'solid' : 'outline'}
+          colorScheme="teal"
+          mr={2}
+          onClick={() => filterLandsByTag('Rented')}
+          borderRadius="30px"
+        >
+          Rented
+        </Button>
+        <Button
+          variant={activeTag === 'Leased' ? 'solid' : 'outline'}
+          colorScheme="teal"
+          mr={2}
+          onClick={() => filterLandsByTag('Leased')}
+          borderRadius="30px"
+        >
+          Leased
+        </Button>
+        <Button
+          variant={activeTag === 'Unoccupied' ? 'solid' : 'outline'}
+          colorScheme="teal"
+          onClick={() => filterLandsByTag('Unoccupied')}
+          borderRadius="30px"
+        >
+          Unoccupied
+        </Button>
+      </Box>
+
       <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6} justifyItems="center">
         {renderLands()}
       </Grid>
@@ -124,7 +177,8 @@ const LandList = () => {
           <ModalHeader>{selectedLand?.user_name}'s Land</ModalHeader>
           <ModalBody>
             <Image src={selectedLand?.image} alt={`Land ${selectedLand?.id}`} boxSize="100%" objectFit="cover" />
-            <Text mt={4}>{selectedLand?.description}</Text>
+            <Text mt={4} fontWeight={"bold"}>{selectedLand?.description}</Text>
+            <Text mt={2}>Size: {selectedLand?.size_in_acres} square meters</Text>
           </ModalBody>
           <ModalFooter>
             {selectedLand && selectedLand.status === "Unoccupied" ? (
