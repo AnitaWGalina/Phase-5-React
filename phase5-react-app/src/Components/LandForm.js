@@ -13,11 +13,14 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function LandForm() {
   const { user } = useAuth();
   const token = localStorage.getItem('jwt')
   const [userId, setUserId] = useState(user?.id || '');
+
+  const navigate = useNavigate()
 
   const [landImage, setLandImage] = useState('');
   const [landDescription, setLandDescription] = useState('');
@@ -57,6 +60,7 @@ function LandForm() {
 
       if (response.ok) {
         setIsSuccessAlertOpen(true);
+        navigate("/land_list")
       } else {
         setIsFailureAlertOpen(true);
       }
