@@ -3,7 +3,7 @@
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
+
 }
 
 .heading {
@@ -11,13 +11,15 @@
   font-weight: bold;
   margin-bottom: 20px;
   color: #333;
+  text-align: center;
 }
 
 .paragraph {
   font-size: 25px;
   line-height: 2.1;
-  color: #05643b;
+  color:#15c679 ; 
   text-align: center;
   font-style: inherit;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
