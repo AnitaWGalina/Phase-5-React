@@ -16,47 +16,71 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 
 const EnlistProduceForm = () => {
-  // ... (existing code for state and functions)
+  const { user } = useAuth();
+  const token = localStorage.getItem('jwt');
+
+  const [userId, setUserId] = useState(user?.id || '');
+  const [cropCategory, setCropCategory] = useState('');
+  const [producePricePerKg, setProducePricePerKg] = useState(0);
+  const [quantityHarvested, setQuantityHarvested] = useState(0);
+  const [produceType, setProduceType] = useState('sellLocally');
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
+  const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // ... (same as before)
+  };
+
+  const handleCloseSuccessAlert = () => {
+    setIsSuccessAlertOpen(false);
+  };
+
+  const handleCloseFailureAlert = () => {
+    setIsFailureAlertOpen(false);
+  };
+
+  // ... (other functions)
 
   return (
     <Box p={8} textAlign="center">
       {/* Image */}
-      <Box
-        mb={4}
-        borderRadius="8px"
-        overflow="hidden"
-        boxShadow="lg"
-        width="1440px"
-        height="429px"
-        flexShrink={0}
-        backgroundImage="url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp')"
-        backgroundSize="cover"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        color="#FFF"
-        fontFamily="Inika Serif, sans-serif"
-      >
-        {/* Text on top of the image */}
-        <Heading as="h1" fontSize="3xl" color="teal.500" zIndex="1">
-          Farm Utilities and Equipment
-        </Heading>
-        {/* Sell Produce heading */}
-        <Heading as="h1" mb={6} fontSize="3xl" color="teal.500">
-          Sell Produce
-        </Heading>
+      <Box mb={4} borderRadius="8px" overflow="hidden" boxShadow="lg">
+        <motion.img
+          src="https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp"
+          alt="Your Image"
+          style={{ maxWidth: '100%', borderRadius: '8px', cursor: 'pointer' }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        />
       </Box>
-
-      {/* Form Fields */}
-      {/* ... (same as before) */}
-
+      <Heading as="h1" mb={6} fontSize="3xl" color="teal.500">
+        Sell Produce
+      </Heading>
+      <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        {/* Form Fields */}
+        {/* ... (same as before) */}
+      </motion.form>
       {/* Success Alert */}
-      {/* ... (same as before) */}
-
+      {isSuccessAlertOpen && (
+        <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={4} mx="auto" maxW="400px">
+          <AlertIcon boxSize="6" mr={0} color="green.500" />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            {cropCategory} sold successfully!
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
+        </Alert>
+      )}
       {/* Failure Alert */}
-      {/* ... (same as before) */}
-
+      {isFailureAlertOpen && (
+        <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" mt={4} mx="auto" maxW="400px">
+          <AlertIcon boxSize="6" mr={0} color="red.500" />
+          <AlertTitle mt={1} mb={1} fontSize="sm">
+            Product sold unsuccessfully!
+          </AlertTitle>
+          <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseFailureAlert} />
+        </Alert>
+      )}
       {/* Products Section */}
       <Box my={10}>
         <Heading as="h2" fontSize="xl" mb={4} color="teal.500">
@@ -104,4 +128,3 @@ const EnlistProduceForm = () => {
 };
 
 export default EnlistProduceForm;
-
