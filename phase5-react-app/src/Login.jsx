@@ -1,7 +1,7 @@
-import "./Login.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
+import "./Login.css"; // Import the CSS file
 
 const LoginForm = () => {
   const [credentials, setCredentials] = useState({
@@ -49,12 +49,13 @@ const LoginForm = () => {
         setError(error.message); // Store the error message in state
       });
   };
+
   return (
-    <>
-      <h1>LOGIN</h1>
-      {error && <p className="error-message">Invalid username or password</p>}
-      <div>
-        <form action="" onSubmit={handleSubmit}>
+    <div className="login-container">
+      <div className="login-form-container">
+        <h1>LOGIN</h1>
+        {error && <p className="error-message">Invalid username or password</p>}
+        <form className="login-form" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
             <input
@@ -75,11 +76,10 @@ const LoginForm = () => {
               onChange={handleChange}
             />
           </div>
-
           <button type="submit">Login</button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

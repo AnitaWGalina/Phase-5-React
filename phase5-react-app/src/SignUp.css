@@ -29,7 +29,7 @@
 }
 
 .signup-form div {
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* Reduce the margin to make the form shorter */
 }
 
 .signup-form label {
