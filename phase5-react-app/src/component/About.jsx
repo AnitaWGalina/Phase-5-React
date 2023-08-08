@@ -16,7 +16,7 @@ const About = () => {
         <br />
         AND UTILITIES THROUGH OUR WEBSITE.
       </p>
-      <img src="dan-meyers-IQVFVH0ajag-unsplash.jpg" alt="About Us image" />
+      <img src="https://tinyurl.com/5bmjme4u" alt="About Us image" />
     </div>
   );
 };

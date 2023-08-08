@@ -11,6 +11,7 @@ import Contact from "./component/Contact";
 import './App.css';
 import Profile from "./component/Profile";
 import UserProfile from "./UserProfile";
+import ResetPassword from "./ResetPassword";
 
 import FarmingGroupAdminLandingPage from './Components/FarmingGroupAdminLandingPage';
 import PublicClientLandingPage from './Components/PublicClientLandingPage';
@@ -102,6 +103,10 @@ const App = () => {
 
           <Route path="/public-client-services"
             element={<PublicClientServices />}
+          />
+
+<Route path="/password_reset"
+            element={<ResetPassword />}
           />
         </Routes>
       </Router>

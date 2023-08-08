@@ -9,7 +9,7 @@ const Contact = () => {
         You can contact us via email at agribixlimited@gmail.com or give us a
         call at +123456789.
       </p>
-      <img src="environmental-conservation-plant-sustainability.jpg" alt="Contact Us" />
+      <img src="https://tinyurl.com/ms5ddt4k" alt="Contact Us" />
     </div>
   );
 };
