@@ -1,17 +1,46 @@
 import React from 'react';
-// import 'google-fonts'; // Import the google-fonts package
+import { Box, Heading } from '@chakra-ui/react';
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <h1 className="text-4xl font-bold mb-1 text-center font-inika-yellow"> {/* Reduce the margin-bottom to mb-1 */}
+    <Box
+      className="home-container"
+      backgroundImage="url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp')"
+      backgroundSize="cover"
+      backgroundPosition="center"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      height="91.5vh" // Occupy the entire viewport height
+      width="100vw"  // Occupy the entire viewport width
+    >
+      <Heading
+        as="h1"
+        fontSize={['1.8rem', '7xl']}
+        // fontWeight="bold"
+        color="#FFF500"
+        mb={['0.01rem', '1']}
+        textAlign="center"
+        fontFamily="'Inika', serif"
+        className="font-inika-yellow"
+      >
         Where Nature Meets Innovation,
-      </h1>
-      <h1 className="text-4xl font-bold mb-8 text-center font-inika-white">
+      </Heading>
+      <Heading
+        as="h1"
+        fontSize={['1.8rem', '7xl']}
+        // fontWeight="bold"
+        color="white"
+        mb={['10px', '8']}
+        textAlign="center"
+        fontFamily="'Inika', serif"
+        className="font-inika-white"
+      >
         Cultivating a Flourishing Tomorrow
-      </h1>
-    </div>
+      </Heading>
+    </Box>
   );
-}
+};
 
 export default Home;

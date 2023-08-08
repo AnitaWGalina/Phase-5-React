@@ -1,70 +1,82 @@
-/* You can put this CSS in a separate file and import it into your component, or use inline styles */
-/* I will use inline styles for demonstration purposes */
+/* Login.css */
 
-/* Reset some default styles */
-body,
-h1,
-h2,
-h3,
-p,
-label,
-button,
-select,
-input {
-  margin: 0;
-  padding: 0;
-  border: none;
-  font-family: Arial, sans-serif;
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://s3-alpha-sig.figma.com/img/0609/df28/f3a5b2d9726070849a142c955ce7a0d9?Expires=1691971200&Signature=WfpJlRHZ7dnM8ZHyJdjHStWO1H6fWZY5mnobSHk7ShxzYbfNkBiL8mg0E535OMDURdWeiUVJJEqJU0F1RBbpS5CK4oArCt7rM81QzDrX9oCadFoaOLJOTLcGIqyHQXI-1Q5MAQ5dHGYnwHuYCrXFQABelJD9hI0TBbFFdtaTmlukrIIV4Iep4BQWsGGQ4PO039lXAXKkYaoPTBz9OwA2fymOYZ2Eeol3eAK8ZCjcGBoJ0Biv3IGSRqYYE4wlV~9XYCC0to3hZCrwhSz9HpHf2k7hGtkd45MS3oQPYPPnWYMyDKJjtJIiyuhDwjhN1d9AblAIx3t7ou~VkmApPOPHcA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* Main container style */
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Title style */
-h1 {
-  text-align: center;
+.login-container h1 {
+  color: #000000;
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
-/* Form style */
-form {
-  display: flex;
-  flex-direction: column;
+.login-form-container {
+  margin-top: -100px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.527);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #000000;
 }
 
-/* Label style */
-label {
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form div {
   margin-bottom: 10px;
+}
+
+.login-form label {
+  text-align: center;
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
-/* Input style */
-input[type="text"],
-select {
+.login-form input {
+  width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
+  color: #333;
+  background-color: #fff;
+  /* Add contrasting styles */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Button style */
-button {
+.login-form button {
+  width: 20%;
   padding: 10px;
-  background-color: #007bff;
-  color: #fff;
   border: none;
   border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.login-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
+.login-form .error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
+}

@@ -39,10 +39,6 @@ const NavBar = () => {
       {!user && location.pathname !== "/login" && <li><NavLink to="/login">Login</NavLink></li>}
     </ul>
     </nav>
-
-
-
-
   );
 };
 

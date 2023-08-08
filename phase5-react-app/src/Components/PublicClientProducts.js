@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Flex,
   Box,
   Button,
   Grid,
@@ -102,7 +103,14 @@ const PublicClientProducts = () => {
   };
 
   if (!user) {
-    return <h2>Please log in to view the available products for sale.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   const handlePurchase = () => {
@@ -179,12 +187,14 @@ const PublicClientProducts = () => {
                   <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
                 </ButtonGroup>
               </InputGroup>
-              <Button colorScheme="teal" onClick={handlePurchase}>
-                Purchase Product
-              </Button>
             </AlertDialogBody>
             <AlertDialogFooter>
-              <Button onClick={() => setShowPopup(false)}>Close</Button>
+              <Flex justifyContent="space-between">
+                <Button colorScheme="teal" onClick={handlePurchase} width="200px">
+                  Purchase Product
+                </Button>
+                <Button onClick={() => setShowPopup(false)} width="150px">Close</Button>
+              </Flex>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

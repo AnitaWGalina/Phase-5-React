@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Flex,
   Box,
   Button,
   Grid,
@@ -83,7 +84,7 @@ const FarmingGroupAdminProducts = () => {
     return products.map(product => (
       <GridItem
         key={product.id}
-        className="data-item"
+        // className="data-item"
         boxShadow="md"
         borderRadius="md"
         p={4}
@@ -104,7 +105,14 @@ const FarmingGroupAdminProducts = () => {
   };
 
   if (!user) {
-    return <h2>Please log in to view the available products for sale.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   const handlePurchase = () => {
@@ -147,7 +155,7 @@ const FarmingGroupAdminProducts = () => {
   
 
   return (
-    <Box className="product-container" p={10} bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))" bgSize="cover" bgImage="url('../img/farm.jpg')">
+    <Box p={10} bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))" bgSize="cover" bgImage="url('../img/farm.jpg')">
       <Heading as="h3" fontSize="4xl" fontFamily="Lobster" whiteSpace="nowrap" mb={4}>
         Farm Utilities and Equipment
       </Heading>
@@ -167,27 +175,30 @@ const FarmingGroupAdminProducts = () => {
               <Text fontSize="md" mb={2}>
                 {description}
               </Text>
-              <InputGroup size="md" mb={2}>
+              <InputGroup size="sm" mb={2}>
                 <Button onClick={handleDecrementQuantity} size="sm" leftIcon={<MinusIcon />} />
                 <Input
                   value={quantity}
                   readOnly
-                  w="3rem"
+                  width="100px"
+                  // w="3rem"
                   textAlign="center"
                   borderRight="none"
                   borderLeft="none"
                 />
                 <ButtonGroup size="sm">
-                  <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
+                  <Button onClick={handleIncrementQuantity} size="sm" rightIcon={<AddIcon />} />
                 </ButtonGroup>
               </InputGroup>
-              <Button colorScheme="teal" onClick={handlePurchase}>
-                Purchase Product
-              </Button>
+              <Flex justifyContent="space-between">
+                <Button colorScheme="teal" onClick={handlePurchase} width="200px">
+                  Purchase Product
+                </Button>
+                <Button onClick={() => setShowPopup(false)} width="150px">
+                  Close
+                </Button>
+              </Flex>
             </AlertDialogBody>
-            <AlertDialogFooter>
-              <Button onClick={() => setShowPopup(false)}>Close</Button>
-            </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
       )}

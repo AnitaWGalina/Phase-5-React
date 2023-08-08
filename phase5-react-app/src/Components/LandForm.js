@@ -35,7 +35,14 @@ function LandForm() {
   };
 
   if (!user) {
-    return <h2>Please log in to be able upload pieces of land.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   const handleSubmit = async (e) => {
@@ -89,14 +96,15 @@ function LandForm() {
   };
 
   return (
-    <Box p={8} textAlign="center" fontFamily="sans-serif">
-      <Heading as="h1" mb={6} fontSize="xl" fontWeight="semibold">
+  <Box p={8} bg="gray.200" bgImg="https://tinyurl.com/3jxb4hrd" bgRepeat="no-repeat" bgSize="cover" h="100vh">
+    <Box maxW="600px" mx="auto" p={4} bg="rgba(255, 255, 255, 0.753)" borderRadius="md" boxShadow="md">
+      <Heading as="h1" mb={6} fontSize="xl" fontWeight="semibold" textAlign="center">
         Upload Your Land
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <Box maxW="400px" mx="auto" p={4}>
           <FormControl mb={6}>
-            <FormLabel>Land Image (Image URL or Google Pin):</FormLabel>
+            <FormLabel>Land Image (Image URL):</FormLabel>
             <Input
               size="sm"
               type="text"
@@ -157,6 +165,7 @@ function LandForm() {
         </Alert>
       )}
     </Box>
+  </Box>
   );
 }
 
