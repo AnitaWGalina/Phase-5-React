@@ -66,7 +66,14 @@ const EnlistProduceForm = () => {
   };
 
   if (!user) {
-    return <h2>Please log in to sell your produce.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   const handleCloseSuccessAlert = () => {
@@ -78,43 +85,46 @@ const EnlistProduceForm = () => {
   };
 
   return (
-    <Box p={8} textAlign="center">
-      <Heading as="h1" mb={6}>
-        Sell Produce
-      </Heading>
-      <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <Box maxW="400px" mx="auto" p={4}>
+    <Box p={8} bg="gray.200" bgImg="https://tinyurl.com/yc4akr65" bgRepeat="no-repeat" bgSize="cover">
+      <Box maxW="600px" mx="auto" p={4} bg="rgba(255, 255, 255, 0.753)" borderRadius="md" boxShadow="md">
+        <Heading as="h1" mb={6} textAlign="center">
+          Sell Produce
+        </Heading>
+        <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <FormControl mb={6}>
-            <FormLabel>Name of Crop:</FormLabel>
+            <FormLabel textAlign="center">Name of Crop:</FormLabel>
             <Input
               size="sm"
               type="text"
               value={cropCategory}
               onChange={(e) => setCropCategory(e.target.value)}
               placeholder="e.g Tea, Coffee..."
+              textAlign="center"
             />
           </FormControl>
           <FormControl mb={6}>
-            <FormLabel>Produce Price per kg:</FormLabel>
+            <FormLabel textAlign="center">Produce Price per kg:</FormLabel>
             <Input
               size="sm"
               type="number"
               value={producePricePerKg}
               onChange={(e) => setProducePricePerKg(parseInt(e.target.value))}
+              textAlign="center"
             />
           </FormControl>
           <FormControl mb={6}>
-            <FormLabel>Quantity Harvested (kg):</FormLabel>
+            <FormLabel textAlign="center">Quantity Harvested (kg):</FormLabel>
             <Input
               size="sm"
               type="number"
               value={quantityHarvested}
               onChange={(e) => setQuantityHarvested(parseInt(e.target.value))}
+              textAlign="center"
             />
           </FormControl>
           <FormControl mb={6}>
-            <FormLabel>Sell options:</FormLabel>
-            <Select size="sm" value={produceType} onChange={(e) => setProduceType(e.target.value)}>
+            <FormLabel textAlign="center">Sell options:</FormLabel>
+            <Select textAlign="center" size="sm" value={produceType} onChange={(e) => setProduceType(e.target.value)}>
               <option value="sellLocally">Sell Locally</option>
               <option value="export">Export Produce</option>
             </Select>
@@ -122,8 +132,7 @@ const EnlistProduceForm = () => {
           <Button type="submit" colorScheme="green" bgColor="#317873">
             Submit
           </Button>
-        </Box>
-      </motion.form>
+        </motion.form>
       {/* Success Alert */}
       {isSuccessAlertOpen && (
         <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
@@ -145,6 +154,7 @@ const EnlistProduceForm = () => {
         </Alert>
       )}
     </Box>
+  </Box>
   );
 };
 
