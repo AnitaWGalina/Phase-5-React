@@ -191,13 +191,13 @@ const FarmingGroupAdminProducts = () => {
                 </ButtonGroup>
               </InputGroup>
               <Flex justifyContent="space-between">
-      <Button colorScheme="teal" onClick={handlePurchase} width="200px">
-        Purchase Product
-      </Button>
-      <Button onClick={() => setShowPopup(false)} width="150px">
-        Close
-      </Button>
-    </Flex>
+                <Button colorScheme="teal" onClick={handlePurchase} width="200px">
+                  Purchase Product
+                </Button>
+                <Button onClick={() => setShowPopup(false)} width="150px">
+                  Close
+                </Button>
+              </Flex>
             </AlertDialogBody>
           </AlertDialogContent>
         </AlertDialog>

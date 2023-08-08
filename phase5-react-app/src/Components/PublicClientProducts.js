@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Flex,
   Box,
   Button,
   Grid,
@@ -179,12 +180,14 @@ const PublicClientProducts = () => {
                   <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
                 </ButtonGroup>
               </InputGroup>
-              <Button colorScheme="teal" onClick={handlePurchase}>
-                Purchase Product
-              </Button>
             </AlertDialogBody>
             <AlertDialogFooter>
-              <Button onClick={() => setShowPopup(false)}>Close</Button>
+              <Flex justifyContent="space-between">
+                <Button colorScheme="teal" onClick={handlePurchase} width="200px">
+                  Purchase Product
+                </Button>
+                <Button onClick={() => setShowPopup(false)} width="150px">Close</Button>
+              </Flex>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

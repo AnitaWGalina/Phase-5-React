@@ -82,7 +82,14 @@ const TrainingForm = () => {
   };
 
   if (!user) {
-    return <h2>Please log in to register for training.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   return (
