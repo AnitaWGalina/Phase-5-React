@@ -138,7 +138,7 @@ const EnlistProduceForm = () => {
         <Alert status="success" variant="subtle" flexDirection="column" alignItems="center" mt={2} mx="auto" maxW="400px">
           <AlertIcon boxSize="24px" mr={0} />
           <AlertTitle mt={1} mb={1} fontSize="sm">
-            {cropCategory} sold successfully!
+            Form submitted successfully!
           </AlertTitle>
           <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
         </Alert>
