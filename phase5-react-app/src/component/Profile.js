@@ -13,6 +13,11 @@ const Profile = () => {
     return <p>Please log in to view your profile.</p>;
   }
 
+  const handleLogout = () => {
+    logout()
+    window.location.href = "/";
+  }
+
   return (
     <div>
       <h2>Welcome, {user.name}!</h2>
@@ -23,7 +28,7 @@ const Profile = () => {
       <h1>Email Address: {user.email}</h1>
       <h1>Phone Number: {user.phone_number}</h1>
       <h1>Location: {user.location}</h1>
-      <button onClick={logout}>Logout</button>
+      <button onClick={handleLogout} >Logout</button>
       <NavLink to="/update_account">
         <button>Update My Account</button>
       </NavLink>
