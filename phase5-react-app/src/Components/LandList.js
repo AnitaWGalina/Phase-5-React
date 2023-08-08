@@ -4,6 +4,7 @@ import {
   Grid,
   GridItem,
   Heading,
+  Flex,
   Image,
   Text,
   Center,
@@ -70,7 +71,14 @@ const LandList = () => {
   });
 
   if (!user) {
-    return <h2>Please log in to view available pieces of land.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   const renderLands = () => {
@@ -81,7 +89,7 @@ const LandList = () => {
       return (
         <GridItem
           key={land.id}
-          className="data-item"
+          // className="data-item"
           boxShadow="md"
           borderRadius="md"
           p={4}
@@ -114,41 +122,44 @@ const LandList = () => {
 
   return (
     <Box
-      className="product-container"
+      // className="product-container"
       p={10}
       bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))"
       bgSize="cover"
-      bgImage="url('../img/farm.jpg')"
+      // bgImage="url('../img/farm.jpg')"
     >
       <Heading as="h3" fontSize="4xl" fontFamily="Lobster" whiteSpace="nowrap" mb={4}>
         Land For Renting Or Leasing
       </Heading>
 
-      <Box mb={4}>
+      <Flex mb={4} justifyContent="space-between">
         <Button
           variant={activeTag === 'Owned' ? 'solid' : 'outline'}
           colorScheme="teal"
-          mr={2}
           onClick={() => filterLandsByTag('Owned')}
           borderRadius="30px"
+          flex="1"
+          mr={2}
         >
           Owned
         </Button>
         <Button
           variant={activeTag === 'Rented' ? 'solid' : 'outline'}
           colorScheme="teal"
-          mr={2}
           onClick={() => filterLandsByTag('Rented')}
           borderRadius="30px"
+          flex="1"
+          mr={2}
         >
           Rented
         </Button>
         <Button
           variant={activeTag === 'Leased' ? 'solid' : 'outline'}
           colorScheme="teal"
-          mr={2}
           onClick={() => filterLandsByTag('Leased')}
           borderRadius="30px"
+          flex="1"
+          mr={2}
         >
           Leased
         </Button>
@@ -157,10 +168,12 @@ const LandList = () => {
           colorScheme="teal"
           onClick={() => filterLandsByTag('Unoccupied')}
           borderRadius="30px"
+          flex="1"
         >
           Unoccupied
         </Button>
-      </Box>
+      </Flex>
+
 
       <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6} justifyItems="center">
         {renderLands()}
