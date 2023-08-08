@@ -14,10 +14,7 @@ export const AuthProvider = ({ children }) => {
     const userName = user ? user.name : "User";
     setUser(null);
     window.alert(`Hope to see you again ${userName} :(`);
-    localStorage.removeItem("user");
-    
-    // Redirect using the history object
-    window.location.href = "/";
+    localStorage.removeItem("user");    
   };
 
   return (
