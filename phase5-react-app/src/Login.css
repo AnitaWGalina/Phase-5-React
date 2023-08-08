@@ -19,6 +19,7 @@
 }
 
 .login-form-container {
+  margin-top: -100px;
   width: 100%;
   max-width: 400px;
   padding: 20px;
