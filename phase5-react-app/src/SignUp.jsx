@@ -9,7 +9,6 @@ import {
   FormControl,
   FormLabel,
   Select,
-  FormErrorMessage,
   Flex
 } from '@chakra-ui/react';
 
@@ -160,6 +159,7 @@ const SignUpForm = () => {
               id="password"
               value={user.password}
               onChange={handleChange}
+              textAlign="center"
               required
             />
           </FormControl>
@@ -171,6 +171,7 @@ const SignUpForm = () => {
               id="password_confirmation"
               value={user.password_confirmation}
               onChange={handleChange}
+              textAlign="center"
               required
             />
           </FormControl>

@@ -8,7 +8,14 @@ const Profile = () => {
   const { user, logout } = useAuth();
 
   if (!user) {
-    return <p>Please log in to view your profile.</p>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   const handleLogout = () => {

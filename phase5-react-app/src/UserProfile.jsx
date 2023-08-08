@@ -2,7 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './UserProfile.css';
 import { useAuth } from "./context/AuthContext";
-// import DeleteButton from "./component/DeleteAccount";
+import {
+  Box,
+  Text,
+  Input,
+  Button,
+  FormControl,
+  FormLabel,
+  Select,
+  Flex
+} from '@chakra-ui/react';
 
 const UserProfile = () => {
   const { user, logout } = useAuth(); // Get the user from the AuthContext
@@ -57,7 +66,14 @@ const UserProfile = () => {
   };
 
   if (!user) {
-    return <div>Please log in to view your profile.</div>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   if (loading) {
@@ -65,105 +81,128 @@ const UserProfile = () => {
   }
 
   if (!userProfile) {
-    return <div>User profile not found.</div>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            User not found.
+            </Box>
   }
 
   return (
-    <div>
-      <h2>User Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={userProfile.name}
-            onChange={handleChange}
-          />
-        </div>
+    <Box className="update-container">
+      <Box className="update-form-container">
+        <Text fontSize="2rem" fontWeight="bold" marginBottom="20px" textAlign="center">
+          UPDATE PROFILE
+        </Text>
+        {/* {error && (
+          <Text className="error-message" color="#ff0000" fontSize="14px" marginTop="5px" textAlign="center">
+            Failed to update account
+          </Text>
+        )} */}
+        <form className="update-form" onSubmit={handleSubmit}>
+          <Flex justifyContent="space-between" flexDirection={['column', 'row']}>
+            <FormControl marginBottom="10px" marginRight="20px">
+              <FormLabel>Name:</FormLabel>
+              <Input
+                type="text"
+                name="name"
+                value={userProfile.name}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
 
-        <div>
-          <label>Email:</label>
-          <input
-            type="text"
-            name="email"
-            value={userProfile.email}
-            onChange={handleChange}
-          />
-        </div>
+            <FormControl marginBottom="10px" marginRight="20px">
+              <FormLabel>Email:</FormLabel>
+              <Input
+                type="text"
+                name="email"
+                value={userProfile.email}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
 
-        <div>
-          <label>Phone Number:</label>
-          <input
-            type="text"
-            name="phone_number"
-            value={userProfile.phone_number}
-            onChange={handleChange}
-          />
-        </div>
+            <FormControl marginBottom="10px">
+              <FormLabel>Phone:</FormLabel>
+              <Input
+                type="text"
+                name="phone_number"
+                value={userProfile.phone_number}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+          </Flex>
 
-        <div>
-          <label>Location:</label>
-          <input
-            type="text"
-            name="location"
-            value={userProfile.location}
-            onChange={handleChange}
-          />
-        </div>
+          <Flex justifyContent="space-between" flexDirection={['column', 'row']}>
+            <FormControl marginBottom="10px" marginRight="10px">
+              <FormLabel>Location:</FormLabel>
+              <Input
+                type="text"
+                name="location"
+                value={userProfile.location}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
 
-        <div>
-          <label>Type of User</label>
-          <select
-            name="status"
-            onChange={handleChange}
-            value={userProfile.status}
-            type="text"
-          >
-            <option value="">Select...</option>
-            <option value="Farming Group Administrator">
-              Farming Group Administrator
-            </option>
-            <option value="Public Client">Public Client</option>
-          </select>
-        </div>
+            <FormControl marginBottom="10px" marginRight="10px">
+              <FormLabel>Type of User</FormLabel>
+              <Select name="status" value={userProfile.status} onChange={handleChange} required>
+                <option value="">Select...</option>
+                <option value="Farming Group Administrator">Farming Group Administrator</option>
+                <option value="Public Client">Public Client</option>
+              </Select>
+            </FormControl>
 
-        {userProfile.status !== "Select..." && userProfile.status !== "Public Client" && (
-          <div>
-            <label htmlFor="group_number">Number of Members:</label>
-            <input
-              type="number"
-              name="group_number"
-              value={userProfile.group_number}
+            {userProfile.status !== 'Select...' && userProfile.status !== 'Public Client' && (
+              <FormControl marginBottom="10px" marginRight="10px">
+                <FormLabel>Group Size:</FormLabel>
+                <Input
+                  type="number"
+                  name="group_number"
+                  value={userProfile.group_number}
+                  onChange={handleChange}
+                  required
+                />
+              </FormControl>
+            )}
+          </Flex>
+
+          <FormControl marginBottom="10px">
+            <FormLabel>Password:</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              value={userProfile.password}
               onChange={handleChange}
+              textAlign="center"
               required
             />
-          </div>
-        )}
-        
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={userProfile.password}
-            onChange={handleChange}
-          />
-        </div>
+          </FormControl>
 
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            name="password_confirmation"
-            value={userProfile.password_confirmation}
-            onChange={handleChange}
-          />
-        </div>
-        
-        <button type="submit">Save</button>
-      </form>
-    </div>
+          <FormControl marginBottom="10px">
+            <FormLabel>Confirm Password:</FormLabel>
+            <Input
+              type="password"
+              name="password_confirmation"
+              value={userProfile.password_confirmation}
+              onChange={handleChange}
+              textAlign="center"
+              required
+            />
+          </FormControl>
+
+          <Button type="submit" colorScheme="blue" fontWeight="bold" /*disabled={!!error}*/>
+            Register
+          </Button>
+        </form>
+      </Box>
+    </Box>
   );
 };
 
