@@ -1,31 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Button,
-  Grid,
-  GridItem,
-  Heading,
-  Image,
-  Text,
-  Center,
-  Spinner,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  InputGroup,
-  Input,
-  ButtonGroup,
-} from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
-import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 
 const FarmingGroupAdminProducts = () => {
   const { user } = useAuth();
-  const token = localStorage.getItem('jwt')
-  
+  const token = localStorage.getItem('jwt');
+
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -33,35 +12,31 @@ const FarmingGroupAdminProducts = () => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
 
-  
-
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
     fetch('/farmer_products', {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
     })
-      .then(response => response.json())
-      .then(data => {
-        // console.log("Fetched products:", data);
+      .then((response) => response.json())
+      .then((data) => {
         if (Array.isArray(data)) {
           setProducts(data);
         } else {
-          console.error("Fetched data is not an array:", data);
+          console.error('Fetched data is not an array:', data);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       })
       .finally(() => {
         setLoading(false);
       });
   }, []);
-  
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -70,36 +45,34 @@ const FarmingGroupAdminProducts = () => {
   };
 
   const handleIncrementQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
   const handleDecrementQuantity = () => {
     if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
+      setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
 
   const renderProducts = () => {
-    return products.map(product => (
-      <GridItem
+    return products.map((product) => (
+      <div
         key={product.id}
         className="data-item"
-        boxShadow="md"
-        borderRadius="md"
-        p={4}
-        cursor="pointer"
+        style={{
+          boxShadow: 'md',
+          borderRadius: 'md',
+          padding: '1rem',
+          cursor: 'pointer',
+        }}
         onClick={() => handleProductClick(product)}
       >
-        <Box>
-          <Image src={product.image} alt={product.name} boxSize="100%" objectFit="cover" h={200} />
-          <Heading fontSize="md" mt={2} noOfLines={2}>
-            {product.name}
-          </Heading>
-          <Text fontSize="sm" mt={2}>
-            Price: ${product.price}
-          </Text>
-        </Box>
-      </GridItem>
+        <div>
+          <img src={product.image} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '0.5rem' }}>{product.name}</h2>
+          <p style={{ fontSize: '14px', marginTop: '0.5rem' }}>Price: ${product.price}</p>
+        </div>
+      </div>
     ));
   };
 
@@ -111,92 +84,111 @@ const FarmingGroupAdminProducts = () => {
     if (!selectedProduct) {
       return; // No product selected, do nothing
     }
-  
+
     const saleData = {
       user_id: user.id,
       farmer_product_id: selectedProduct.id,
       quantity: quantity,
     };
-  
+
     setLoading(true);
-  
+
     fetch('/farmer_product_sales', {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ farmer_product_sale: saleData }) // Wrap the data in an object as expected by Rails
+      body: JSON.stringify({ farmer_product_sale: saleData }),
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`);
         window.alert(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`);
         setShowPopup(false);
-        // Here you might want to handle any success message or update UI accordingly
       })
-      .catch(error => {
-        console.error("Error creating product sale:", error);
-        // Handle error scenario here
+      .catch((error) => {
+        console.error('Error creating product sale:', error);
       })
       .finally(() => {
         setLoading(false);
-        setShowPopup(false); // Close the popup after making the request
+        setShowPopup(false);
       });
   };
-  
 
   return (
-    <Box className="product-container" p={10} bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))" bgSize="cover" bgImage="url('../img/farm.jpg')">
-      <Heading as="h3" fontSize="4xl" fontFamily="Lobster" whiteSpace="nowrap" mb={4}>
-        Farm Utilities and Equipment
-      </Heading>
-      <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6} justifyItems="center">
+    <div className="product-container" style={{ padding: '2rem', backgroundImage: "url('../img/farm.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <h3 style={{ fontSize: '32px', fontFamily: 'Lobster', whiteSpace: 'nowrap', marginBottom: '2rem' }}>Farm Utilities and Equipment</h3>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', justifyContent: 'center' }}>
         {renderProducts()}
-      </Grid>
+      </div>
       {showPopup && selectedProduct && (
-        <AlertDialog isOpen={showPopup} onClose={() => setShowPopup(false)}>
-          <AlertDialogOverlay />
-          <AlertDialogContent>
-            <AlertDialogHeader>{selectedProduct.name}</AlertDialogHeader>
-            <AlertDialogBody>
-              <Image src={selectedProduct.image} alt={selectedProduct.name} boxSize="100%" objectFit="contain" mb={4} />
-              <Text fontSize="lg" fontWeight="bold" mb={2}>
-                Price: ${selectedProduct.price}
-              </Text>
-              <Text fontSize="md" mb={2}>
-                {description}
-              </Text>
-              <InputGroup size="md" mb={2}>
-                <Button onClick={handleDecrementQuantity} size="sm" leftIcon={<MinusIcon />} />
-                <Input
-                  value={quantity}
-                  readOnly
-                  w="3rem"
-                  textAlign="center"
-                  borderRight="none"
-                  borderLeft="none"
-                />
-                <ButtonGroup size="sm">
-                  <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
-                </ButtonGroup>
-              </InputGroup>
-              <Button colorScheme="teal" onClick={handlePurchase}>
-                Purchase Product
-              </Button>
-            </AlertDialogBody>
-            <AlertDialogFooter>
-              <Button onClick={() => setShowPopup(false)}>Close</Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 9999,
+            backgroundColor: '#fff',
+            padding: '2rem',
+            borderRadius: '8px',
+            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '1rem' }}>{selectedProduct.name}</h2>
+          <img src={selectedProduct.image} alt={selectedProduct.name} style={{ width: '100%', height: '200px', objectFit: 'contain', marginBottom: '1rem' }} />
+          <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '0.5rem' }}>Price: ${selectedProduct.price}</p>
+          <p style={{ fontSize: '16px', marginBottom: '0.5rem' }}>{description}</p>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+            <button onClick={handleDecrementQuantity} style={{ fontSize: '20px', marginRight: '0.5rem', cursor: 'pointer' }}>-</button>
+            <input
+              type="text"
+              value={quantity}
+              readOnly
+              style={{ width: '3rem', textAlign: 'center', borderRight: 'none', borderLeft: 'none', fontSize: '18px' }}
+            />
+            <button onClick={handleIncrementQuantity} style={{ fontSize: '20px', marginLeft: '0.5rem', cursor: 'pointer' }}>+</button>
+          </div>
+          <button
+            style={{
+              backgroundColor: '#319795',
+              color: '#fff',
+              padding: '0.5rem 1rem',
+              fontSize: '18px',
+              fontWeight: 'bold',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+            onClick={handlePurchase}
+          >
+            Purchase Product
+          </button>
+          <button
+            style={{
+              backgroundColor: '#e53e3e',
+              color: '#fff',
+              padding: '0.5rem 1rem',
+              fontSize: '18px',
+              fontWeight: 'bold',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              marginLeft: '1rem',
+            }}
+            onClick={() => setShowPopup(false)}
+          >
+            Close
+          </button>
+        </div>
       )}
       {loading && (
-        <Center mt={4}>
-          <Spinner color="teal" size="lg" />
-        </Center>
+        <div style={{ marginTop: '1rem' }}>
+          <div className="spinner" style={{ borderWidth: '3px', borderStyle: 'solid', borderColor: '#319795', borderRadius: '50%', borderTop: '3px solid transparent', width: '30px', height: '30px', animation: 'spin 1s linear infinite' }}></div>
+        </div>
       )}
-    </Box>
+    </div>
   );
 };
 

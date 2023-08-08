@@ -43,19 +43,25 @@ const EnlistProduceForm = () => {
   // ... (other functions)
 
   return (
-    <Box p={8} textAlign="center">
-      {/* Image */}
-      <Box mb={4} borderRadius="8px" overflow="hidden" boxShadow="lg">
-        <motion.img
-          src="https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp"
-          alt="Your Image"
-          style={{ maxWidth: '600px', maxHeight: '200px', borderRadius: '8px', cursor: 'pointer' }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        />
-      </Box>
-      <Heading as="h1" mb={6} fontSize="3xl" color="teal.500">
-        Sell Produce
+<Box p={8} textAlign="center" style={{ position: 'relative' }}>
+      {/* Background Image */}
+      <img
+        src="https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp"
+        alt="Background"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '70%', // Adjust the height to cover the top part of the page
+          zIndex: -1,
+        
+        }}
+      /> <Heading as="h1" mb={6} fontSize="3xl" color="teal.500">
+         <Box as="span" color="purple.500">
+             Sell Produce
+         </Box>
+     
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         {/* Form Fields */}
@@ -84,7 +90,10 @@ const EnlistProduceForm = () => {
       {/* Products Section */}
       <Box my={10}>
         <Heading as="h2" fontSize="xl" mb={4} color="teal.500">
-          Available Products
+          {/* Change color of "Available Products" heading */}
+          <Box as="span" color="white.500">
+            Available Products
+          </Box>
         </Heading>
         {/* Here you can add a swipeable carousel to display products */}
         {/* For example, you can use react-slick or swiper.js */}
