@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import { useAuth } from '../context/AuthContext';
 
 const Contact = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const { user } = useAuth()
+  const [name, setName] = useState(user ? user.name : '');
+  const [email, setEmail] = useState(user ? user.email : '');
+  const [message, setMessage] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault();
