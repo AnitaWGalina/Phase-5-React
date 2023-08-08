@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from '@chakra-ui/react';
 import './Contact.css';
 import { useAuth } from '../context/AuthContext';
 
@@ -11,8 +12,8 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     window.alert(`Your feedback has been sent and received`);
-    setName('')
-    setEmail('')
+    setName(user ? user.name : '')
+    setEmail(user ? user.email : '')
     setMessage('')
   };
 
@@ -53,7 +54,9 @@ const Contact = () => {
             />
           </div>
 
-          <button type="submit">Send</button>
+          <Button type="submit" colorScheme="blue" fontWeight="bold">
+            Send
+          </Button>
         </form>
       </div>
     </div>
