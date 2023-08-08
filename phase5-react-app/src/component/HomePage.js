@@ -12,12 +12,13 @@ const Home = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      height={['300px', '429px']}
-      width={['100%', '1440px']}
+      height="100vh" // Occupy the entire viewport height
+      width="100vw"  // Occupy the entire viewport width
     >
       <Heading
         as="h1"
-        fontSize={['1.8rem', '5xl']}
+        fontSize={['1.8rem', '7xl']}
+        fontWeight="bold"
         color="#FFF500"
         mb={['0.01rem', '1']}
         textAlign="center"
@@ -28,7 +29,8 @@ const Home = () => {
       </Heading>
       <Heading
         as="h1"
-        fontSize={['1.8rem', '6xl']}
+        fontSize={['1.8rem', '7xl']}
+        fontWeight="bold"
         color="white"
         mb={['10px', '8']}
         textAlign="center"

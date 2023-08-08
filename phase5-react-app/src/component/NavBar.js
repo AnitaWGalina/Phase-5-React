@@ -7,7 +7,7 @@ const NavBar = () => {
   const { user } = useAuth(); // Get the user from the AuthContext
 
   return (
-    <nav style={styles.navbar}>
+    <nav style={{ ...styles.navbar, position: 'fixed', top: '0', width: '100vw' }}>
       <div style={styles.logo}>
         <span style={styles.logoBlack}>AGRI</span>
         <span style={styles.logoYellow}>BIX</span>
@@ -39,10 +39,6 @@ const NavBar = () => {
       {!user && location.pathname !== "/login" && <li><NavLink to="/login">Login</NavLink></li>}
     </ul>
     </nav>
-
-
-
-
   );
 };
 
