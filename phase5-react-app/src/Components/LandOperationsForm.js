@@ -18,6 +18,8 @@ import {
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LeaseLandForm = ({land_id}) => {
   const { user } = useAuth();
@@ -36,6 +38,15 @@ const LeaseLandForm = ({land_id}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const typeValue = operationType === 'rent' ? 0 : operationType === 'lease' ? 1 : '';
+
+    const total = operationDuration * operationPrice
+    toast.info('Proceeding to payment...', {
+      autoClose: 1000, // Set the duration in milliseconds
+      position: toast.POSITION.TOP_CENTER,
+      onClose: () => {
+        navigate(`/payment/${total}`);
+      },
+    })
 
     // Prepare the data to be sent to the backend
     const formData = {
@@ -65,7 +76,7 @@ const LeaseLandForm = ({land_id}) => {
 
       // Check if the request was successful
       if (response.ok) {
-        navigate("/land_list")
+        // navigate("/land_list")
         setIsSuccessAlertOpen(true);
       } else {
         setIsFailureAlertOpen(true);
