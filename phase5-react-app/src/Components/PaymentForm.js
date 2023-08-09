@@ -66,7 +66,8 @@ const PaymentForm = () => {
         // Clear the form
         setPhoneNumber('');
       })
-      .finally(() => setLoading(false)); // Stop loading
+      .finally(() => 
+      setLoading(false)); // Stop loading
   };
 
   const sendPaymentDetailsToBackend = (phoneNumber) => {

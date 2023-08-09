@@ -23,6 +23,8 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FarmingGroupAdminProducts = () => {
   const { user } = useAuth();
@@ -125,7 +127,13 @@ const FarmingGroupAdminProducts = () => {
     }
 
     const total = selectedProduct.price * quantity
-    navigate(`/payment/${total}`);
+    toast.info('Proceeding to payment...', {
+      autoClose: 1000, // Set the duration in milliseconds
+      position: toast.POSITION.TOP_CENTER,
+      onClose: () => {
+        navigate(`/payment/${total}`);
+      },
+    })
 
     const saleData = {
       user_id: user.id,
@@ -145,8 +153,10 @@ const FarmingGroupAdminProducts = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
-        window.alert(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`);
+        // console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
+        setTimeout(() => {
+          window.alert('Proceeding to payment...')
+      }, 3000)
         setShowPopup(false);
         // Here you might want to handle any success message or update UI accordingly
       })

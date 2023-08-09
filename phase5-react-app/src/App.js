@@ -24,6 +24,7 @@ import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 import LandForm from './Components/LandForm';
 import PaymentForm from "./Components/PaymentForm";
+import { ToastContainer } from "react-toastify";
 
 
 const App = () => {
@@ -110,6 +111,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+      <ToastContainer />
     </ChakraProvider>
     </div>
   );
