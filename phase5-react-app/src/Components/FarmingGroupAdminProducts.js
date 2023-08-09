@@ -91,15 +91,17 @@ const FarmingGroupAdminProducts = () => {
         cursor="pointer"
         onClick={() => handleProductClick(product)}
       >
-        <Box>
-          <Image src={product.image} alt={product.name} boxSize="100%" objectFit="cover" h={200} />
-          <Heading fontSize="md" mt={2} noOfLines={2}>
-            {product.name}
-          </Heading>
-          <Text fontSize="sm" mt={2}>
+      <Box>
+        <Image src={product.image} alt={product.name} boxSize="100%" objectFit="cover" h={200} />
+        <Heading fontSize="md" mt={2} noOfLines={2}>
+          {product.name}
+        </Heading>
+        <Flex align="center" justify="center" mt={2}>
+          <Text fontSize="sm">
             Price: KSh {product.price}
           </Text>
-        </Box>
+        </Flex>
+      </Box>
       </GridItem>
     ));
   };
