@@ -154,9 +154,9 @@ const FarmingGroupAdminProducts = () => {
       .then(response => response.json())
       .then(data => {
         // console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
-        setTimeout(() => {
-          window.alert('Proceeding to payment...')
-      }, 3000)
+      //   setTimeout(() => {
+      //     window.alert('Proceeding to payment...')
+      // }, 3000)
         setShowPopup(false);
         // Here you might want to handle any success message or update UI accordingly
       })
