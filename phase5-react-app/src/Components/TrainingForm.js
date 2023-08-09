@@ -14,12 +14,16 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TrainingForm = () => {
   const { user } = useAuth();
   const token = localStorage.getItem('jwt')
   const [userId, setUserId] = useState(user?.id || ''); // Initialize with an empty string if user is null
 
+  const navigate = useNavigate()
 
   const registrationFee = 7000; // Fixed registration fee of 7000 KSh
   const [dateOfTraining, setDateOfTraining] = useState('');
@@ -40,6 +44,15 @@ const TrainingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const total = numberOfTrainees * registrationFee
+    toast.info('Proceeding to payment...', {
+      autoClose: 1000, // Set the duration in milliseconds
+      position: toast.POSITION.TOP_CENTER,
+      onClose: () => {
+        navigate(`/payment/${total}`);
+      },
+    })
 
     const formData = {
       userId,
