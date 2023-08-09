@@ -185,7 +185,8 @@ const FarmingGroupAdminProducts = () => {
                   textAlign="center"
                   borderRight="none"
                   borderLeft="none"
-                  borderRadius="none"
+                   borderRadius="none"
+                   marginTop="15px"
                   _focus={{ border: "none", boxShadow: "none" }}
                 />
                 <ButtonGroup size="sm">
