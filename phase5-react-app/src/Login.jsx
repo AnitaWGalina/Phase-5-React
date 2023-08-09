@@ -1,4 +1,12 @@
 import "./Login.css";
+import {
+  Box,
+  Text,
+  Input,
+  Button,
+  FormControl,
+  FormLabel
+} from '@chakra-ui/react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
@@ -50,36 +58,43 @@ const LoginForm = () => {
       });
   };
   return (
-    <>
-      <h1>LOGIN</h1>
-      {error && <p className="error-message">Invalid username or password</p>}
-      <div>
-        <form action="" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
+    <Box className="login-container">
+      <Box className="login-form-container">
+        <Text fontSize="2rem" fontWeight="bold" marginBottom="20px" textAlign="center">
+          LOGIN
+        </Text>
+        {error && (
+          <Text className="error-message" color="#ff0000" fontSize="14px" marginTop="5px">
+            Invalid email or password
+          </Text>
+        )}
+        <form className="login-form" onSubmit={handleSubmit}>
+          <FormControl marginBottom="10px">
+            <FormLabel>Email</FormLabel>
+            <Input
               type="text"
               name="email"
               id="email"
               value={credentials.email}
               onChange={handleChange}
             />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input
+          </FormControl>
+          <FormControl marginBottom="10px">
+            <FormLabel>Password</FormLabel>
+            <Input
               type="password"
               name="password"
               id="password"
               value={credentials.password}
               onChange={handleChange}
             />
-          </div>
-
-          <button type="submit">Login</button>
+          </FormControl>
+          <Button type="submit" colorScheme="blue" fontWeight="bold">
+            Login
+          </Button>
         </form>
-      </div>
-    </>
+      </Box>
+    </Box>
   );
 };
 

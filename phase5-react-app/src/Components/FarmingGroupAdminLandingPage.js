@@ -1,83 +1,66 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Flex, Link as ChakraLink, Stack, Center } from '@chakra-ui/react';
+import './LandingPages.css';
+import { useAuth } from '../context/AuthContext';
+import { Box } from '@chakra-ui/react';
 
 const ParentLink = ({ label, children }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const { user } = useAuth();
+  const [isHovered, setIsHovered] = React.useState(false);
 
   if (!user) {
-    return <h2>Please log in to view the landing page.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   return (
-    <Box
+    <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      px={4}
-      py={2}
-      position="relative"
-      display="inline-block"
-      group
+      className={`parent-link ${isHovered ? 'hovered' : ''}`}
     >
-      <ChakraLink
-        as={Link}
-        to="#"
-        _hover={{ textDecoration: 'none' }}
-        _before={{
-          content: '""',
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: isHovered ? '100%' : '0%',
-          height: '2px',
-          bg: '#317873',
-          transition: 'width 0.3s ease-in-out',
-        }}
-      >
+      <Link to="#" className="parent-link-label">
         {label}
-      </ChakraLink>
-      {isHovered && (
-        <Box
-          position="absolute"
-          top="100%"
-          left={0}
-          zIndex={1}
-          bg="white"
-          boxShadow="lg"
-          minW="200px"
-        >
-          {children}
-        </Box>
-      )}
-    </Box>
+      </Link>
+      {isHovered && <div className="child-link-container">{children}</div>}
+    </div>
   );
 };
 
 const ChildLink = ({ to, label }) => (
-  <ChakraLink as={Link} to={to} display="block" p={2} _hover={{ bg: 'gray.100' }}>
+  <Link to={to} className="child-link" >
     {label}
-  </ChakraLink>
+  </Link>
 );
 
 const FarmingGroupAdminLandingPage = () => {
   return (
-    <Center>
-      <Flex direction="column" align="center">
-        <Stack direction="row" spacing={4}>
-          <ParentLink label="Products">
-            <ChildLink to="/products" label="View Products" />
-          </ParentLink>
-          <ParentLink label="Services">
-            <ChildLink to="/enlist_produce" label="Sell Produce" />
-            <ChildLink to="/land_list" label="Land Operations" />
-            <ChildLink to="/land_form" label="Upload Land" />
-            <ChildLink to="/training" label="Training" />
-          </ParentLink>
-        </Stack>
-      </Flex>
-    </Center>
+    <div className="landing-page-container">
+      <div className="landing-page-text">
+        <h1>Bloom with Us: Cultivating Health and Happiness</h1>
+      </div>
+      <div className="landing-page-content">
+        <div className="product-service-container">
+          <div className="product-service">
+            <ParentLink label="Products">
+              <ChildLink to="/products" label="View Products" />
+            </ParentLink>
+            <ParentLink label="Services">
+              <ChildLink to="/enlist_produce" label="Sell Produce" />
+              <ChildLink to="/land_list" label="View Land" />
+              <ChildLink to="/land_form" label="Upload Land" />
+              <ChildLink to="/training" label="Training" />
+            </ParentLink>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@chakra-ui/react";
 
 const DeleteAccount = ({id}) => {
     const { user, logout } = useAuth();
@@ -41,7 +42,7 @@ const DeleteAccount = ({id}) => {
 
   return (
     <div>
-      <button onClick={handleDelete}>Delete Account</button>
+      <Button onClick={handleDelete} colorScheme="teal">Delete Account</Button>
     </div>
   )
 };

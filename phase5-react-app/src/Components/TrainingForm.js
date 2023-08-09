@@ -82,13 +82,21 @@ const TrainingForm = () => {
   };
 
   if (!user) {
-    return <h2>Please log in to register for training.</h2>;
+    return <Box
+              border="1px solid red"
+              backgroundColor="rgba(255, 0, 0, 0.1)"
+              padding="1rem"
+              borderRadius="4px"
+            >
+            Please log in to view this page.
+            </Box>
   }
 
   return (
-    <Box p={8} textAlign="center">
-      <Heading as="h1" mb={6}>
-        Training Form
+    <Box p={8} bg="gray.200" bgImg="https://tinyurl.com/52ymf3ra" bgRepeat="no-repeat" bgSize="cover" h="100vh">
+    <Box maxW="600px" mx="auto" p={4} bg="rgba(255, 255, 255, 0.753)" borderRadius="md" boxShadow="md">
+      <Heading as="h1" mb={6} textAlign="center">
+        Apply For Training
       </Heading>
       <motion.form onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <Box maxW="400px" mx="auto" p={4}>
@@ -182,6 +190,7 @@ const TrainingForm = () => {
         </Alert>
       )}
     </Box>
+  </Box>
   );
 };
 
