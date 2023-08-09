@@ -29,9 +29,9 @@ function LandForm() {
   const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
   const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
 
-  const calculatePlotCount = (acres) => {
-    const plotsInOneAcre = 8;
-    return acres * plotsInOneAcre;
+  const calculatePlotCount = (squareMeters) => {
+    const plotsPerSquareMeters = 464.5152;
+    return Math.floor(squareMeters / plotsPerSquareMeters);
   };
 
   if (!user) {
@@ -134,7 +134,7 @@ function LandForm() {
             />
           </FormControl>
           {plotCount && (
-            <p>
+            <p style={{ textAlign: "center" }}>
               <strong>Plot size:</strong> 50 * 100 feet<br />
               <strong>{plotCount} plots</strong>
             </p>
