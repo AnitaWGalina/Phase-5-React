@@ -4,11 +4,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 // import BackIcon from "../assets/icon-park-solid_back.png";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import { Box, Heading, Flex, Text } from '@chakra-ui/react';
 
-const PaymentForm = ({total}) => {
+const PaymentForm = () => {
+    const { total } = useParams();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [CheckoutRequestID, setCheckoutRequestID] = useState('');
   const [loading, setLoading] = useState(false);

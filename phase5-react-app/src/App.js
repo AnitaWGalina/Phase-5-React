@@ -105,7 +105,7 @@ const App = () => {
             element={<PublicClientServices />}
           />
 
-          <Route path="/payment"
+          <Route path="/payment/:total"
             element={<PaymentForm />}
           />
         </Routes>

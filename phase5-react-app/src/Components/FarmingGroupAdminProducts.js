@@ -22,10 +22,12 @@ import {
 } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 
 const FarmingGroupAdminProducts = () => {
   const { user } = useAuth();
   const token = localStorage.getItem('jwt')
+  const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -121,6 +123,9 @@ const FarmingGroupAdminProducts = () => {
     if (!selectedProduct) {
       return; // No product selected, do nothing
     }
+
+    const total = selectedProduct.price * quantity
+    navigate(`/payment/${total}`);
 
     const saleData = {
       user_id: user.id,
