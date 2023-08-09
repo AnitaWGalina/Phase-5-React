@@ -97,7 +97,7 @@ const FarmingGroupAdminProducts = () => {
             {product.name}
           </Heading>
           <Text fontSize="sm" mt={2}>
-            Price: ${product.price}
+            Price: KSh {product.price}
           </Text>
         </Box>
       </GridItem>
@@ -170,7 +170,7 @@ const FarmingGroupAdminProducts = () => {
             <AlertDialogBody>
               <Image src={selectedProduct.image} alt={selectedProduct.name} boxSize="100%" objectFit="contain" mb={4} />
               <Text fontSize="lg" fontWeight="bold" mb={2}>
-                Price: ${selectedProduct.price}
+                Price: KSh {selectedProduct.price}
               </Text>
               <Text fontSize="md" mb={2}>
                 {description}
