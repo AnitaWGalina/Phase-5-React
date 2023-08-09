@@ -23,7 +23,7 @@ import LeaseLandForm from './Components/LandOperationsForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 import LandForm from './Components/LandForm';
-
+import PaymentList from "./Components/PaymentsList";
 
 const App = () => {
   return (
@@ -105,6 +105,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+      <PaymentList />
     </ChakraProvider>
     </div>
   );
