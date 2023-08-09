@@ -13,7 +13,6 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   Button,
 } from '@chakra-ui/react';
@@ -57,6 +56,17 @@ const LandList = () => {
     setIsModalOpen(false);
   };
 
+  const calculatePlotCount = (acres) => {
+    const plotInOneAcre = 1 / 464.5152;
+    return (acres * plotInOneAcre).toFixed(2);
+  };
+
+  const calculateSizeInAcres = (squareMeters) => {
+    const acres = squareMeters / 4046.86;
+    return acres.toFixed(2);
+  };
+
+
   const filterLandsByTag = (tag) => {
     setActiveTag(tag);
   };
@@ -83,8 +93,8 @@ const LandList = () => {
 
   const renderLands = () => {
     return filteredLands.map((land) => {
-      const sizeInPlots = (land.size_in_acres/ (50 * 100)).toFixed(2);
-      const sizeInAcres = (land.size_in_acres / 4046.856).toFixed(2);
+      const sizeInAcres = calculateSizeInAcres(land.size_in_acres);
+      const plotCount = calculatePlotCount(land.size_in_acres);
 
       return (
         <GridItem
@@ -107,7 +117,7 @@ const LandList = () => {
               Size: {land.size_in_acres} square meters
             </Text>
             <Text fontSize="sm">Status: {land.status} by {land.owned_by} </Text>
-            <Text fontSize="xs" mt={2}>Land Size in Plots: {sizeInPlots}</Text>
+            <Text fontSize="xs" mt={2}>Land Size in Plots: {plotCount}</Text>
             <Text fontSize="xs" mt={2}>Land Size in Acres: {sizeInAcres}</Text>
             <Box bg="#317873" p={2} mt={2} borderRadius="md">
               <Text fontSize="sm" color="white">
@@ -189,17 +199,17 @@ const LandList = () => {
         <ModalContent>
           <ModalHeader>{selectedLand?.user_name}'s Land</ModalHeader>
           <ModalBody>
+           <Flex direction="column" align="center" justify="center" h="100%">
             <Image src={selectedLand?.image} alt={`Land ${selectedLand?.id}`} boxSize="100%" objectFit="cover" />
-            <Text mt={4} fontWeight={"bold"}>{selectedLand?.description}</Text>
+            <Text mt={4} fontWeight="bold">{selectedLand?.description}</Text>
             <Text mt={2}>Size: {selectedLand?.size_in_acres} square meters</Text>
-          </ModalBody>
-          <ModalFooter>
             {selectedLand && selectedLand.status === "Unoccupied" ? (
-              <LeaseLandForm land_id={selectedLand.id}/>
-            ) : (
-              <Text mt={4}>This land is not available to rent or lease</Text>
-            )}
-          </ModalFooter>
+         <LeaseLandForm land_id={selectedLand.id} />
+          ) : (
+           <Text mt={4}>This land is not available to rent or lease</Text>
+          )}
+         </Flex>
+          </ModalBody>
         </ModalContent>
       </Modal>
     </Box>

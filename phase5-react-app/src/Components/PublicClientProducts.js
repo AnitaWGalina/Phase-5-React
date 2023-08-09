@@ -26,7 +26,7 @@ import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 const PublicClientProducts = () => {
   const { user } = useAuth();
   const token = localStorage.getItem('jwt')
-  
+
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -60,7 +60,7 @@ const PublicClientProducts = () => {
         setLoading(false);
       });
   }, []);
-  
+
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -117,15 +117,15 @@ const PublicClientProducts = () => {
     if (!selectedProduct) {
       return; // No product selected, do nothing
     }
-  
+
     const saleData = {
       user_id: user.id,
       public_client_product_id: selectedProduct.id,
       quantity: quantity
     };
-  
+
     setLoading(true);
-  
+
     fetch('/public_client_product_sales', {
       method: "POST",
       headers: {
@@ -150,7 +150,7 @@ const PublicClientProducts = () => {
         setShowPopup(false); // Close the popup after making the request
       });
   };
-  
+
 
   return (
     <Box className="product-container" p={10} bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))" bgSize="cover" bgImage="url('../img/farm.jpg')">
@@ -173,18 +173,22 @@ const PublicClientProducts = () => {
               <Text fontSize="md" mb={2}>
                 {description}
               </Text>
-              <InputGroup size="md" mb={2}>
-                <Button onClick={handleDecrementQuantity} size="sm" leftIcon={<MinusIcon />} />
+              <InputGroup size="sm" mb={2} alignItems="center">
+              <Button onClick={handleDecrementQuantity} size="sm" width="50px" leftIcon={<MinusIcon />} />
                 <Input
                   value={quantity}
                   readOnly
-                  w="3rem"
+                  width="50px"
+                  w="6rem"
                   textAlign="center"
                   borderRight="none"
                   borderLeft="none"
+                   borderRadius="none"
+                   marginTop="15px"
+                  _focus={{ border: "none", boxShadow: "none" }}
                 />
                 <ButtonGroup size="sm">
-                  <Button onClick={handleIncrementQuantity} size="sm" leftIcon={<AddIcon />} />
+                  <Button onClick={handleIncrementQuantity} size="sm" rightIcon={<AddIcon />} />
                 </ButtonGroup>
               </InputGroup>
             </AlertDialogBody>

@@ -11,12 +11,12 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .landing-page-text {
     margin-top: 50px;
     text-align: center;
   }
-  
+
   .landing-page-text h1 {
     font-size: 30px;
     font-weight: bold;
@@ -24,7 +24,7 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     margin-bottom: 40%;
   }
-  
+
   .landing-page-content {
     margin-top: -50px;
     margin-bottom: 20%;
@@ -37,11 +37,11 @@
     display: flex;
     justify-content: space-between; /* Change to space-between to display links horizontally */
   }
-  
+
   .product-service {
     display: flex;
   }
-  
+
   .parent-link {
     position: relative;
     padding: 10px 20px;
@@ -55,16 +55,16 @@
     text-decoration: none;
     transition: background-color 0.3s ease;
   }
-  
+
   .parent-link-label {
     color: #fff;
     text-decoration: none;
   }
-  
+
   .parent-link.hovered {
     background-color: #3eb9a5;
   }
-  
+
   .child-link-container {
     position: absolute;
     top: 100%;
@@ -75,11 +75,11 @@
     min-width: 200px;
     display: none;
   }
-  
+
   .parent-link.hovered .child-link-container {
     display: block;
   }
-  
+
   .child-link {
     display: block;
     padding: 8px;
@@ -87,21 +87,21 @@
     text-decoration: none;
     transition: background-color 0.3s ease;
   }
-  
+
   .child-link:hover {
     background-color: #f0f0f0;
   }
-  
+
   /* Additional styles to make the product and service links more interactive */
   .parent-link:hover {
     background-color: #3eb9a5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
-  
+
   .child-link {
     transition: background-color 0.2s ease, color 0.2s ease;
   }
-  
+
   .child-link:hover {
     background-color: #f0f0f0;
     color: #317873;

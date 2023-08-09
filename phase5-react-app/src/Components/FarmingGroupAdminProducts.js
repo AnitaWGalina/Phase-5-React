@@ -26,7 +26,7 @@ import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 const FarmingGroupAdminProducts = () => {
   const { user } = useAuth();
   const token = localStorage.getItem('jwt')
-  
+
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -34,7 +34,7 @@ const FarmingGroupAdminProducts = () => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
 
-  
+
 
   useEffect(() => {
     setLoading(true);
@@ -62,7 +62,7 @@ const FarmingGroupAdminProducts = () => {
         setLoading(false);
       });
   }, []);
-  
+
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -91,15 +91,17 @@ const FarmingGroupAdminProducts = () => {
         cursor="pointer"
         onClick={() => handleProductClick(product)}
       >
-        <Box>
-          <Image src={product.image} alt={product.name} boxSize="100%" objectFit="cover" h={200} />
-          <Heading fontSize="md" mt={2} noOfLines={2}>
-            {product.name}
-          </Heading>
-          <Text fontSize="sm" mt={2}>
-            Price: ${product.price}
+      <Box>
+        <Image src={product.image} alt={product.name} boxSize="100%" objectFit="cover" h={200} />
+        <Heading fontSize="md" mt={2} noOfLines={2}>
+          {product.name}
+        </Heading>
+        <Flex align="center" justify="center" mt={2}>
+          <Text fontSize="sm">
+            Price: KSh {product.price}
           </Text>
-        </Box>
+        </Flex>
+      </Box>
       </GridItem>
     ));
   };
@@ -119,15 +121,15 @@ const FarmingGroupAdminProducts = () => {
     if (!selectedProduct) {
       return; // No product selected, do nothing
     }
-  
+
     const saleData = {
       user_id: user.id,
       farmer_product_id: selectedProduct.id,
       quantity: quantity,
     };
-  
+
     setLoading(true);
-  
+
     fetch('/farmer_product_sales', {
       method: "POST",
       headers: {
@@ -152,7 +154,7 @@ const FarmingGroupAdminProducts = () => {
         setShowPopup(false); // Close the popup after making the request
       });
   };
-  
+
 
   return (
     <Box p={10} bgGradient="linear(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.5))" bgSize="cover" bgImage="url('../img/farm.jpg')">
@@ -170,21 +172,24 @@ const FarmingGroupAdminProducts = () => {
             <AlertDialogBody>
               <Image src={selectedProduct.image} alt={selectedProduct.name} boxSize="100%" objectFit="contain" mb={4} />
               <Text fontSize="lg" fontWeight="bold" mb={2}>
-                Price: ${selectedProduct.price}
+                Price: KSh {selectedProduct.price}
               </Text>
               <Text fontSize="md" mb={2}>
                 {description}
               </Text>
-              <InputGroup size="sm" mb={2}>
-                <Button onClick={handleDecrementQuantity} size="sm" leftIcon={<MinusIcon />} />
+              <InputGroup size="sm" mb={2} alignItems="center">
+              <Button onClick={handleDecrementQuantity} size="sm" width="50px" leftIcon={<MinusIcon />} />
                 <Input
                   value={quantity}
                   readOnly
-                  width="100px"
-                  // w="3rem"
+                  width="50px"
+                  w="6rem"
                   textAlign="center"
                   borderRight="none"
                   borderLeft="none"
+                   borderRadius="none"
+                   marginTop="15px"
+                  _focus={{ border: "none", boxShadow: "none" }}
                 />
                 <ButtonGroup size="sm">
                   <Button onClick={handleIncrementQuantity} size="sm" rightIcon={<AddIcon />} />

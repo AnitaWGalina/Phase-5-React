@@ -29,9 +29,10 @@ function LandForm() {
   const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
   const [isFailureAlertOpen, setIsFailureAlertOpen] = useState(false);
 
-  const calculatePlotCount = (acres) => {
-    const plotsInOneAcre = 8;
-    return acres * plotsInOneAcre;
+  const calculatePlotCount = (squareMeters) => {
+    const plotsPerSquareMeters = 464.5152;
+    const calculatedPlotCount = Math.floor(squareMeters / plotsPerSquareMeters);
+    return calculatedPlotCount !== 0 ? calculatedPlotCount : 'N/A';
   };
 
   if (!user) {
@@ -133,11 +134,16 @@ function LandForm() {
               required
             />
           </FormControl>
-          {plotCount && (
-            <p>
-              <strong>Plot size:</strong> 50 * 100 feet<br />
-              <strong>{plotCount} plots</strong>
-            </p>
+          {plotCount !== 'N/A' ? (
+         <p style={{ textAlign: "center" }}>
+           <strong>Plot size:</strong> 50 * 100 feet<br />
+           <strong>{plotCount} plots</strong>
+         </p>
+         ) : (
+          <p style={{ textAlign: "center" }}>
+           <strong>Plot size:</strong> 50 * 100 feet<br />
+           <strong>N/A</strong>
+          </p>
           )}
           <Button type="submit" colorScheme="green" bgColor="#317873" mt={4}>
             Add Farming Land
