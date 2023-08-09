@@ -10,7 +10,7 @@ import Contact from "./component/Contact";
 // import Footer from "./Footer";
 import './App.css';
 import Profile from "./component/Profile";
-import UserProfile from "./UserProfile";
+import UserProfile from "./UserProfile"
 
 import FarmingGroupAdminLandingPage from './Components/FarmingGroupAdminLandingPage';
 import PublicClientLandingPage from './Components/PublicClientLandingPage';
@@ -23,7 +23,7 @@ import LeaseLandForm from './Components/LandOperationsForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 import LandForm from './Components/LandForm';
-
+import PaymentForm from "./Components/PaymentForm";
 
 const App = () => {
   return (
@@ -103,6 +103,11 @@ const App = () => {
           <Route path="/public-client-services"
             element={<PublicClientServices />}
           />
+
+          <Route path="/payment"
+            element={<PaymentForm />}
+          />
+          
         </Routes>
       </Router>
     </ChakraProvider>

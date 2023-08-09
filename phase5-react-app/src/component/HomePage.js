@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Heading } from '@chakra-ui/react';
-
+import PaymentForm from '../Components/PaymentForm';
 const Home = () => {
   return (
     <Box
@@ -39,6 +39,7 @@ const Home = () => {
       >
         Cultivating a Flourishing Tomorrow
       </Heading>
+      <PaymentForm />
     </Box>
   );
 };

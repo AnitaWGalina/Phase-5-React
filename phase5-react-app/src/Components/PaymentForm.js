@@ -1,22 +1,9 @@
 import React, { useState } from 'react';
-import Brand from './Brand';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
-import BackIcon from "../assets/icon-park-solid_back.png";
-import { Link,useNavigate } from "react-router-dom";
-
-
-
-
-
-
-
-
-
-
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { Input, Text, FormControl, FormLabel, Button } from '@chakra-ui/react';
 
 const PaymentForm = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -26,10 +13,8 @@ const PaymentForm = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-          navigate();
+    navigate();
   };
-
-
 
   const handleMpesaStkPush = () => {
     fetch('https://chamake.onrender.com/stkpush', {
@@ -46,11 +31,12 @@ const PaymentForm = () => {
       .then((data) => {
         console.log('stkpush', data);
         setCheckoutRequestID(data[1].CheckoutRequestID);
+        handleMpesaQuery()
       });
   };
 
   const handleMpesaQuery = () => {
-    setLoading(true); // Start loading
+    setLoading(true);
 
     fetch('https://chamake.onrender.com/stkquery', {
       method: 'POST',
@@ -65,16 +51,14 @@ const PaymentForm = () => {
       .then((data) => {
         console.log('stkquery', data);
         if (data[1].ResultDesc === 'The service request is processed successfully.') {
-        sendPaymentDetailsToBackend(phoneNumber, '1', CheckoutRequestID);
-
+          sendPaymentDetailsToBackend(phoneNumber);
           toast.success('Payment Successful');
         } else {
           toast.error('Payment Failed');
         }
-        // Clear the form
         setPhoneNumber('');
       })
-      .finally(() => setLoading(false)); // Stop loading
+      .finally(() => setLoading(false));
   };
 
   const sendPaymentDetailsToBackend = (phoneNumber) => {
@@ -83,8 +67,7 @@ const PaymentForm = () => {
       user_id: 1,
       amount: "1",
       chama_id: 1,
-      checkout_request_id:CheckoutRequestID
-
+      checkout_request_id: CheckoutRequestID,
     };
 
     fetch('https://chamake.onrender.com/payments', {
@@ -96,145 +79,62 @@ const PaymentForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // Handle the response as needed
         console.log(data);
       });
   };
 
   return (
     <>
-    <CardContainer>
-    <BackIconWrapper onClick={handleGoBack} to="/chamaDetails">
-        <img src={BackIcon} alt="Back" />
-    </BackIconWrapper>
+      <CardContainer>
+        <BackIconWrapper onClick={handleGoBack} to="/chamaDetails">
+          Back
+        </BackIconWrapper>
 
-    <div style={{marginTop: "40px"}} className=" container">
-        <div className="row">
-
-            <div className="col-md-6 mx-auto">
-                <div id="first">
-                    <div className="myform form ">
-                        <div className="logo mb-3">
-                            <div className="col-md-12 text-center">
-                                <Brand/>
-                                <h3>Pay</h3>
-                                < ToastContainer
-                                    position="top-center"
-                                    autoClose={5000}
-                                    hideProgressBar={false}
-                                    newestOnTop={false}
-                                    closeOnClick
-                                    rtl={false}
-                                    pauseOnFocusLoss
-                                    draggable
-                                    pauseOnHover
-                                    theme='colored'
-                                 />
-                            </div>
-                            </div>
-                            <div className="col-md-12 text-center">
-                                <p>Monthly payment of Kshs 1000.00 for 30 days </p>
-                            </div>
-                            <div className="col-md-12 text-center">
-                                <p>Pay with M-Pesa</p>
-                                {/* mpesa logo */}
-                                <img style={{marginTop: '-30px'}}src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/2560px-M-PESA_LOGO-01.svg.png" alt="mpesa logo" width="100px" height="100px"/>
-                                <p>Enter your phone number below to pay for Chama-ke with M-pesa
-                                    <br />
-                                    You will receive a prompt to enter your M-Pesa PIN on your phone
-                                    to complete the transaction.
-                                </p>
-                            </div>
-
-                            <form
-                            style={{padding: "30px", border: "1px solid #ccc", borderRadius: "5px" }}>
-                                <div className="form-group">
-                                    <label htmlFor="exampleInputEmail1">Phone Number</label>
-                                    <StyledInput
-                                    type="text"
-                                    name="phone"
-                                    className="form-control"
-
-                                    id="phone"
-                                    value={phoneNumber}
-                                    onChange={(e) => setPhoneNumber(e.target.value)}
-                                    aria-describedby="emailHelp"
-                                    placeholder='Enter your phone number'
-                                    required
-                                    />
-                                    <p>
-                                        <small>
-                                           Must be in the format '2547xxxxxxxx'
-                                        </small>
-                                    </p>
-                                </div>
-                            </form>
-                            <div className="col-md-12 text-center "style={{marginTop: "15px"}}>
-                                <GreenButton style={{marginRight: "15px"}} type="submit" className="log-in btn btn-block mybtn btn-primary tx-tfm"
-                                onClick={
-                                   ()=> {
-                                    window.confirm("Are you sure you want to pay for chama?") && handleMpesaStkPush()
-                                   }
-                                }
-                                >Send Prompt</GreenButton>
-                                <span>
-                                <GreenButton type="submit" className="log-in btn btn-block mybtn btn-primary tx-tfm"
-                                onClick={
-                                   ()=> {
-                                    setTimeout(() => {
-                                        handleMpesaQuery()
-                                    }, 5000);
-                                   }
-                                }
-                                >Pay</GreenButton>
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-
-
-
-            </CardContainer>
-            {loading && (
+        <div style={{ marginTop: "40px" }} className=" container">
+          <Text>Amount:</Text>
+          <FormControl marginBottom="10px">
+            <FormLabel>Phone Number:</FormLabel>
+            <Input
+              type="text"
+              name="phone_number"
+              id="phone_number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </FormControl>
+          <Button type="submit" colorScheme="green" bgColor="#317873"></Button>
+        </div>
+      </CardContainer>
+      {loading && (
         <LoaderOverlay>
           <Loader />
         </LoaderOverlay>
       )}
     </>
-  )
-}
-
-
-
+  );
+};
 const CardContainer = styled.div`
   background-color: #fff;
   border: 1px solid #ccc;
-  align:center;
-  margin:auto;
-  margin-top:50px;
+  align: center;
+  margin: auto;
+  margin-top: 50px;
   border-radius: 5px;
   padding: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box-shadow here */
-
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 500px;
 `;
+
 const BackIconWrapper = styled(Link)`
   position: absolute;
   top: 20px;
   left: 40px;
-`;
-const GreenButton = styled.button`
-  margin-right: 15px;
-  background-color: #15B76C;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+
+  &:hover {
+    color: #15b76c;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -248,7 +148,21 @@ const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #007BFF;
+    border-color: #007bff;
+  }
+`;
+
+const GreenButton = styled.button`
+  margin-right: 15px;
+  background-color: #15b76c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #128a57;
   }
 `;
 
@@ -269,6 +183,7 @@ const Loader = styled.div`
     }
   }
 `;
+
 const LoaderOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -282,4 +197,5 @@ const LoaderOverlay = styled.div`
   z-index: 9999;
 `;
 
-export default PaymentForm
+
+export default PaymentForm;
