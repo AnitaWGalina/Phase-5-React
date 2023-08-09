@@ -13,7 +13,6 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   Button,
 } from '@chakra-ui/react';
@@ -200,17 +199,17 @@ const LandList = () => {
         <ModalContent>
           <ModalHeader>{selectedLand?.user_name}'s Land</ModalHeader>
           <ModalBody>
+           <Flex direction="column" align="center" justify="center" h="100%">
             <Image src={selectedLand?.image} alt={`Land ${selectedLand?.id}`} boxSize="100%" objectFit="cover" />
-            <Text mt={4} fontWeight={"bold"}>{selectedLand?.description}</Text>
+            <Text mt={4} fontWeight="bold">{selectedLand?.description}</Text>
             <Text mt={2}>Size: {selectedLand?.size_in_acres} square meters</Text>
-          </ModalBody>
-          <ModalFooter>
             {selectedLand && selectedLand.status === "Unoccupied" ? (
-              <LeaseLandForm land_id={selectedLand.id}/>
-            ) : (
-              <Text mt={4}>This land is not available to rent or lease</Text>
-            )}
-          </ModalFooter>
+         <LeaseLandForm land_id={selectedLand.id} />
+          ) : (
+           <Text mt={4}>This land is not available to rent or lease</Text>
+          )}
+         </Flex>
+          </ModalBody>
         </ModalContent>
       </Modal>
     </Box>
