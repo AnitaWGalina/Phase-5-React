@@ -10,12 +10,12 @@ import { Box, Heading, Flex, Text } from '@chakra-ui/react';
 
 const PaymentForm = () => {
     const { total } = useParams();
+    const { user } = useAuth()
   const [phoneNumber, setPhoneNumber] = useState('');
   const [CheckoutRequestID, setCheckoutRequestID] = useState('');
   const [loading, setLoading] = useState(false);
 
-//   const { user } = useAuth()
-  const [amount, setAmount] = useState("1")
+  const [amount, setAmount] = useState(total.toString())
 
   const navigate = useNavigate();
 
@@ -72,9 +72,9 @@ const PaymentForm = () => {
   const sendPaymentDetailsToBackend = (phoneNumber) => {
     const requestBody = {
       phoneNumber: phoneNumber,
-      user_id: 1,
+      user_id: user.id,
       amount: amount,
-      chama_id: 1,
+      chama_id: user.id,
       checkout_request_id:CheckoutRequestID
 
     };
