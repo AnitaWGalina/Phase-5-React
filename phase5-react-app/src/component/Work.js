@@ -1,5 +1,5 @@
 import React from "react";
-import "./work.css";
+import "./Work.css";
 import PickMeals from "../Assets/pick-meals-image.png";
 import ChooseMeals from "../Assets/choose-image.png";
 
