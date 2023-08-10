@@ -34,7 +34,7 @@ const Home = () => {
         justifyContent="center"
         alignItems="center"
         minHeight="100vh"
-        width="100vw"
+        width="98.7vw"
       >
         <Heading
           as="h1"
