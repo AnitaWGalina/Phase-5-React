@@ -5,6 +5,7 @@ import Navbar from "./NavBar";
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from "react-icons/fi";
 import Work from "./Work";  // Import the Work component
+import Testimonial from "./Testimonial";
 
 const HomePage = () => {
   return (
@@ -30,6 +31,7 @@ const HomePage = () => {
 
       {/* Display the Work component */}
       <Work />
+      <Testimonial />
       
     </div>
   );
