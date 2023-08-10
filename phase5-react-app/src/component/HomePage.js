@@ -26,7 +26,7 @@ const Home = () => {
     <div>
       <Box
         className="home-container"
-        backgroundImage="url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp')"
+        background="linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.0)), url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp')"
         backgroundSize="contain"
         backgroundPosition="center"
         display="flex"
@@ -72,6 +72,7 @@ const Home = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            className="section"
           >
             <Box textAlign="center" mb="6">
               <motion.div
@@ -102,6 +103,7 @@ const Home = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            className="section"
           >
             <Box textAlign="center" mb="6" mt="50px">
               <motion.div
@@ -132,6 +134,7 @@ const Home = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            className="section"
           >
             <Box textAlign="center" mb="6">
               <motion.div
@@ -162,6 +165,7 @@ const Home = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            className="section"
           >
             <Box textAlign="center" mb="6"  mt="50px">
               <motion.div
