@@ -23,6 +23,8 @@ import LeaseLandForm from './Components/LandOperationsForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 import LandForm from './Components/LandForm';
+import PaymentForm from "./Components/PaymentForm";
+import { ToastContainer } from "react-toastify";
 import ResetPassword from "./ResetPassword";
 import NewPassword from "./NewPassword";
 
@@ -106,15 +108,19 @@ const App = () => {
             element={<PublicClientServices />}
           />
 
+          <Route path="/payment/:total"
+            element={<PaymentForm />}
+          />
+              
           <Route path="/password/reset"
             element={<ResetPassword />}
           />
 
           <Route path="/reset-password/:token"
             element={<NewPassword />}
-          />
         </Routes>
       </Router>
+      <ToastContainer />
     </ChakraProvider>
     </div>
   );
