@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ProfilePic from "../Assets/john-doe-image.png";
 import { AiFillStar } from "react-icons/ai";
-import "./Testimonial.css"; // Import the CSS file
+import "./Testimonial.css";
 
 const Testimonial = () => {
   const [rating, setRating] = useState(0);
