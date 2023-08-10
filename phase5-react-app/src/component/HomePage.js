@@ -2,6 +2,7 @@ import React from "react";
 import "./HomePage.css";
 import BannerBackground from "../Assets/home-banner-background.png";
 import Navbar from "./NavBar";
+import { Link } from 'react-router-dom';
 import { FiArrowRight } from "react-icons/fi";
 
 const HomePage = () => {
@@ -21,8 +22,8 @@ const HomePage = () => {
           Harvest Success with AgriBix: Your Source for Premium Agri-Solutions. Transform Your Farming Today!!
           </p>
           <button className="secondary-button">
-            Login <FiArrowRight />{" "}
-          </button>
+  <Link to="/login">Login <FiArrowRight /></Link></button>
+
         </div>
       </div>
     </div>
