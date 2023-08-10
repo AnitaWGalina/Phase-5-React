@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
+import { Avatar } from '@chakra-ui/react';
 
 const NavBar = () => {
   const location = useLocation();
@@ -33,7 +34,9 @@ const NavBar = () => {
       {location.pathname !== "/about" && <li><NavLink to="/about">About</NavLink></li>}
       {location.pathname !== "/contact" && <li><NavLink to="/contact">Contact Us</NavLink></li>}
       {user && location.pathname !== "/profile" && (
-        <li><NavLink to="/profile">Profile</NavLink></li>
+        <li><NavLink to="/profile">
+            <Avatar size="sm" name={user.name} />
+          </NavLink></li>
       )}
       {!user && location.pathname !== "/signup" && <li><NavLink to="/signup">Signup</NavLink></li>}
       {!user && location.pathname !== "/login" && <li><NavLink to="/login">Login</NavLink></li>}
