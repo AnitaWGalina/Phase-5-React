@@ -9,11 +9,13 @@ const Testimonial = () => {
   const handleStarClick = (starRating) => {
     setRating(starRating);
   };
+
   return (
     <div className="work-section-wrapper">
       <div className="work-section-top">
         <p className="primary-subheading">Testimonial</p>
-        <h1 className="primary-heading">Transforming Farming with AgriBix: A Game-Changer!</h1>
+        <h1 className="primary-heading">Transforming Farming with AgriBix</h1>
+        <h2 className="secondary-heading">A Game-Changer!</h2> {/* Added secondary heading */}
         <p className="primary-text">
           AgriBix has truly revolutionized the way I approach farming. The comprehensive range of innovative solutions they offer has completely transformed the productivity and efficiency of my agricultural operations. From their top-notch products to their expert advice, AgriBix has become an indispensable partner in my journey towards sustainable and profitable farming. What I appreciate the most is their commitment to empowering farmers with knowledge and resources that make a real difference. With AgriBix by my side, I'm confidently stepping into a brighter future for my farm. Kudos to the AgriBix team for their exceptional services!
         </p>

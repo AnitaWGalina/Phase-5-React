@@ -5,7 +5,7 @@ import Image1 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/sr
 import Image2 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/src/Img/coffee.jpg';
 import Image3 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/src/Img/training.jpeg';
 import Image4 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/src/Img/land2.jpg';
-import { FiArrowRight } from "react-icons/fi";
+// import { FiArrowRight } from "react-icons/fi";
 // import Work from "./Work";
 import Testimonial from "./Testimonial";
 import "./HomePage.css";
@@ -27,7 +27,7 @@ const Home = () => {
       <Box
         className="home-container"
         backgroundImage="url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp')"
-        backgroundSize="cover"
+        backgroundSize="contain"
         backgroundPosition="center"
         display="flex"
         flexDirection="column"
@@ -60,6 +60,13 @@ const Home = () => {
         </Heading>
       </Box>
       <Container maxW="container.lg" py="10">
+        <Text fontSize="5xl" fontWeight="bold" color="gray.700" textAlign="center" mb="6">
+          Elevate Your Agriculture Game with AgriBix
+        </Text>
+        <Text fontSize="2xl" color="gray.600" textAlign="center" mb="8">
+          Sign up to get our products and services
+        </Text>
+
         <Grid templateColumns="repeat(4, 1fr)" gap="4">
           <motion.div
             variants={containerVariants}

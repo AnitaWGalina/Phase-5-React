@@ -5,25 +5,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh; /* Adjust the height */
+    height: 50vh; /* Adjust the height */
     background-size: cover;
     background-position: center;
     text-align: center;
   }
-  
+
   .home-banner-container::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 50%;
     background-size: cover;
     background-position: center;
     opacity: 0.5;
     z-index: -1;
   }
-  
+
   .home-text-section {
     position: relative;
     z-index: 1;
@@ -44,7 +44,7 @@
     color: rgb(255, 255, 255);
     margin: 1.5rem 0rem;
   }
-  
+
   .home-text-section button {
     background-color: #3498db;
     color: white;
@@ -52,20 +52,20 @@
     padding: 10px 20px;
     cursor: pointer;
   }
-  
+
   .primary-heading {
     font-size: clamp(2rem, 5vw, 4rem);
     color: #4c4c4c;
     max-width: 600px;
   }
-  
+
   .primary-text {
     font-size: clamp(1rem, 3vw, 1.5rem);
     max-width: 500px;
     color: #6a6a6a;
     margin: 1.5rem 0rem;
   }
-  
+
   .secondary-button {
     padding: 0.75rem 1.5rem; /* Adjust the padding */
     background-color: #fe9e0d;
@@ -81,12 +81,12 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .secondary-button svg {
     margin-left: 0.5rem; /* Adjust the margin */
     font-size: 1.25rem; /* Adjust the font size */
   }
-  
+
   .secondary-button:hover {
     background-color: #e48f0f;
   }
