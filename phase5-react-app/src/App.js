@@ -23,6 +23,7 @@ import LeaseLandForm from './Components/LandOperationsForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 import LandForm from './Components/LandForm';
+import ResetPassword from "./ResetPassword";
 
 
 const App = () => {
@@ -102,6 +103,10 @@ const App = () => {
 
           <Route path="/public-client-services"
             element={<PublicClientServices />}
+          />
+
+          <Route path="/password/reset"
+            element={<ResetPassword />}
           />
         </Routes>
       </Router>
