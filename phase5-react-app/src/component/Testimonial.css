@@ -1,0 +1,84 @@
+.work-section-wrapper {
+    background-color: #f9f9f9;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .work-section-top {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align text */
+  }
+
+  .primary-subheading {
+    font-size: 20px;
+    color: #15b76c;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .primary-heading {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .primary-text {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+    text-align: center; /* Center-align text */
+  }
+
+  .secondary-heading {
+    font-size: 26px;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .testimonial-section-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial-section-bottom img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  /* ... (other styles) */
+
+  .star-rating {
+    display: inline-block;
+    font-size: 24px;
+    color: #f1c40f;
+    margin: 10px 0;
+  }
+
+  .star-rating .star {
+    display: inline-block;
+    margin-right: 5px;
+    transform: scale(1);
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .star-rating .star:last-child {
+    margin-right: 0;
+  }
+
+  .star-rating .star.active {
+    transform: scale(1.2);
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
