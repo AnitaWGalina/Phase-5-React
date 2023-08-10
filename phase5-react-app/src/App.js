@@ -118,6 +118,7 @@ const App = () => {
 
           <Route path="/reset-password/:token"
             element={<NewPassword />}
+              />
         </Routes>
       </Router>
       <ToastContainer />
