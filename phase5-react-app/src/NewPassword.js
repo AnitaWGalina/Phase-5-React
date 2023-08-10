@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import './ResetPassword.css'
-import { Box, Text, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { Box, Text, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
+import { calcLength } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 function NewPassword() {
+    const { token } = useParams();
+    const navigate = useNavigate()
     const [change, setChange] = useState({
         password: "",
         password_confirmation: "",
@@ -16,28 +21,38 @@ function NewPassword() {
     });
   };
 
-  const handleNewPassword = async () => {
+  const handleNewPassword = async (e) => {
+    e.preventDefault();
+
     try {
-   
-      const response = await fetch("/password/reset", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({change}),
-      });
+        const response = await fetch(`http://localhost:3000/reset-password`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            ...change,
+            token
+          }),
+        });
+  
+        const data = await response.json();
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(data.message);
-      } else {
-        setMessage(data.error);
+        console.log(data)
+        navigate("/login")
+  
+        // if (response.ok) {
+        //   setMessage(data.message);
+        //   console.log("success")
+        // } else {
+        //   setMessage(data.error);
+        // }
+      } catch (error) {
+        console.log('Reset password error', error)
+        setMessage("An error occurred. Please try again later.");
       }
-    } catch (error) {
-      setMessage("An error occurred. Please try again later.");
-    }
-  };
+    };
 
   return (
     <Box className="reset-container">
@@ -78,6 +93,9 @@ function NewPassword() {
             Change Password
           </button>
         </form>
+        {/* {message && (
+          <Text color={response.ok ? "green" : "red"}>{message}</Text>
+        )} */}
       </Box>
     </Box>
   );
