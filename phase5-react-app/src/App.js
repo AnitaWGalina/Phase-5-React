@@ -118,12 +118,12 @@ const App = () => {
 
           <Route path="/reset-password/:token"
             element={<NewPassword />}
-        </Routes>
+            />
+      </Routes>
       </Router>
       <ToastContainer />
     </ChakraProvider>
     </div>
   );
 }
-
 export default App;
