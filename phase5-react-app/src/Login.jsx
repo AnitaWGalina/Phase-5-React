@@ -8,7 +8,7 @@ import {
   FormLabel
 } from '@chakra-ui/react';
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
 const LoginForm = () => {
@@ -92,6 +92,9 @@ const LoginForm = () => {
           <Button type="submit" colorScheme="blue" fontWeight="bold">
             Login
           </Button>
+          <Link to="/password/reset">
+            <Text padding="20px" textAlign="right">Forgot your password?</Text>
+          </Link>
         </form>
       </Box>
     </Box>

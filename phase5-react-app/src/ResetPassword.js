@@ -13,7 +13,7 @@ function ResetPassword() {
   const handleResetPassword = async () => {
     // try {
    
-    //   const response = await fetch( {
+    //   const response = await fetch("/password/reset" {
     //     method: "POST",
     //     headers: {
     //       "Content-Type": "application/json",
@@ -48,10 +48,12 @@ function ResetPassword() {
           <FormControl marginBottom="10px">
             <FormLabel>Email</FormLabel>
             <Input
+              textAlign="center"
               type="text"
               name="email"
               id="email"
-              // value={credentials.email}
+              value={email}
+              placeholder="user@example.com"
               onChange={handleEmailChange}
             />
           </FormControl>
