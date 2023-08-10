@@ -34,14 +34,14 @@
     font-size: 2.5rem; /* Adjust the font size */
     font-weight: 300;
     line-height: 1.2;
-    color: #000000;
+    color: #fbfbfb;
     margin-bottom: 10px;
     font-family: 'Inika', sans-serif;
   }
   .home-text-section p {
     font-size: clamp(1rem, 3vw, 1.5rem);
     max-width: 500px;
-    color: white;
+    color: rgb(255, 255, 255);
     margin: 1.5rem 0rem;
   }
   
