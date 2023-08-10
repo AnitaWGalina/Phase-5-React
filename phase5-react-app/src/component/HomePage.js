@@ -25,18 +25,16 @@ const Home = () => {
   return (
     <div>
       <Box
-        className="home-container"
-        background="linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.0)), url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp')"
-        backgroundSize="contain"
-        backgroundPosition="center"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="70vh"
-        width="98.7vw"
-        boxShadow="0px 5px 15px rgba(0, 0, 0, 1.5)"
-        borderRadius="0 0 15px 8px"
+          className="home-container"
+          background={`linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.0)), url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp') center / cover no-repeat`}
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="75vh"
+          width="98.7vw"
+          boxShadow="0px 5px 15px rgba(0, 0, 0, 1.8)"
+          borderRadius="0 0 15px 15px"
       >
         <Heading
           as="h1"
@@ -122,11 +120,12 @@ const Home = () => {
                   borderRadius="md"
                 />
               </motion.div>
-              <Heading as="h2" fontSize="2xl" mt="4" color="black">
-                <span style={{ color: '#FFF500', marginRight: '0.5rem', fontSize: '1.5em' }}>•</span> Produce Aggregation
-              </Heading>
+                <Heading as="h2" fontSize="2xl" mt="4" color="black" style={{ whiteSpace: 'nowrap' }}>
+                  <span style={{ color: '#FFF500', marginRight: '0.4rem', fontSize: '1.5em' }}>•</span> Produce Aggregation
+                </Heading>
+
               <motion.div variants={containerVariants}>
-                <Text color="black" mt="2">
+              <Text color="black" mt="2" style={{ marginLeft: '2rem' }}>
                   Farmers can bring their harvested produce to us. We process and sell the final product to the public.
                 </Text>
               </motion.div>
@@ -185,7 +184,7 @@ const Home = () => {
                 />
               </motion.div>
               <Heading as="h2" fontSize="2xl" mt="4" color="black">
-                <span style={{ color: '#FFF500', marginRight: '0.5rem', fontSize: '1.5em' }}>•</span> Land Leasing and Renting
+                <span style={{ color: '#FFF500', marginRight: '0.5rem', fontSize: '1.5em' }}>•</span> Leasing & Renting
               </Heading>
               <motion.div variants={containerVariants}>
                 <Text color="black" mt="2">
