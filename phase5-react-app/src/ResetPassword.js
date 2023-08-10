@@ -11,26 +11,26 @@ function ResetPassword() {
   };
 
   const handleResetPassword = async () => {
-    // try {
+    try {
    
-    //   const response = await fetch("/password/reset" {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email }),
-    //   });
+      const response = await fetch("/password/reset", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email}),
+      });
 
-    //   const data = await response.json();
+      const data = await response.json();
 
-    //   if (response.ok) {
-    //     setMessage(data.message);
-    //   } else {
-    //     setMessage(data.error);
-    //   }
-    // } catch (error) {
-    //   setMessage("An error occurred. Please try again later.");
-    // }
+      if (response.ok) {
+        setMessage(data.message);
+      } else {
+        setMessage(data.error);
+      }
+    } catch (error) {
+      setMessage("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -44,7 +44,7 @@ function ResetPassword() {
             Invalid email
           </Text>
         )} */}
-        <form className="reset-form" /*onSubmit={handleSubmit}*/>
+        <form className="reset-form" onSubmit={handleResetPassword}>
           <FormControl marginBottom="10px">
             <FormLabel>Email</FormLabel>
             <Input
