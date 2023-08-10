@@ -35,6 +35,8 @@ const Home = () => {
         alignItems="center"
         minHeight="70vh"
         width="98.7vw"
+        boxShadow="0px 5px 15px rgba(0, 0, 0, 1.5)"
+        borderRadius="0 0 15px 8px"
       >
         <Heading
           as="h1"
@@ -187,7 +189,7 @@ const Home = () => {
               </Heading>
               <motion.div variants={containerVariants}>
                 <Text color="black" mt="2">
-                  Farmers and users can lease their land or rent land from others to expand their operations.
+                  Farmers and the General public can lease their land or rent land from others to expand their operations.
                 </Text>
               </motion.div>
             </Box>
