@@ -1,46 +1,32 @@
-import React from 'react';
-import { Box, Heading } from '@chakra-ui/react';
+import React from "react";
+import "./HomePage.css";
+import BannerBackground from "../Assets/home-banner-background.png";
+import Navbar from "./NavBar";
+import { FiArrowRight } from "react-icons/fi";
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <Box
-      className="home-container"
-      backgroundImage="url('https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/431c8315940ed37a3d6d257ff74e067ce41e6879.webp')"
-      backgroundSize="cover"
-      backgroundPosition="center"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      height="91.5vh" // Occupy the entire viewport height
-      width="100vw"  // Occupy the entire viewport width
-    >
-      <Heading
-        as="h1"
-        fontSize={['1.8rem', '7xl']}
-        // fontWeight="bold"
-        color="#FFF500"
-        mb={['0.01rem', '1']}
-        textAlign="center"
-        fontFamily="'Inika', serif"
-        className="font-inika-yellow"
+    <div className="home-container">
+      {/* <Navbar /> */}
+      <div
+        className="home-banner-container"
+        style={{ backgroundImage: `url(${BannerBackground})` }}
       >
-        Where Nature Meets Innovation,
-      </Heading>
-      <Heading
-        as="h1"
-        fontSize={['1.8rem', '7xl']}
-        // fontWeight="bold"
-        color="white"
-        mb={['10px', '8']}
-        textAlign="center"
-        fontFamily="'Inika', serif"
-        className="font-inika-white"
-      >
-        Cultivating a Flourishing Tomorrow
-      </Heading>
-    </Box>
+        <div className="home-text-section">
+          <h1 className="primary-heading">
+          Where Nature Meets Innovation
+          Cultivating a Flourishing Tomorrow
+          </h1>
+          <p className="primary-text">
+          Harvest Success with AgriBix: Your Source for Premium Agri-Solutions. Transform Your Farming Today!!
+          </p>
+          <button className="secondary-button">
+            Login <FiArrowRight />{" "}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Home;
+export default HomePage;
