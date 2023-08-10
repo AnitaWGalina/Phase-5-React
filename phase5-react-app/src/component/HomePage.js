@@ -23,9 +23,9 @@ const HomePage = () => {
           <p className="primary-text">
             Harvest Success with AgriBix: Your Source for Premium Agri-Solutions. Transform Your Farming Today!!
           </p>
-          <button className="secondary-button">
+          {/* <button className="secondary-button">
             <Link to="/login">Login <FiArrowRight /></Link>
-          </button>
+          </button> */}
         </div>
       </div>
 
