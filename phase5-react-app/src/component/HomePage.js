@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, Heading, Text, Container, Image, Grid } from '@chakra-ui/react';
-import Image1 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/src/Img/seeds.jpg';
-import Image2 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/src/Img/coffee.jpg';
-import Image3 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/src/Img/training.jpeg';
-import Image4 from '/home/dmm/moringa/projects/Phase-5-React/phase5-react-app/src/Img/land2.jpg';
+import Image1 from '../Img/seeds.jpg';
+import Image2 from '../Img/coffee.jpg';
+import Image3 from '../Img/training.jpeg';
+import Image4 from '../Img/land2.jpg';
 // import { FiArrowRight } from "react-icons/fi";
 // import Work from "./Work";
 import Testimonial from "./Testimonial";

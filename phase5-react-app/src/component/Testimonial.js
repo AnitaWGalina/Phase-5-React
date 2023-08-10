@@ -15,7 +15,7 @@ const Testimonial = () => {
       <div className="work-section-top">
         <p className="primary-subheading">Testimonial</p>
         <h1 className="primary-heading">Transforming Farming with AgriBix</h1>
-        <h2 className="secondary-heading">A Game-Changer!</h2> {/* Added secondary heading */}
+        <h2 className="secondary-heading">A Game-Changer!</h2>
         <p className="primary-text">
           AgriBix has truly revolutionized the way I approach farming. The comprehensive range of innovative solutions they offer has completely transformed the productivity and efficiency of my agricultural operations. From their top-notch products to their expert advice, AgriBix has become an indispensable partner in my journey towards sustainable and profitable farming. What I appreciate the most is their commitment to empowering farmers with knowledge and resources that make a real difference. With AgriBix by my side, I'm confidently stepping into a brighter future for my farm. Kudos to the AgriBix team for their exceptional services!
         </p>
@@ -31,7 +31,7 @@ const Testimonial = () => {
             />
           ))}
         </div>
-        <h2>Hudson May</h2>
+        <h2>Brain Njoroge</h2>
       </div>
     </div>
   );
