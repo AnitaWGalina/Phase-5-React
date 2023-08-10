@@ -24,6 +24,7 @@ import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 import LandForm from './Components/LandForm';
 import ResetPassword from "./ResetPassword";
+import NewPassword from "./NewPassword";
 
 
 const App = () => {
@@ -107,6 +108,10 @@ const App = () => {
 
           <Route path="/password/reset"
             element={<ResetPassword />}
+          />
+
+          <Route path="/reset-password"
+            element={<NewPassword />}
           />
         </Routes>
       </Router>
