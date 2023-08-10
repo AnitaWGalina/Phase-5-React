@@ -23,6 +23,8 @@ import LeaseLandForm from './Components/LandOperationsForm';
 import TrainingForm from './Components/TrainingForm';
 import LandList from './Components/LandList';
 import LandForm from './Components/LandForm';
+import PaymentForm from "./Components/PaymentForm";
+import { ToastContainer } from "react-toastify";
 
 
 const App = () => {
@@ -103,8 +105,13 @@ const App = () => {
           <Route path="/public-client-services"
             element={<PublicClientServices />}
           />
+
+          <Route path="/payment/:total"
+            element={<PaymentForm />}
+          />
         </Routes>
       </Router>
+      <ToastContainer />
     </ChakraProvider>
     </div>
   );

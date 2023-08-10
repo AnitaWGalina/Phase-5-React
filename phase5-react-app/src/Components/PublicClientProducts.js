@@ -22,10 +22,14 @@ import {
 } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PublicClientProducts = () => {
   const { user } = useAuth();
   const token = localStorage.getItem('jwt')
+  const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -118,6 +122,16 @@ const PublicClientProducts = () => {
       return; // No product selected, do nothing
     }
 
+    const total = selectedProduct.price * quantity
+    toast.info('Proceeding to payment...', {
+      autoClose: 1000, // Set the duration in milliseconds
+      position: toast.POSITION.TOP_CENTER,
+      onClose: () => {
+        navigate(`/payment/${total}`);
+      },
+    })
+    
+
     const saleData = {
       user_id: user.id,
       public_client_product_id: selectedProduct.id,
@@ -136,8 +150,7 @@ const PublicClientProducts = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
-        window.alert(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`);
+        // console.log(`Successfully bought ${quantity} ${selectedProduct.name}s for ${user.name}!`)
         setShowPopup(false);
         // Here you might want to handle any success message or update UI accordingly
       })
