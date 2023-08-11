@@ -45,7 +45,7 @@ const SignUpForm = () => {
       return;
     }
 
-    fetch("/api/users", {
+    fetch("/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
