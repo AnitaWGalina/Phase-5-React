@@ -43,7 +43,7 @@ const FarmingGroupAdminProducts = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
-    fetch('/farmer_products', {
+    fetch('https://agribix.onrender.com/farmer_products', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -143,7 +143,7 @@ const FarmingGroupAdminProducts = () => {
 
     setLoading(true);
 
-    fetch('/farmer_product_sales', {
+    fetch('https://agribix.onrender.com/farmer_product_sales', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

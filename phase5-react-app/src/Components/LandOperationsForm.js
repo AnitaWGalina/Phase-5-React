@@ -59,7 +59,7 @@ const LeaseLandForm = ({land_id}) => {
 
     try {
       // Send the data to the backend
-      const response = await fetch('/land_operations', {
+      const response = await fetch('https://agribix.onrender.com/land_operations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

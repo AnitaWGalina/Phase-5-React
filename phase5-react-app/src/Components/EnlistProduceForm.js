@@ -40,7 +40,7 @@ const EnlistProduceForm = () => {
 
     try {
       // Send the data to the backend
-      const response = await fetch('/farmer_produce_sales', {
+      const response = await fetch('https://agribix.onrender.com/farmer_produce_sales', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

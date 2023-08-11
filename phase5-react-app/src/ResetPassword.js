@@ -13,7 +13,7 @@ function ResetPassword() {
   const handleResetPassword = async () => {
     try {
    
-      const response = await fetch("/password/reset", {
+      const response = await fetch("https://agribix.onrender.com/password/reset", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

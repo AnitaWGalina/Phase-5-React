@@ -46,7 +46,7 @@ const UserProfile = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`/users/${user.id}`, {
+    fetch(`https://agribix.onrender.com/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

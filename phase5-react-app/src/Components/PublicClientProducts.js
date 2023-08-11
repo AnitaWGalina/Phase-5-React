@@ -41,7 +41,7 @@ const PublicClientProducts = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch products from the API
-    fetch('/public_client_products', {
+    fetch('https://agribix.onrender.com/public_client_products', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -140,7 +140,7 @@ const PublicClientProducts = () => {
 
     setLoading(true);
 
-    fetch('/public_client_product_sales', {
+    fetch('https://agribix.onrender.com/public_client_product_sales', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
