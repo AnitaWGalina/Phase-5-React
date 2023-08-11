@@ -138,7 +138,7 @@ const PaymentForm = () => {
                                         height="100px"
                                     />
                                 </Box>
-                                <Text textAlign="center">Enter your phone number below to pay for Chama-ke with M-pesa
+                                <Text textAlign="center">Enter your phone number below to finish payment with M-pesa
                                     <br />
                                     You will receive a prompt to enter your M-Pesa PIN on your phone
                                     to complete the transaction.
@@ -173,7 +173,7 @@ const PaymentForm = () => {
                                 <GreenButton style={{marginRight: "15px"}} type="submit" className="log-in btn btn-block mybtn btn-primary tx-tfm"
                                 onClick={
                                    ()=> {
-                                    window.confirm("Are you sure you want to pay for chama?") && handleMpesaStkPush()
+                                    window.confirm("Are you sure you want to pay for Agribix?") && handleMpesaStkPush()
                                    }
                                 }
                                 >Send Prompt</GreenButton>

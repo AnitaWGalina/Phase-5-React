@@ -61,7 +61,7 @@ const TrainingForm = () => {
     };
 
     try {
-      const response = await fetch('/farmer_trainings', {
+      const response = await fetch('https://agribix.onrender.com/farmer_trainings', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

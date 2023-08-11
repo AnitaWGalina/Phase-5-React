@@ -45,7 +45,7 @@ const SignUpForm = () => {
       return;
     }
 
-    fetch("/users", {
+    fetch("https://agribix.onrender.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -33,7 +33,7 @@ const LandList = () => {
   useEffect(() => {
     setLoading(true);
     // Fetch lands from the API
-    fetch('/farming_lands', {
+    fetch('https://agribix.onrender.com/farming_lands', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -11,7 +11,7 @@ const DeleteAccount = ({id}) => {
     
     const handleDelete = () => {
         // Perform the DELETE request to the API endpoint
-        fetch(`http://127.0.0.1:3000/users/${user.id}`, {
+        fetch(`https://agribix.onrender.com/users/${user.id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

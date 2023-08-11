@@ -57,7 +57,7 @@ function LandForm() {
     };
 
     try {
-      const response = await fetch('/farming_lands', {
+      const response = await fetch('https://agribix.onrender.com/farming_lands', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -34,7 +34,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     // Send a POST request to your login endpoint with user credentials
-    fetch("/login", {
+    fetch("https://agribix.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
