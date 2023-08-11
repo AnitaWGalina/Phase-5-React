@@ -99,7 +99,7 @@ const PublicClientProducts = () => {
             {product.name}
           </Heading>
           <Text fontSize="sm" mt={2}>
-            Price: ${product.price}
+            Price: Ksh {product.price}
           </Text>
         </Box>
       </GridItem>
